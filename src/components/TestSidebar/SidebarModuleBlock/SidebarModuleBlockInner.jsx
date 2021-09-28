@@ -1,5 +1,7 @@
+import { useState } from "react";
+import check from "../../../assets/check.svg";
+
 const SidebarModuleBlockInner = (props) => {
-  debugger
   const moduleList = props.moduleList.map((i) => (
     <ModuleTitle key={i.id} title={i.moduleTitle} />
   ));
@@ -7,12 +9,17 @@ const SidebarModuleBlockInner = (props) => {
 };
 
 const ModuleTitle = (props) => {
-  debugger
+  const [isCompleted, setCompleted] = useState(false);
+
+  const checkCompleted = () => {
+    setCompleted(true);
+  };
+
   return (
     <div className="test__sidebar-block-item">
       <div className="test__sidebar-text">{props.title}</div>
-      <div className="test__sidebar-block-check test__sidebar-block-check-completed">
-        <img src="assets/check.svg" alt="" />
+      <div className={`test__sidebar-block-check ${isCompleted ?'test__sidebar-block-check-completed' : ''}`}>
+        <img src={check} alt="" />
       </div>
     </div>
   );

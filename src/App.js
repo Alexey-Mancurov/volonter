@@ -2,6 +2,7 @@ import "./App.css";
 import TextWrapper from "./components/TestWrapper/TestWrapper";
 
 function App() {
+
   return (
     <div className="App">
       <main className="main main_inner">

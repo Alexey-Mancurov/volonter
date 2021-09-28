@@ -1198,6 +1198,7 @@ template {
   width: 20%;
   background-color: #4D9EF8;
   border-radius: 15px;
+  transition: all .3s;
 }
 
 .test__sidebar-block {
@@ -1435,6 +1436,11 @@ template {
 
 .test__ask-notif-red {
   background-color: #EB3624;
+  color: #fff;
+}
+
+.test__ask-notif-blue{
+  background-color: #0491FB;
   color: #fff;
 }
 
