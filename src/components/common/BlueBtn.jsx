@@ -1,8 +1,8 @@
 const BlueBtn = (props) => {
   return (
-    <a href="#" className={`test__ask-blue ${props.addClass}`}>
+    <div className={`test__ask-blue ${props.addClass}`}>
       {props.text}
-    </a>
+    </div>
   );
 };
 

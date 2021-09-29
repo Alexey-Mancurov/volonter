@@ -1,8 +1,8 @@
 const BorderBlueBtn = (props) => {
   return (
-    <a href="#" className={`test__ask-blueBorder ${props.addClass}`}>
+    <div className={`test__ask-blueBorder ${props.addClass}`}>
       {props.text}
-    </a>
+    </div>
   );
 };
 

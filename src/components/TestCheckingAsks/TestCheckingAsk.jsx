@@ -5,7 +5,6 @@ const TestCheckingdAsk = (props) => {
   return (
     <div className="test__ask">
       <TestCheckingTitle />
-
       <p className="test__container-text test__ask-question">
         Выберите неверное утверждение
       </p>
