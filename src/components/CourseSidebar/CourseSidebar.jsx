@@ -1,10 +1,8 @@
-import SidebarDataAboutTest from "./SidebarDataAboutTest";
 import SidebarDataAboutTestDesctop from "./SidebarDataAboutTestDesctop";
-import SidebarDataAboutTestMobil from "./SidebarDataAboutTestMobil";
 import SidebarModuleBlock from "./SidebarModuleBlock/SidebarModuleBlock";
 import ProgressCourse from "./SidebarProgressCourse";
 
-const TestSidebar = (props) => {
+const CourseSidebar = (props) => {
   let state = {
     generalDataAboutTest: [
       // Изменить type num на Number. Надо будет разделить на 2 компонента
@@ -66,4 +64,4 @@ const TestSidebar = (props) => {
   );
 };
 
-export default TestSidebar;
+export default CourseSidebar;

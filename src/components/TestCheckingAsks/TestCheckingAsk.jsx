@@ -1,10 +1,11 @@
-import TestAskFooterBtns from "./TestAskFooterBtns";
-import TestAskTitle from "./TestAskTitle";
+import TestCheckingBtns from "./TestCheckingBtns";
+import TestCheckingTitle from "./TestCheckingTitle";
 
-const TestAsk = (props) => {
+const TestCheckingdAsk = (props) => {
   return (
     <div className="test__ask">
-      <TestAskTitle />
+      <TestCheckingTitle />
+
       <p className="test__container-text test__ask-question">
         Выберите неверное утверждение
       </p>
@@ -12,9 +13,9 @@ const TestAsk = (props) => {
         Волонтёрская организация, у которой нет деятельности в интернете,
         вызывает подозрение
       </div>
-      <TestAskFooterBtns />
+      <TestCheckingBtns />
     </div>
   );
 };
 
-export default TestAsk;
+export default TestCheckingdAsk;

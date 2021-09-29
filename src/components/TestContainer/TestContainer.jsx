@@ -47,24 +47,32 @@ const TestContainer = (props) => {
     ],
   };
 
-  let [currentAsk, setCurrentAsk] = useState(1)
+  let [currentAsk, setCurrentAsk] = useState(1);
 
-  const prevAsk=()=>{
-    setCurrentAsk(currentAsk-1)
-  }
+  const prevAsk = () => {
+    setCurrentAsk(currentAsk - 1);
+  };
 
-  const nextAsk=()=>{
-    setCurrentAsk(currentAsk+1)
-  }
+  const nextAsk = () => {
+    setCurrentAsk(currentAsk+1);
+  };
 
 
-
-  const askList = state.asksList.map(i=>(
-    <TestAsk title={i.ask.title} options={i.ask.options} id={i.ask.id} key={i.ask.id} currentAsk={currentAsk} nextAsk={nextAsk} prevAsk={prevAsk} asksCount={state.asksList.length}/>
-  ))
+  const askList = state.asksList.map((i) => (
+    <TestAsk
+      title={i.ask.title}
+      options={i.ask.options}
+      id={i.ask.id}
+      key={i.ask.id}
+      currentAsk={currentAsk}
+      nextAsk={nextAsk}
+      prevAsk={prevAsk}
+      asksCount={state.asksList.length}
+    />
+  ));
   return (
     <div class="test__container">
-      <TestHeader currentAsk={currentAsk} asksCount={state.asksList.length}/>
+      <TestHeader currentAsk={currentAsk} asksCount={state.asksList.length} />
       {currentAsk}
       {askList}
     </div>

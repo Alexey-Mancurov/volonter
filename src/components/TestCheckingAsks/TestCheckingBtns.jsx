@@ -1,5 +1,5 @@
-import BorderBlueBtn from "../../../common/BorderBlueBtn";
-import RedBtn from "../../../common/RedBtn";
+import BorderBlueBtn from "../common/BorderBlueBtn";
+import RedBtn from "../common/RedBtn";
 
 const TestAskFooterBtns = (props) => {
 

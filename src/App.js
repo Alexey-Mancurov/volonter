@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { Route } from "react-router-dom";
 import "./App.css";
-import Course from "./components/Course/Course";
-import Main from "./components/Main";
+import CourseInfo from "./components/CourseInfo/CourseInfo";
+import LessonTitle from "./components/LessonTitle/LessonTitle";
+import TestCompleted from "./components/TestCompleted/TestCompleted";
+import TestContainer from "./components/TestContainer/TestContainer";
+import CourseSidebar from "./components/CourseSidebar/CourseSidebar";
+import TestChecking from "./components/TestChecking/TestChecking";
 
 function App() {
   let state ={
@@ -11,28 +16,64 @@ function App() {
       {title: 'Курс 3', id: 3},
       {title: 'Курс 4', id: 4},
     ],
+    // dev block
+    leason:{title: 'Урок 4', id: 4}
   }
-  let [currentLesson, setCurrentLeason] = useState(1);
+  // let [currentLesson, setCurrentLeason] = useState(1);
 
-  const nextLesson = () => {
-    setCurrentLeason(currentLesson+1);
-  };
-  const prevLesson = ()=>{
-    setCurrentLeason(currentLesson-1);
-  }
+  // const nextLesson = () => {
+  //   setCurrentLeason(currentLesson+1);
+  // };
+  // const prevLesson = ()=>{
+  //   setCurrentLeason(currentLesson-1);
+  // }
 
-  let [isActiveTest, setActiveTest] = useState(true)
+  // let [isActiveTest, setActiveTest] = useState(false)
 
-  const getActiveTest = ()=>{
-    setActiveTest(true)
-  }
+  // const getActiveTest = ()=>{
+  //   setActiveTest(true)
+  // }
 
-  const allLeasons = state.leasonList.map(i=>(
-    <Main key={i.id} title={i.title} currentLesson={currentLesson} nextLesson={nextLesson} prevLesson={prevLesson} id={i.id} isActiveTest={isActiveTest} getActiveTest={getActiveTest}/>
-  ))
+  // let [isTestCompleted, setTestCompleted]= useState(false)
+
+  // const getTestCompleted =()=>{
+  //   setTestCompleted(true)
+  // }
+
+  // const allLeasons = state.leasonList.map(i=>(
+  //   <Main key={i.id} title={i.title} currentLesson={currentLesson} nextLesson={nextLesson} prevLesson={prevLesson} id={i.id} isActiveTest={isActiveTest} getActiveTest={getActiveTest} isTestCompleted={isTestCompleted} getTestCompleted={getTestCompleted}/>
+  // ))
   return (
+    
     <div className="App" >
-        {allLeasons}
+      <main className="main main_inner">
+        <LessonTitle title={state.leason.title}/>
+        <div className='test__wrapper'>
+
+          <CourseSidebar />
+
+          <div className="test__wrapper-body">
+            <Route exact path={'/'}>
+              <CourseInfo
+                // currentLesson={currentLesson}
+                // nextLesson={nextLesson}
+                // prevLesson={prevLesson}
+                // getActiveTest={getActiveTest}
+              />
+            </Route>
+            <Route path={'/test'}>
+              <TestContainer />
+            </Route>
+            <Route path={'/test-completed'}>
+              <TestCompleted />
+            </Route>
+            <Route path={'/test-checking'}>
+              <TestChecking />
+            </Route>
+            {/* тут слайдер */}
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

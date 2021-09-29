@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const CourseInfoActions = (props) => {
   return (
     <div class="test__info-wrapper">
@@ -7,9 +9,9 @@ const CourseInfoActions = (props) => {
           <p class="test__info-completed-text">
             Пройдите тест, чтобы закрепить полученные знания
           </p>
-          <div class="test__ask-blueBorder test__info-completed-btn" onClick={props.getActiveTest}>
+          <NavLink to={'/test'} class="test__ask-blueBorder test__info-completed-btn">
             Пройти тест
-          </div>
+          </NavLink>
         </div>
       </div>
       <div class="test__info-btnBox">

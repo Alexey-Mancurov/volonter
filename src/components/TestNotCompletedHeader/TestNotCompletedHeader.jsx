@@ -1,4 +1,4 @@
-const TestContainerHeader = (props) => {
+const TestNotCompletedHeader = (props) => {
   return (
     <div className="test__container-wrapper">
       <div className="test__container-title">Тест не завершен</div>
@@ -8,5 +8,4 @@ const TestContainerHeader = (props) => {
     </div>
   );
 };
-
-export default TestContainerHeader;
+export default TestNotCompletedHeader;
