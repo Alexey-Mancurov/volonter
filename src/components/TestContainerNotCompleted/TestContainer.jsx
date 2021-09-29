@@ -1,7 +1,7 @@
 import TestAsk from "./TestAsk/TestAsk";
 import TestContainerHeader from "./TestContainerHeader";
 
-const TestContainer = (props) => {
+const TestContainerNotCompleted = (props) => {
 
   return (
     <div className="test__container">
@@ -17,4 +17,4 @@ const TestContainer = (props) => {
   );
 };
 
-export default TestContainer;
+export default TestContainerNotCompleted;

@@ -4354,3 +4354,158 @@ template {
     min-height: 160px;
   }
 }
+
+/* ЗАГОЛОВКИ И ОПИСАНИЯ СЕКЦИЙ КОНЕЦ */
+
+.content {
+  max-width: 1660px;
+  padding: 0 35px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main_inner {
+  max-width: 1715px;
+  padding: 0 35px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 30px auto 100px;
+}
+
+@media screen and (max-width: 1366px) {
+
+  .content,
+  .main_inner {
+      max-width: 1200px;
+      padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  .content,
+  .main_inner {
+      padding: 0 24px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .content {
+      padding: 0 13px;
+  }
+
+  .main_inner {
+      padding: 0 13px;
+      margin: 30px auto 70px;
+  }
+}
+/* ЗАГОЛОВКИ И ОПИСАНИЯ СЕКЦИЙ */
+
+.title {
+  font-family: 'gilroy-bold', sans-serif;
+  font-size: 61px;
+  line-height: 74px;
+  color: #5C5C5C;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 0 56px;
+  max-width: 1590px;
+  margin: 0 auto;
+}
+
+.title:before,
+.title:after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #D9D9D9;
+  border-radius: 13.5824px;
+}
+
+.desc {
+  text-align: center;
+  color: #424242;
+  font-size: 28px;
+  line-height: 33px;
+  margin: 20px auto 0;
+}
+
+.desc_partners {
+  max-width: 814px;
+}
+
+
+@media screen and (max-width: 1366px) {
+  .title {
+      font-size: 45px;
+      line-height: 54px;
+      grid-gap: 0 41px;
+  }
+
+  .desc {
+      font-size: 21px;
+      line-height: 25px;
+  }
+
+  .desc_partners {
+      max-width: 599px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .title {
+      font-size: 40px;
+      line-height: 48px;
+      grid-gap: 0 22px;
+  }
+
+  .desc {
+      font-size: 20px;
+      line-height: 24px;
+  }
+
+}
+
+@media screen and (max-width: 768) {
+  .title {
+      font-size: 35px;
+      line-height: 42px;
+      grid-gap: 0 29px;
+  }
+
+  .desc {
+      font-size: 19px;
+      line-height: 22px;
+      margin: 22px auto 0;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .title {
+      font-size: 30px;
+      line-height: 36px;
+      grid-gap: 0;
+      grid-template-columns: 1fr;
+  }
+
+  .title:after,
+  .title:before {
+      display: none;
+  }
+
+  .desc {
+      font-size: 16px;
+      line-height: 19px;
+      margin: 18px auto 0;
+  }
+
+  .desc_partners {
+      max-width: 257px;
+  }
+}

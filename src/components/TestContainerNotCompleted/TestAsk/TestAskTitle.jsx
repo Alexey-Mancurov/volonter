@@ -6,8 +6,8 @@ const TestAskTitle = (props) => {
       <div className="test__ask-title">Вопрос 1</div>
       {/* В стили добавил класс  test__ask-notif-blue*/}
       {isTrue ? (
-        <div className="test__ask-notif test__ask-notif-blue">
-          Правильный ответ
+        <div className="test__ask-notif test__ask-notif-red">
+          Неправильный ответ
         </div>
       ) : (
         <div className="test__ask-notif test__ask-notif-red">
