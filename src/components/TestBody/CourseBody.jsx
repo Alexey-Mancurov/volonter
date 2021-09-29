@@ -3,7 +3,6 @@ import TestContainer from "../TestContainer/TestContainer";
 
 
 const TestBody = (props) => {
-  debugger
   return (
     <div className="test__wrapper-body">
       {props.isActiveTest 

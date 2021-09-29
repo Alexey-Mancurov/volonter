@@ -1,5 +1,4 @@
 const CourseInfoActions = (props) => {
-    debugger
   return (
     <div class="test__info-wrapper">
       <div class="test__completed test__completed-info">

@@ -13,6 +13,7 @@ function App() {
     ],
   }
   let [currentLesson, setCurrentLeason] = useState(1);
+
   const nextLesson = () => {
     setCurrentLeason(currentLesson+1);
   };
@@ -20,7 +21,7 @@ function App() {
     setCurrentLeason(currentLesson-1);
   }
 
-  let [isActiveTest, setActiveTest] = useState(false)
+  let [isActiveTest, setActiveTest] = useState(true)
 
   const getActiveTest = ()=>{
     setActiveTest(true)
@@ -32,7 +33,6 @@ function App() {
   return (
     <div className="App" >
         {allLeasons}
-        {currentLesson}
     </div>
   );
 }
