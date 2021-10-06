@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const TestAskActions = (props) => {
-  debugger;
   return (
     <div class="test__ask-wrapper">
       {props.currentAsk !== 1 ? (
