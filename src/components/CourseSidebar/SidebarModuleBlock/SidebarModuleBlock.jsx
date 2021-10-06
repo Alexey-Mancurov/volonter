@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { coursesAPI } from "../../../api/api";
 import SidebarModuleBlockHeader from "./SidebarModuleBlockHeader";
 import SidebarModuleBlockInner from "./SidebarModuleBlockInner";
 
 const SidebarModuleBlock = (props) => {
-
-
   let [isOpen, setIsOpen] = useState(false)
-
   const toggleIsOpen =()=>{
     setIsOpen(!isOpen)
   }
+  let [lessonsList, setLessonsList]=useState({})
 
-
+  useEffect(()=>{
+    coursesAPI.lessons(props.courseId, props.moduleId).then(response=>{
+      setLessonsList(lessonsList=response)
+    })
+  }, [lessonsList.check])
 
   return (
     <div

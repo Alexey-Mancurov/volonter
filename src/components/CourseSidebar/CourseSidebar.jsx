@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { coursesAPI } from "../../api/api";
 import SidebarDataAboutTestDesctop from "./SidebarDataAboutTestDesctop";
 import SidebarModuleBlock from "./SidebarModuleBlock/SidebarModuleBlock";
 import ProgressCourse from "./SidebarProgressCourse";
@@ -51,14 +53,33 @@ const CourseSidebar = (props) => {
     <SidebarModuleBlock key={i.id} title={i.title} moduleList={i.moduleList} />
   ));
 
+  // let [modules, setModules]= useState({})
+
+  // useEffect(()=>{
+  //   coursesAPI.modules().then(response=>{
+  //     setModules(modules=response)
+  //   })
+  // }, [])
+  // let modulesList = modules.map(i=>{
+  //   <SidebarModuleBlock key={i.id} title={i.title} moduleId={i.id}/>
+  // })
+
   return (
     <div className="test__wrapper-sidebar">
 
       <SidebarDataAboutTestDesctop
         generalDataAboutTest={state.generalDataAboutTest}
+        // totalPoints={props.course.totalPoints}
+        // totalAsks={props.course.totalAsks}
+        // checkAsks={props.course.checkAsks}
+        
       />
 
-      <ProgressCourse progressCourse={state.progressCoursePercent} />
+      <ProgressCourse progressCourse={state.progressCoursePercent} 
+      // totalLessons={props.course.totalLessons}
+      // checkLessons={props.course.checkLessons}
+      />
+      {/* {modulesList} */}
       {moduleList}
     </div>
   );

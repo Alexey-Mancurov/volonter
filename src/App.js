@@ -10,32 +10,22 @@ import TestChecking from "./components/TestChecking/TestChecking";
 import { coursesAPI } from "./api/api";
 
 function App() {
-  const [courses, setCourses]= useState({
-    leasonList:[
-      {title: 'Курс 1', id: 1},
-      {title: 'Курс 2', id: 2},
-      {title: 'Курс 3', id: 3},
-      {title: 'Курс 4', id: 4},
-    ],
-    // dev block
-    leason:{title: 'Урок 4', id: 4}
-  })
 
-  const [textCourse, setNextCourse]= useState('Курс 5')
-
-  const getNextCourse=()=>{
-    setCourses(courses.leason.title === 'Урок 5' )
-  }
-
-
-
-  let [lesson, setCourseInfoData] = useState({});
+  let [lesson, setLessonItem] = useState({});
 
   useEffect(() => {
     coursesAPI.lessonItem().then((response) => {
-      setCourseInfoData((lesson = response));
+      setLessonItem(lesson = response);
     });
   }, []);
+
+  let [course, setCourseItem] = useState({})
+
+  useEffect(()=>{
+    coursesAPI.courseItem().then((response)=>{
+      setCourseItem(course = response)
+    })
+  }, [course.totalPoints, course.checkAsks, course.checkLessons])
 
   // let [currentLesson, setCurrentLeason] = useState(1);
 
@@ -54,7 +44,7 @@ function App() {
         <LessonTitle title={lesson.title}/>
         <div className='test__wrapper'>
 
-          <CourseSidebar />
+          <CourseSidebar {...course}/>
 
           <div className="test__wrapper-body">
             <Route exact path={'/'}>

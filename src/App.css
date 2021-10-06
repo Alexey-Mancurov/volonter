@@ -1481,6 +1481,7 @@ template {
           justify-content: center;
   text-align: center;
   border-radius: 302px;
+  cursor: pointer;
 }
 
 .test__ask-blueBorder {
