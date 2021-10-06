@@ -1,25 +1,24 @@
+import ContentList from "../common/ContentList";
+
 const CourceInfoContent = (props) => {
+  if(!props.description){
+    return  <div class="test__info-content">
+    <div class="test__info-content-box">
+      <p class="test__info-briefly">
+        ОШИБКА описания
+      </p>
+      <ContentList info={props.info}/>
+    </div>
+  </div>
+  }
   return (
     <div class="test__info-content">
       <div class="test__info-content-box">
         <p class="test__info-briefly">
-          Мы поговорили о координации, мотивации и обеспечении комфорта
-          волонтёров во время события. В этом уроке расмотрим:
+          {props.description}
         </p>
-        <ul class="cource__content-list ">
-          <li class="course__list-item test__list-item">
-            Основные типы рисков, с которыми организаторы могут столкнуться на
-            событии
-          </li>
-          <li class="course__list-item test__list-item">
-            Как избежать их возникновения
-          </li>
-          <li class="course__list-item test__list-item">
-            Что делать, если возник риск
-          </li>
-        </ul>
+        <ContentList info={props.info}/>
       </div>
-
       <div class="test__info-data-box">
         <p class="test__info-subtitle">Желаем интересного просмотра</p>
         <div class="test__info-data">
@@ -28,7 +27,7 @@ const CourceInfoContent = (props) => {
           </div>
           <div class="test__data-container">
             <div class="test__data-text">Основные типы рисков</div>
-            <a href="" class="test__data-link">
+            <a href={props.linkVideo} class="test__data-link" target="_blank">
               Смотреть
             </a>
           </div>

@@ -7,6 +7,7 @@ import TestCompleted from "./components/TestCompleted/TestCompleted";
 import TestContainer from "./components/TestContainer/TestContainer";
 import CourseSidebar from "./components/CourseSidebar/CourseSidebar";
 import TestChecking from "./components/TestChecking/TestChecking";
+import { coursesAPI } from "./api/api";
 
 function App() {
   const [courses, setCourses]= useState({
@@ -26,42 +27,31 @@ function App() {
     setCourses(courses.leason.title === 'Урок 5' )
   }
 
-  useEffect(()=>{
-    // console.log(1)
-  })
-
-  let [currentLesson, setCurrentLeason] = useState(1);
-
-  const nextLesson = () => {
-    setCurrentLeason(currentLesson+1);
-  };
-  const prevLesson = ()=>{
-    setCurrentLeason(currentLesson-1);
-  }
-
-  let [isActiveTest, setActiveTest] = useState(false)
-
-  const getActiveTest = ()=>{
-    setActiveTest(true)
-  }
 
 
-  // let [isTestCompleted, setTestCompleted]= useState(false)
+  let [lesson, setCourseInfoData] = useState({});
 
-  // const getTestCompleted =()=>{
-  //   setTestCompleted(true)
+  useEffect(() => {
+    coursesAPI.lessonItem().then((response) => {
+      setCourseInfoData((lesson = response));
+    });
+  }, []);
+
+  // let [currentLesson, setCurrentLeason] = useState(1);
+
+  // const nextLesson = () => {
+  //   setCurrentLeason(currentLesson+1);
+  // };
+  // const prevLesson = ()=>{
+  //   setCurrentLeason(currentLesson-1);
   // }
-
-  // const allLeasons = state.leasonList.map(i=>(
-  //   <Main key={i.id} title={i.title} currentLesson={currentLesson} nextLesson={nextLesson} prevLesson={prevLesson} id={i.id} isActiveTest={isActiveTest} getActiveTest={getActiveTest} isTestCompleted={isTestCompleted} getTestCompleted={getTestCompleted}/>
-  // ))
 
   
   return (
     
     <div className="App" >
       <main className="main main_inner">
-        <LessonTitle title={courses.leason.title}/>
+        <LessonTitle title={lesson.title}/>
         <div className='test__wrapper'>
 
           <CourseSidebar />
@@ -69,10 +59,12 @@ function App() {
           <div className="test__wrapper-body">
             <Route exact path={'/'}>
               <CourseInfo
-                currentLesson={currentLesson}
-                nextLesson={nextLesson}
-                prevLesson={prevLesson}
-                getActiveTest={getActiveTest}
+                linkVideo={lesson.linkVideo}
+                description={lesson.description}
+                info={lesson.info}
+                // currentLesson={currentLesson}
+                // nextLesson={nextLesson}
+                // prevLesson={prevLesson}
               />
             </Route>
             <Route path={'/test'}>

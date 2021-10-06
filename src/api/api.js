@@ -3,6 +3,11 @@ import axios from "axios";
 const instanse = axios.create({
     baseURL: 'https://url/',
 })
+export default function courseItem(courseId) {
+    return axios
+        .get(`courses/${courseId}`)
+}
+
 
 export const coursesAPI = {
     courses: () => {
