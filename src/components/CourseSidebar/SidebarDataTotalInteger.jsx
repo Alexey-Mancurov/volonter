@@ -1,4 +1,4 @@
-const SidebarDataAboutTest = (props) => {
+const SidebarDataTotalInteger = (props) => {
   return (
     <div className="test__sidebar-box">
       <div className="test__sidebar-num">{props.num}</div>
@@ -7,4 +7,4 @@ const SidebarDataAboutTest = (props) => {
   );
 };
 
-export default SidebarDataAboutTest;
+export default SidebarDataTotalInteger;

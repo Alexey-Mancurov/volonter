@@ -54,7 +54,6 @@ const TestContainer = (props) => {
   const nextAsk = (id, checkedOption) => {
     setCurrentAsk(currentAsk + 1);
     setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
-    // console.log(Array.isArray(answerData))
   };
 
   const endTest = (id, checkedOption) => {
@@ -68,25 +67,13 @@ const TestContainer = (props) => {
       setAnswerData((answerData) => [...answerData, { id: testData.id }]);
       setIsTestEnd(true);
     }
-    console.log(answerData);
   }, [asksList]);
 
-  // const endActions = ()=>{
-  //   setAnswerData([...answerData.asksList, { asksList: asksList }]);
-  //   setAnswerData((answerData) => [...answerData, { id: testData.id }]);
-  //   setIsTestEnd(true);
-  // }
-
-  // useEffect(()=>{
-  //   setAnswerData([answerData, { asksList: asksList }])
-  //   console.log(answerData)
-  // },[asksList])
 
   useEffect(() => {
     if (isTestEnd) {
       TestsAPI.testCompleted(answerData);
     }
-    console.log(answerData);
   }, [isTestEnd, answerData]);
 
   let [testData, setTestData] = useState([]);

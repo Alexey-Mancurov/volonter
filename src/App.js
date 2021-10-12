@@ -16,25 +16,20 @@ function App() {
     coursesAPI.lessonItem().then((lesson) => {
       setLessonItem(lesson);
     });
-  }, [lesson]);
-
-  // let list = lesson.map(i=>{
-  //   debugger
-  //   i.item.items.map(c=>{
-  //     <div>{c.id}</div>
-  //   })
-  //   })
+  }, []);
 
 
-  let [course, setCourseItem] = useState({})
+  let [course, setCourseItem] = useState()
   let [courseId, setCourseId] = useState(29)
   
   useEffect(()=>{
     coursesAPI.courseItem(courseId).then((course)=>{
       setCourseItem(course)
     })
+    console.log(course)
   }, [courseId])
   // [courseId, course.totalPoints, course.checkAsks, course.checkLessons, course]
+  
 
 
 
@@ -66,7 +61,7 @@ function App() {
       <main className="main main_inner">
         <LessonTitle title={lesson.title} courses={courses}/>
         <div className='test__wrapper'>
-          <CourseSidebar course={course}/>
+          <CourseSidebar course={course} courseId={courseId}/>
 
           <div className="test__wrapper-body">
             <Route exact path={'/'}>

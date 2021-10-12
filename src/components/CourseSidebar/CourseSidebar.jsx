@@ -49,40 +49,45 @@ const CourseSidebar = (props) => {
     ],
   };
 
-  let moduleList = state.moduleBlockData.map((i) => (
-    <SidebarModuleBlock key={i.id} title={i.title} moduleList={i.moduleList} />
-  ));
-
-  
-
-  // let list = lessons.items.map(i=>(
-  //   <div>{i.id}</div>
-  // ))
-
-  let [modules, setModules]= useState({})
+  let [modules, setModules] = useState({});
   useEffect(() => {
-    coursesAPI.modules(1).then((modules) => {
+    coursesAPI.modules(props.courseId).then((modules) => {
       setModules(modules);
     });
-  }, [modules]);
+    setProgressCoursePercent();
+  }, []);
 
+  let [progressCoursePercent, setProgressCoursePercent] = useState();
 
-  // let modulesList = modules.map(i=>{
-  //   <SidebarModuleBlock key={i.id} title={i.title} moduleId={i.id}/>
-  // })
+  useEffect(() => {
+    if (props.course) {
+      let calculateProgress =
+        Math.round((props.course.course.checkAsks / props.course.course.totalAsks) * 100);
+      setProgressCoursePercent(progressCoursePercent=calculateProgress);
+    }
+  }, [props.course]);
+
+  let moduleList;
+  if (modules.items) {
+    moduleList = modules.items.map((i) => (
+      <SidebarModuleBlock
+        key={i.id}
+        title={i.title}
+        courseId={props.courseId}
+        moduleId={i.id}
+      />
+    ));
+  } else {
+    moduleList = <div>Подождите, идет загрузка</div>;
+  }
 
   return (
     <div className="test__wrapper-sidebar">
       {/* {list} */}
-      <SidebarDataAboutTestDesctop
-        generalDataAboutTest={state.generalDataAboutTest}
-        // totalPoints={props.course.totalPoints}
-        // totalAsks={props.course.totalAsks}
-        // checkAsks={props.course.checkAsks}
-      />
+      <SidebarDataAboutTestDesctop course={props.course} />
 
       <ProgressCourse
-        progressCourse={state.progressCoursePercent}
+        progressCourse={progressCoursePercent}
         // totalLessons={props.course.totalLessons}
         // checkLessons={props.course.checkLessons}
       />

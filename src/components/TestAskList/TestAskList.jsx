@@ -10,7 +10,6 @@ const TestAskList = (props) => {
 
   const getCheckedOption = (checkedOption) => {
     setCheckedOption(checkedOption);
-    // console.log(checkedOption, id);
   };
 
   const localNextAsk = () => {
