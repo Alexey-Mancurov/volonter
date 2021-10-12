@@ -15,9 +15,9 @@ const TestAskList = (props) => {
   const localNextAsk = () => {
     props.nextAsk(id, checkedOption);
   };
-  const localEndTest = () => {
-    props.endTest(id, checkedOption);
-  };
+  // const localEndTest = () => {
+  //   props.endTest(id, checkedOption);
+  // };
 
   return props.currentAsk === props.id ? (
     <div id={props.id}>
@@ -44,7 +44,8 @@ const TestAskList = (props) => {
         prevAsk={props.prevAsk}
         askCount={props.askCount}
         localNextAsk={localNextAsk}
-        localEndTest={localEndTest}
+        // localEndTest={localEndTest}
+        completedResponse={props.completedResponse}
       />
     </div>
   ) : (

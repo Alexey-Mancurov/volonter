@@ -1,4 +1,5 @@
 import ContentList from "../common/ContentList";
+import paper from '../../assets/paper.svg'
 
 const CourceInfoContent = (props) => {
   if(!props.description){
@@ -23,10 +24,10 @@ const CourceInfoContent = (props) => {
         <p className="test__info-subtitle">Желаем интересного просмотра</p>
         <div className="test__info-data">
           <div className="test__data-box">
-            <img className="test__data-img" src="img/course/icons/paper.svg" alt=""></img>
+            <img className="test__data-img" src={paper} alt=""></img>
           </div>
           <div className="test__data-container">
-            <div className="test__data-text">Основные типы рисков</div>
+            <div className="test__data-text">{props.title}</div>
             <a href={props.linkVideo} className="test__data-link" target="_blank">
               Смотреть
             </a>

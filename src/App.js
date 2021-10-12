@@ -11,13 +11,6 @@ import { coursesAPI } from "./api/api";
 
 function App() {
 
-  let [lesson, setLessonItem] = useState({});
-  useEffect(() => {
-    coursesAPI.lessonItem().then((lesson) => {
-      setLessonItem(lesson);
-    });
-  }, []);
-
 
   let [course, setCourseItem] = useState()
   let [courseId, setCourseId] = useState(29)
@@ -26,14 +19,7 @@ function App() {
     coursesAPI.courseItem(courseId).then((course)=>{
       setCourseItem(course)
     })
-    console.log(course)
   }, [courseId])
-  // [courseId, course.totalPoints, course.checkAsks, course.checkLessons, course]
-  
-
-
-
-
 
   let [courses, setCourses]=useState([])
   useEffect(()=>{
@@ -42,53 +28,38 @@ function App() {
     })
   }, [])
 
+  if(course){
+      return (
+      <div className="App" >
+        <main className="main main_inner">
+          <LessonTitle title={course.course.title}/>
+          <div className='test__wrapper'>
+            <CourseSidebar course={course} courseId={courseId}/>
 
-
-  // let [currentLesson, setCurrentLeason] = useState(1);
-
-  // const nextLesson = () => {
-  //   setCurrentLeason(currentLesson+1);
-  // };
-  // const prevLesson = ()=>{
-  //   setCurrentLeason(currentLesson-1);
-  // }
-
-  
-  return (
-    
-    <div className="App" >
-      {/* {course} */}
-      <main className="main main_inner">
-        <LessonTitle title={lesson.title} courses={courses}/>
-        <div className='test__wrapper'>
-          <CourseSidebar course={course} courseId={courseId}/>
-
-          <div className="test__wrapper-body">
-            <Route exact path={'/'}>
-              <CourseInfo
-                linkVideo={lesson.linkVideo}
-                description={lesson.description}
-                info={lesson.info}
-                // currentLesson={currentLesson}
-                // nextLesson={nextLesson}
-                // prevLesson={prevLesson}
-              />
-            </Route>
-            <Route path={'/test'}>
-              <TestContainer />
-            </Route>
-            <Route path={'/test-completed'}>
-              <TestCompleted />
-            </Route>
-            <Route path={'/test-checking'}>
-              <TestChecking />
-            </Route>
-            {/* тут слайдер */}
+            <div className="test__wrapper-body">
+              <Route exact path={'/courses/29/modules/2989/lessons/2989'}>
+                <CourseInfo
+                  courseId={courseId}
+                />
+              </Route>
+              <Route path={'/test'}>
+                <TestContainer />
+              </Route>
+              <Route path={'/test-completed'}>
+                <TestCompleted title={course.course.title}/>
+              </Route>
+              <Route path={'/test-checking'}>
+                <TestChecking />
+              </Route>
+              {/* тут слайдер */}
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
-  );
+        </main>
+      </div>
+    );
+  } else{
+    return <div>Подождите, загрузка</div>
+  }
 }
 
 export default App;

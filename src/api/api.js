@@ -46,6 +46,9 @@ export const coursesAPI = {
     lessonItem: (courseId, moduleId, lessonId) => {
         return instanse
             .get(`courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`)
+            .then(response=>{
+                return response.data
+            })
     }
 }
 
@@ -65,6 +68,7 @@ export const TestsAPI = {
         return instanse
             .post(`tests/completed`, data).then(response=>{
                 console.log(response.data)
+                return response.data
             })
     },
     testCompletedItem: (testId) => {

@@ -26,7 +26,7 @@ const SidebarModuleBlock = (props) => {
         title={props.title}
         toggleIsOpen={toggleIsOpen}
       />
-      <SidebarModuleBlockInner lessonsList={lessonsList} />
+      <SidebarModuleBlockInner lessonsList={lessonsList} courseId={props.courseId} moduleId={props.moduleId}/>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { TestsAPI } from "../../api/api";
 import TestAskList from "../TestAskList/TestAskList";
 
@@ -11,42 +12,6 @@ const TestContainer = (props) => {
 
   let [answerData, setAnswerData] = useState([]);
 
-  let formData = [
-    {
-      asksList: [
-        { askId: 1, answerIndex: 1 },
-        { askId: 2, answerIndex: 0 },
-      ],
-    },
-    { id: 3098 },
-  ];
-
-  // let list = {
-  //   id: 3098,
-  //   name: "Какой то тест",
-  //   isCompleted: true,
-  //   isSuccess: true,
-  //   totalAsks: 2,
-  //   askList: [
-  //     {
-  //       id: 1,
-  //       ask: "Вопрос 1",
-  //       options: ["Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4"],
-  //     },
-  //     {
-  //       id: 2,
-  //       ask: "Вопрос 2",
-  //       options: ["Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4"],
-  //     },
-  //   ],
-  // };
-
-  // let asksList;
-
-  // useEffect(() => {
-  //   setAnswerData((answerData) => [...answerData, (asksList = [])], []);
-  // });
-
   const prevAsk = () => {
     setCurrentAsk(currentAsk - 1);
   };
@@ -54,27 +19,37 @@ const TestContainer = (props) => {
   const nextAsk = (id, checkedOption) => {
     setCurrentAsk(currentAsk + 1);
     setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
+    console.log(currentAsk + "--" + (askCount+1));
   };
 
-  const endTest = (id, checkedOption) => {
-    setCurrentAsk(currentAsk + 1);
-    setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
-  };
+  // const endTest = (id, checkedOption) => {
+  //   setCurrentAsk(currentAsk + 1);
+  //   setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
+  // };
 
   useEffect(() => {
-    if (currentAsk > askCount) {
+    // закомментированный код ниже, на случай, если автокомплит исправит круглые скобки
+    // (currentAsk === (askCount+1) && currentAsk !== 1)
+    if (currentAsk === (askCount+1) && currentAsk !== 1) {
       setAnswerData([...answerData, { asksList: asksList }]);
       setAnswerData((answerData) => [...answerData, { id: testData.id }]);
       setIsTestEnd(true);
     }
-  }, [asksList]);
+  }, [asksList]); 
 
+  let [completedResponse, setCompletedResponse] = useState();
 
   useEffect(() => {
     if (isTestEnd) {
-      TestsAPI.testCompleted(answerData);
+      TestsAPI.testCompleted(answerData).then((completedResponse) => {
+        setCompletedResponse(completedResponse);
+      });
     }
-  }, [isTestEnd, answerData]);
+  }, [isTestEnd]);
+
+  useEffect(() => {
+    console.log(completedResponse);
+  }, [completedResponse]);
 
   let [testData, setTestData] = useState([]);
 
@@ -102,14 +77,26 @@ const TestContainer = (props) => {
         nextAsk={nextAsk}
         prevAsk={prevAsk}
         setAnswerData={setAnswerData}
-        endTest={endTest}
+        // endTest={endTest}
+        completedResponse={completedResponse}
       />
     ));
   } else {
     askList = <div>Подождите, идет загрузка</div>;
   }
 
-  return <div className="test__container">{askList}</div>;
+  return <div className="test__container">{askList}
+  
+          <NavLink
+          to={{
+            pathname: "/test-completed",
+            state: { completedResponse: completedResponse },
+          }}
+          className="test__ask-red test__ask-btn"
+          // onClick={props.localEndTest}
+        >
+          Смотреть результаты
+        </NavLink></div>;
 };
 
 export default TestContainer;

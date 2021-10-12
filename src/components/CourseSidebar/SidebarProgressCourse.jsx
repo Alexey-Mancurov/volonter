@@ -1,5 +1,4 @@
 const ProgressCourse = (props) => {
-  debugger
   if (Number.isInteger(props.progressCourse)) {
     let widthActiveLine = {
       width: `${props.progressCourse}%`,

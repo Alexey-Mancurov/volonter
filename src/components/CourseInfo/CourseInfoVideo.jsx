@@ -1,9 +1,4 @@
 const CourseInfoVideo = (props) => {
-  if(!props.linkVideo){
-    return <div className="test__info-video">
-      ОШИБКА получения видео
-    </div>
-  }
   return (
     <div className="test__info-video">
       <iframe

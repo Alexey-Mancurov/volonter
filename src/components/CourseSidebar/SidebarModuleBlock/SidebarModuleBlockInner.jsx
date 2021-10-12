@@ -6,7 +6,7 @@ const SidebarModuleBlockInner = (props) => {
   let lessonList
   if (props.lessonsList.items) {
     lessonList = props.lessonsList.items.map((i) => (
-      <ModuleTitle key={i.id} title={i.title} check={i.check} />
+      <ModuleTitle key={i.id} title={i.title} check={i.check} courseId={props.courseId} moduleId={props.moduleId} />
     ));
     return <div className="test__sidebar-block-inner">{lessonList}</div>;
   } else{
@@ -24,7 +24,7 @@ const ModuleTitle = (props) => {
   return (
     <div className="test__sidebar-block-item">
       <NavLink
-        to={`/course/1/module/1/lesson/1`}
+        to={`/courses/${props.courseId}/modules/${props.moduleId}/lessons/1`}
         className="test__sidebar-text"
       >
         {props.title}

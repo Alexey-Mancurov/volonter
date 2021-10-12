@@ -14,7 +14,6 @@ const SidebarDataAboutTestDesctop = (props) => {
     titlePoints: "Общее количество баллов",
     titleAsks: "Количество вопросов ",
  };
- console.log(props.course)
   if (props.course) {
     return (
       <>
