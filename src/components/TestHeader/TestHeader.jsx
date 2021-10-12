@@ -1,11 +1,10 @@
 const TestHeader = (props) => {
   return (
-    <div class="test__container-wrapper self-start">
-      <div class="test__content-title">
-        Вы решили стать волонтёром в Центре паллиативной помощи. Каков первый
-        этап отбора и обучения на эту позицию?
+    <div className="test__container-wrapper self-start">
+      <div className="test__content-title">
+        {props.ask}
       </div>
-      <div class="test__completed-result">{props.currentAsk}/{props.asksCount}</div>
+      <div className="test__completed-result">{props.currentAsk}/{props.askCount}</div>
     </div>
   );
 };

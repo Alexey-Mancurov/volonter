@@ -1,30 +1,47 @@
 import axios from "axios";
 
 const instanse = axios.create({
-    baseURL: 'https://url/',
-})
-export default function courseItem(courseId) {
-    return axios
-        .get(`courses/${courseId}`)
-}
+    withCredentials: false,
+    baseURL: 'https://xn--80aejrhmfbnher.xn--p1ai/api/',
+    headers: {
+        "Access-Control-Allow-Origin": "Access-Control-Allow-Origin"
+    },
 
+
+})
+// export default function courseItem(courseId) {
+//     return axios
+//         .get(`courses/${courseId}`)
+// }
 
 export const coursesAPI = {
     courses: () => {
         return instanse
-            .get(`courses`)
+            .get(`courses/`)
+            .then(response => {
+                return response.data
+            })
     },
     courseItem: (courseId) => {
-        return axios
+        return instanse
             .get(`courses/${courseId}`)
+            .then(response => {
+                return response.data
+            })
     },
     modules: (courseId) => {
         return instanse
             .get(`courses/${courseId}/modules`)
+            .then(response => {
+                return response.data
+            })
     },
     lessons: (courseId, moduleId) => {
         return instanse
             .get(`courses/${courseId}/modules/${moduleId}/lessons`)
+            .then(response => {
+                return response.data
+            })
     },
     lessonItem: (courseId, moduleId, lessonId) => {
         return instanse
@@ -40,12 +57,15 @@ export const TestsAPI = {
     testItem: (testId) => {
         return instanse
             .get(`tests/${testId}`)
+            .then(response => {
+                return response.data
+            })
     },
-    testCompleted: (testId, asksList) => {
+    testCompleted: (data) => {
         return instanse
-            .post(`tests/completed`, [testId, {
-                asksList: asksList
-            }])
+            .post(`tests/completed`, data).then(response=>{
+                console.log(response.data)
+            })
     },
     testCompletedItem: (testId) => {
         return instanse

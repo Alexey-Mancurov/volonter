@@ -1,6 +1,6 @@
 const SidebarModuleBlockHeader = (props) => {
   return (
-    <div className="test__sidebar-block-box">
+    <div className="test__sidebar-block-box" onClick={props.toggleIsOpen}>
       <div className="test__sidebar-block-title">{props.title}</div>
       <svg
         width="24"

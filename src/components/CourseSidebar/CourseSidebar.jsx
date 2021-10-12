@@ -19,7 +19,7 @@ const CourseSidebar = (props) => {
         moduleList: [
           { id: 1, moduleTitle: "Первые шаги в волонтерства" },
           { id: 2, moduleTitle: "Пять страхов волонтерства" },
-          { id: 2, moduleTitle: "Пять советов начинающему волонтеру" },
+          { id: 3, moduleTitle: "Пять советов начинающему волонтеру" },
         ],
       },
       {
@@ -53,31 +53,38 @@ const CourseSidebar = (props) => {
     <SidebarModuleBlock key={i.id} title={i.title} moduleList={i.moduleList} />
   ));
 
-  // let [modules, setModules]= useState({})
+  
 
-  // useEffect(()=>{
-  //   coursesAPI.modules().then(response=>{
-  //     setModules(modules=response)
-  //   })
-  // }, [])
+  // let list = lessons.items.map(i=>(
+  //   <div>{i.id}</div>
+  // ))
+
+  let [modules, setModules]= useState({})
+  useEffect(() => {
+    coursesAPI.modules(1).then((modules) => {
+      setModules(modules);
+    });
+  }, [modules]);
+
+
   // let modulesList = modules.map(i=>{
   //   <SidebarModuleBlock key={i.id} title={i.title} moduleId={i.id}/>
   // })
 
   return (
     <div className="test__wrapper-sidebar">
-
+      {/* {list} */}
       <SidebarDataAboutTestDesctop
         generalDataAboutTest={state.generalDataAboutTest}
         // totalPoints={props.course.totalPoints}
         // totalAsks={props.course.totalAsks}
         // checkAsks={props.course.checkAsks}
-        
       />
 
-      <ProgressCourse progressCourse={state.progressCoursePercent} 
-      // totalLessons={props.course.totalLessons}
-      // checkLessons={props.course.checkLessons}
+      <ProgressCourse
+        progressCourse={state.progressCoursePercent}
+        // totalLessons={props.course.totalLessons}
+        // checkLessons={props.course.checkLessons}
       />
       {/* {modulesList} */}
       {moduleList}

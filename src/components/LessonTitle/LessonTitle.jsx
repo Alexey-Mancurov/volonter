@@ -1,4 +1,5 @@
 const LessonTitle = (props)=>{
+
     if(!props.title){
         return <h1 className="title title-course">ОШИБКА получения заголовка кусра</h1>
     }

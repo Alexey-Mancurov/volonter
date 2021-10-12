@@ -11,19 +11,19 @@ const SidebarModuleBlock = (props) => {
   let [lessonsList, setLessonsList]=useState({})
 
   useEffect(()=>{
-    coursesAPI.lessons(props.courseId, props.moduleId).then(response=>{
-      setLessonsList(lessonsList=response)
+    coursesAPI.lessons(1, 1).then(lessonsList=>{
+      setLessonsList(lessonsList)
     })
-  }, [lessonsList.check])
+  }, [lessonsList])
 
   return (
     <div
       className={`test__sidebar-block ${
         isOpen ? `test__sidebar-block-open` : null
       }`}
-      onClick={toggleIsOpen}
+      
     >
-      <SidebarModuleBlockHeader title={props.title}/>
+      <SidebarModuleBlockHeader title={props.title} toggleIsOpen={toggleIsOpen}/>
       <SidebarModuleBlockInner moduleList={props.moduleList}/>
     </div>
   );

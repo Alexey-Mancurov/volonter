@@ -5,7 +5,7 @@ import CourseInfoVideo from "./CourseInfoVideo";
 const CourseInfo = (props) => {
   return (
     <>
-      <div class="test__info">
+      <div className="test__info">
         <CourseInfoVideo linkVideo={props.linkVideo} />
         <CourceInfoContent
           description={props.description}

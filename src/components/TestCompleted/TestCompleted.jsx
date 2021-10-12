@@ -2,29 +2,29 @@ import { NavLink } from "react-router-dom";
 
 const TestCompleted = (props) => {
   return <>
-    <div class="test__container-wrapper test__wrapper-completed">
-      <div class="test__completed">
-        <div class="test__completed-wrapper">
-          <div class="test__completed-title">Тест завершен</div>
-          <div class="test__completed-result">10/10</div>
+    <div className="test__container-wrapper test__wrapper-completed">
+      <div className="test__completed">
+        <div className="test__completed-wrapper">
+          <div className="test__completed-title">Тест завершен</div>
+          <div className="test__completed-result">10/10</div>
         </div>
-        <div class="test__completed-text">
+        <div className="test__completed-text">
           Ваш результат: <span>10 баллов из 10</span>
         </div>
-        <div class="test__completed-endActions">
-          <a href="#" class="test__ask-red test__endActions-btn">
+        <div className="test__completed-endActions">
+          <a href="#" className="test__ask-red test__endActions-btn">
             Готово
           </a>
-          <a href="#" class="test__ask-blue  test__endActions-btn">
+          <a href="#" className="test__ask-blue  test__endActions-btn">
             Скачать сертификат
           </a>
         </div>
       </div>
-      <div class="test__completed">
-        <div class="test__completed-wrapper test__wrapper-review">
-          <div class="test__completed-title">Оставить отзыв</div>
-          <div class="test__completed-review">
-            <div class="test__completed-rating">
+      <div className="test__completed">
+        <div className="test__completed-wrapper test__wrapper-review">
+          <div className="test__completed-title">Оставить отзыв</div>
+          <div className="test__completed-review">
+            <div className="test__completed-rating">
               <svg
                 width="32"
                 height="30"
@@ -86,56 +86,56 @@ const TestCompleted = (props) => {
                 />
               </svg>
             </div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
         </div>
         <textarea
-          class="test__completed-textarea"
+          className="test__completed-textarea"
           placeholder="Текст"
         ></textarea>
       </div>
     </div>
-    <div class="test__content">
-      <div class="test__content-title">
+    <div className="test__content">
+      <div className="test__content-title">
         Поздравляем, вы успешно завершили курс “Основы волонтёрства для
         начинающих”
       </div>
-      <div class="test__container-text">
+      <div className="test__container-text">
         Самое время применить полученные знания на практике
       </div>
-      <div class="test__container-text">
+      <div className="test__container-text">
         Выбирайте близкие вам по духу и интересам мероприятия и становитесь
         частью команды добра
       </div>
-      <NavLink to={'/test-checking'} class="test__ask-blueBorder test__content-btn">
+      <NavLink to={'/test-checking'} className="test__ask-blueBorder test__content-btn">
         Подробнее
       </NavLink>
     </div>
-    <div class="test__wrapper-sidebar test__wrapper-sidebar-mobil">
-      <div class="test__sidebar-container">
-        <div class="test__sidebar-box">
-          <div class="test__sidebar-num">14</div>
-          <div class="test__sidebar-title">Общее количество баллов</div>
+    <div className="test__wrapper-sidebar test__wrapper-sidebar-mobil">
+      <div className="test__sidebar-container">
+        <div className="test__sidebar-box">
+          <div className="test__sidebar-num">14</div>
+          <div className="test__sidebar-title">Общее количество баллов</div>
         </div>
-        <div class="test__sidebar-box">
-          <div class="test__sidebar-num">1/4</div>
-          <div class="test__sidebar-title">Количество вопросов</div>
-        </div>
-      </div>
-      <div class="test__sidebar-box">
-        <div class="test__sidebar-wrapper test__sidebar-progressWrapper">
-          <div class="test__sidebar-subtitle">Прогресс по курсу</div>
-          <div class="test__sidebar-percent">10%</div>
-        </div>
-        <div class="test__sidebar-progress">
-          <div class="test__sidebar-progress-activeLine"></div>
+        <div className="test__sidebar-box">
+          <div className="test__sidebar-num">1/4</div>
+          <div className="test__sidebar-title">Количество вопросов</div>
         </div>
       </div>
-      <div class="test__sidebar-block">
-        <div class="test__sidebar-block-box">
-          <div class="test__sidebar-block-title">Введение</div>
+      <div className="test__sidebar-box">
+        <div className="test__sidebar-wrapper test__sidebar-progressWrapper">
+          <div className="test__sidebar-subtitle">Прогресс по курсу</div>
+          <div className="test__sidebar-percent">10%</div>
+        </div>
+        <div className="test__sidebar-progress">
+          <div className="test__sidebar-progress-activeLine"></div>
+        </div>
+      </div>
+      <div className="test__sidebar-block">
+        <div className="test__sidebar-block-box">
+          <div className="test__sidebar-block-title">Введение</div>
           <svg
             width="24"
             height="19"
@@ -149,18 +149,18 @@ const TestCompleted = (props) => {
             />
           </svg>
         </div>
-        <div class="test__sidebar-block-inner">
-          <div class="test__sidebar-block-item">
-            <div class="test__sidebar-text">Первые шаги в волонтерства</div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+        <div className="test__sidebar-block-inner">
+          <div className="test__sidebar-block-item">
+            <div className="test__sidebar-text">Первые шаги в волонтерства</div>
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
         </div>
       </div>
-      <div class="test__sidebar-block">
-        <div class="test__sidebar-block-box">
-          <div class="test__sidebar-block-title">Модуль 1</div>
+      <div className="test__sidebar-block">
+        <div className="test__sidebar-block-box">
+          <div className="test__sidebar-block-title">Модуль 1</div>
           <svg
             width="24"
             height="19"
@@ -174,18 +174,18 @@ const TestCompleted = (props) => {
             />
           </svg>
         </div>
-        <div class="test__sidebar-block-inner">
-          <div class="test__sidebar-block-item">
-            <div class="test__sidebar-text">Первые шаги в волонтерства</div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+        <div className="test__sidebar-block-inner">
+          <div className="test__sidebar-block-item">
+            <div className="test__sidebar-text">Первые шаги в волонтерства</div>
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
         </div>
       </div>
-      <div class="test__sidebar-block">
-        <div class="test__sidebar-block-box">
-          <div class="test__sidebar-block-title">Модуль 2</div>
+      <div className="test__sidebar-block">
+        <div className="test__sidebar-block-box">
+          <div className="test__sidebar-block-title">Модуль 2</div>
           <svg
             width="24"
             height="19"
@@ -199,18 +199,18 @@ const TestCompleted = (props) => {
             />
           </svg>
         </div>
-        <div class="test__sidebar-block-inner">
-          <div class="test__sidebar-block-item">
-            <div class="test__sidebar-text">Первые шаги в волонтерства</div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+        <div className="test__sidebar-block-inner">
+          <div className="test__sidebar-block-item">
+            <div className="test__sidebar-text">Первые шаги в волонтерства</div>
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
         </div>
       </div>
-      <div class="test__sidebar-block test__sidebar-block-open">
-        <div class="test__sidebar-block-box">
-          <div class="test__sidebar-block-title">Модуль 3</div>
+      <div className="test__sidebar-block test__sidebar-block-open">
+        <div className="test__sidebar-block-box">
+          <div className="test__sidebar-block-title">Модуль 3</div>
           <svg
             width="24"
             height="19"
@@ -224,34 +224,34 @@ const TestCompleted = (props) => {
             />
           </svg>
         </div>
-        <div class="test__sidebar-block-inner">
-          <div class="test__sidebar-block-item">
-            <div class="test__sidebar-text">Первые шаги в волонтерства</div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+        <div className="test__sidebar-block-inner">
+          <div className="test__sidebar-block-item">
+            <div className="test__sidebar-text">Первые шаги в волонтерства</div>
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
-          <div class="test__sidebar-block-item">
-            <div class="test__sidebar-text">Первые шаги в волонтерства</div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+          <div className="test__sidebar-block-item">
+            <div className="test__sidebar-text">Первые шаги в волонтерства</div>
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
-          <div class="test__sidebar-block-item">
-            <div class="test__sidebar-text">Первые шаги в волонтерства</div>
-            <div class="test__sidebar-block-check">
+          <div className="test__sidebar-block-item">
+            <div className="test__sidebar-text">Первые шаги в волонтерства</div>
+            <div className="test__sidebar-block-check">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="test__wrapper-completed test__wrapper-completed-mobil">
-      <div class="test__completed">
-        <div class="test__completed-wrapper test__wrapper-review">
-          <div class="test__completed-title">Оставить отзыв</div>
-          <div class="test__completed-review">
-            <div class="test__completed-rating">
+    <div className="test__wrapper-completed test__wrapper-completed-mobil">
+      <div className="test__completed">
+        <div className="test__completed-wrapper test__wrapper-review">
+          <div className="test__completed-title">Оставить отзыв</div>
+          <div className="test__completed-review">
+            <div className="test__completed-rating">
               <svg
                 width="32"
                 height="30"
@@ -313,13 +313,13 @@ const TestCompleted = (props) => {
                 />
               </svg>
             </div>
-            <div class="test__sidebar-block-check test__sidebar-block-check-completed">
+            <div className="test__sidebar-block-check test__sidebar-block-check-completed">
               <img src="img/course/icons/check.svg" alt=""></img>
             </div>
           </div>
         </div>
         <textarea
-          class="test__completed-textarea"
+          className="test__completed-textarea"
           placeholder="Текст"
         ></textarea>
       </div>

@@ -1,11 +1,11 @@
 const CourseInfoVideo = (props) => {
   if(!props.linkVideo){
-    return <div class="test__info-video">
+    return <div className="test__info-video">
       ОШИБКА получения видео
     </div>
   }
   return (
-    <div class="test__info-video">
+    <div className="test__info-video">
       <iframe
         width="790"
         height="447"

@@ -1,82 +1,128 @@
-import { useState } from "react";
-import TestAsk from "../TestAsk/TestAsk";
-import TestHeader from "../TestHeader/TestHeader";
+import { useEffect, useState } from "react";
+import { TestsAPI } from "../../api/api";
+import TestAskList from "../TestAskList/TestAskList";
 
 const TestContainer = (props) => {
-  let state = {
-    asksList: [
-      {
-        ask: {
-          title:
-            "Вы решили стать волонтёром в Центре паллиативной помощи. Каков первый этап отбора и обучения на эту позицию?",
-          options: [
-            { title: "Распределение в команду" },
-            { title: "Стажировка" },
-            { title: "Инструктаж" },
-            { title: "Заполнение анкеты" },
-          ],
-          id: 1,
-        },
-      },
-      {
-        ask: {
-          title:
-            "Вы решили стать волонтёром в Центре паллиативной помощи. Каков первый этап отбора и обучения на эту позицию?",
-          options: [
-            { title: "Распределение в команду" },
-            { title: "Стажировка" },
-            { title: "Инструктаж" },
-            { title: "Заполнение анкеты" },
-          ],
-          id: 2,
-        },
-      },
-      {
-        ask: {
-          title:
-            "Вы решили стать волонтёром в Центре паллиативной помощи. Каков первый этап отбора и обучения на эту позицию?",
-          options: [
-            { title: "Распределение в команду" },
-            { title: "Стажировка" },
-            { title: "Инструктаж" },
-            { title: "Заполнение анкеты" },
-          ],
-          id: 3,
-        },
-      },
-    ],
-  };
-
   let [currentAsk, setCurrentAsk] = useState(1);
+
+  let [isTestEnd, setIsTestEnd] = useState(false);
+
+  let [asksList, setAskList] = useState([]);
+
+  let [answerData, setAnswerData] = useState([]);
+
+  let formData = [
+    {
+      asksList: [
+        { askId: 1, answerIndex: 1 },
+        { askId: 2, answerIndex: 0 },
+      ],
+    },
+    { id: 3098 },
+  ];
+
+  // let list = {
+  //   id: 3098,
+  //   name: "Какой то тест",
+  //   isCompleted: true,
+  //   isSuccess: true,
+  //   totalAsks: 2,
+  //   askList: [
+  //     {
+  //       id: 1,
+  //       ask: "Вопрос 1",
+  //       options: ["Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4"],
+  //     },
+  //     {
+  //       id: 2,
+  //       ask: "Вопрос 2",
+  //       options: ["Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4"],
+  //     },
+  //   ],
+  // };
+
+  // let asksList;
+
+  // useEffect(() => {
+  //   setAnswerData((answerData) => [...answerData, (asksList = [])], []);
+  // });
 
   const prevAsk = () => {
     setCurrentAsk(currentAsk - 1);
   };
 
-  const nextAsk = () => {
-    setCurrentAsk(currentAsk+1);
+  const nextAsk = (id, checkedOption) => {
+    setCurrentAsk(currentAsk + 1);
+    setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
+    // console.log(Array.isArray(answerData))
   };
 
+  const endTest = (id, checkedOption) => {
+    setCurrentAsk(currentAsk + 1);
+    setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
+  };
 
-  const askList = state.asksList.map((i) => (
-    <TestAsk
-      title={i.ask.title}
-      options={i.ask.options}
-      id={i.ask.id}
-      key={i.ask.id}
-      currentAsk={currentAsk}
-      nextAsk={nextAsk}
-      prevAsk={prevAsk}
-      asksCount={state.asksList.length}
-    />
-  ));
-  return (
-    <div class="test__container">
-      <TestHeader currentAsk={currentAsk} asksCount={state.asksList.length} />
-      {currentAsk}
-      {askList}
-    </div>
-  );
+  useEffect(() => {
+    if (currentAsk > askCount) {
+      setAnswerData([...answerData, { asksList: asksList }]);
+      setAnswerData((answerData) => [...answerData, { id: testData.id }]);
+      setIsTestEnd(true);
+    }
+    console.log(answerData);
+  }, [asksList]);
+
+  // const endActions = ()=>{
+  //   setAnswerData([...answerData.asksList, { asksList: asksList }]);
+  //   setAnswerData((answerData) => [...answerData, { id: testData.id }]);
+  //   setIsTestEnd(true);
+  // }
+
+  // useEffect(()=>{
+  //   setAnswerData([answerData, { asksList: asksList }])
+  //   console.log(answerData)
+  // },[asksList])
+
+  useEffect(() => {
+    if (isTestEnd) {
+      TestsAPI.testCompleted(answerData);
+    }
+    console.log(answerData);
+  }, [isTestEnd, answerData]);
+
+  let [testData, setTestData] = useState([]);
+
+  useEffect(() => {
+    TestsAPI.testItem(3098).then((testData) => {
+      setTestData(testData);
+      setAskCount(testData.askList.length);
+    });
+  }, [testData]);
+
+  let [askCount, setAskCount] = useState(1);
+
+  // let [testId, setTestId] = useState(testData.id)
+
+  let askList;
+  if (testData.askList) {
+    askList = testData.askList.map((i) => (
+      <TestAskList
+        id={i.id}
+        key={i.id}
+        ask={i.ask}
+        options={i.options}
+        askCount={askCount}
+        currentAsk={currentAsk}
+        nextAsk={nextAsk}
+        prevAsk={prevAsk}
+        setAnswerData={setAnswerData}
+        endTest={endTest}
+      />
+    ));
+  } else {
+    askList = <div>Подождите, идет загрузка</div>;
+  }
+
+  return <div className="test__container">{askList}</div>;
 };
 
 export default TestContainer;

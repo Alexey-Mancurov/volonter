@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import check from "../../../assets/check.svg";
 
 const SidebarModuleBlockInner = (props) => {
@@ -17,7 +18,7 @@ const ModuleTitle = (props) => {
 
   return (
     <div className="test__sidebar-block-item">
-      <div className="test__sidebar-text">{props.title}</div>
+      <NavLink to={`/course/1/module/1/lesson/1`} className="test__sidebar-text">{props.title}</NavLink>
       <div className={`test__sidebar-block-check ${isCompleted ?'test__sidebar-block-check-completed' : ''}`}>
         <img src={check} alt="" />
       </div>

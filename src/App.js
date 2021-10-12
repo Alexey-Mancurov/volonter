@@ -12,20 +12,42 @@ import { coursesAPI } from "./api/api";
 function App() {
 
   let [lesson, setLessonItem] = useState({});
-
   useEffect(() => {
-    coursesAPI.lessonItem().then((response) => {
-      setLessonItem(lesson = response);
+    coursesAPI.lessonItem().then((lesson) => {
+      setLessonItem(lesson);
     });
-  }, []);
+  }, [lesson]);
+
+  // let list = lesson.map(i=>{
+  //   debugger
+  //   i.item.items.map(c=>{
+  //     <div>{c.id}</div>
+  //   })
+  //   })
+
 
   let [course, setCourseItem] = useState({})
-
+  let [courseId, setCourseId] = useState(29)
+  
   useEffect(()=>{
-    coursesAPI.courseItem().then((response)=>{
-      setCourseItem(course = response)
+    coursesAPI.courseItem(courseId).then((course)=>{
+      setCourseItem(course)
     })
-  }, [course.totalPoints, course.checkAsks, course.checkLessons])
+  }, [courseId])
+  // [courseId, course.totalPoints, course.checkAsks, course.checkLessons, course]
+
+
+
+
+
+  let [courses, setCourses]=useState([])
+  useEffect(()=>{
+    coursesAPI.courses().then(item=>{
+      setCourses([...courses, {item}])
+    })
+  }, [])
+
+
 
   // let [currentLesson, setCurrentLeason] = useState(1);
 
@@ -40,11 +62,11 @@ function App() {
   return (
     
     <div className="App" >
+      {/* {course} */}
       <main className="main main_inner">
-        <LessonTitle title={lesson.title}/>
+        <LessonTitle title={lesson.title} courses={courses}/>
         <div className='test__wrapper'>
-
-          <CourseSidebar {...course}/>
+          <CourseSidebar course={course}/>
 
           <div className="test__wrapper-body">
             <Route exact path={'/'}>
