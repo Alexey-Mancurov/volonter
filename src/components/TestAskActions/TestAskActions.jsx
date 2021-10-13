@@ -10,12 +10,11 @@ const TestAskActions = (props) => {
     setIsFullEndTest(true);
   };
   if (isFullEndTest) {
-    // console.log(props.completedResponse);
     return (
       <div className="test__ask-wrapper">
         <NavLink
           to={{
-            pathname: "/test-completed",
+            pathname: "/TestChecking",
             state: { completedResponse: props.completedResponse },
           }}
           className="test__ask-red test__ask-btn"

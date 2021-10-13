@@ -6,13 +6,38 @@ import CourseInfoActions from "./CourseInfoActions";
 import CourseInfoVideo from "./CourseInfoVideo";
 
 const CourseInfo = (props) => {
-  // получаю список курсов
-  let [lessonsList, setLessonsList] = useState();
+  // Получаю список Модулей
+  let [moduleList, setModuleList] = useState();
   useEffect(() => {
-    coursesAPI.lessons(29, 2989).then((lessonsList) => {
-      setLessonsList(lessonsList);
+    coursesAPI.modules(29).then((moduleList) => {
+      setModuleList(moduleList);
     });
   }, []);
+
+  // Получаю Модуль по индексу
+  let [currentModuleIndex, setCurrentModuleIndex] = useState(0);
+
+  // Получаю id Модуля по индексу
+  let [idCurrentModule, setIdCurrentModule] = useState();
+
+  // Добавляю id Модуля в state
+  useEffect(() => {
+    if (moduleList) {
+      setIdCurrentModule(
+        (idCurrentModule = moduleList.items[currentModuleIndex].id)
+      );
+    }
+  }, [moduleList, currentModuleIndex]);
+
+  // получаю список Уроков
+  let [lessonsList, setLessonsList] = useState();
+  useEffect(() => {
+    if (moduleList) {
+      coursesAPI.lessons(29, idCurrentModule).then((lessonsList) => {
+        setLessonsList(lessonsList);
+      });
+    }
+  }, [moduleList, idCurrentModule]);
 
   // Получаю Урок по индексу
   let [currentLessonIndex, setCurrentLessonIndex] = useState(0);
@@ -20,7 +45,7 @@ const CourseInfo = (props) => {
   // Получаю id Урока по индексу
   let [idCurrentLesson, setIdCurrentLesson] = useState();
 
-  // Добавляю id в state
+  // Добавляю id Урока в state
   useEffect(() => {
     if (lessonsList) {
       setIdCurrentLesson(
@@ -44,17 +69,55 @@ const CourseInfo = (props) => {
     if (lessonsList.items.length !== currentLessonIndex + 1) {
       setCurrentLessonIndex(currentLessonIndex + 1);
     } else {
+      if (moduleList.items.length !== currentModuleIndex + 1) {
+        setCurrentModuleIndex(currentModuleIndex + 1);
+        setCurrentLessonIndex((currentLessonIndex = 0));
+      } else{
+        alert('Это последний урок')
+      }
     }
   };
 
+  // Последний модуль в курсе?
+  let [isLastModule, setIsLastModule] = useState(false)
+  useEffect(()=>{
+    if(moduleList && currentModuleIndex && moduleList.items.length === currentModuleIndex+1){
+      setIsLastModule(isLastModule =true)
+    }else{
+      setIsLastModule(isLastModule=false)
+    }
+  }, [currentModuleIndex, moduleList])
+
+
+  // Последний урок в курсе?
+  let [isLastLesson, setIsLastLesson] = useState(false);
+  useEffect(() => {
+
+    if (
+      lessonsList &&
+      currentLessonIndex &&
+      lessonsList.items.length === (currentLessonIndex+1)
+    ) {
+      setIsLastLesson(isLastLesson = true);
+    } else {
+      setIsLastLesson(isLastLesson = false);
+    }
+  }, [currentLessonIndex, lessonsList]);
+
   // Изменяю индекс Урока по клику на Предыдущий урок
   const prevLesson = () => {
-    if (currentLessonIndex === 0) {
+    if (currentLessonIndex === 0 && currentModuleIndex === 0) {
       setCurrentLessonIndex((currentLessonIndex = 0));
-    } else {
-      setCurrentLessonIndex(currentLessonIndex - 1);
+      setCurrentLessonIndex((currentModuleIndex = 0));
+      alert('Это самый первый урок')
+    } else if(currentLessonIndex ===0 && currentModuleIndex !== 0) {
+      setCurrentModuleIndex(currentModuleIndex - 1);
+      setCurrentLessonIndex(currentLessonIndex=lessonsList.items.length-1)
+    } else if(currentLessonIndex !== 0){
+      setCurrentModuleIndex(currentLessonIndex - 1);
     }
   };
+
 
   // Преобразование linkVideo чтобы, отображать и в iframe, и ссылкой
   let [linkVideoForIframe, setLinkVideoForIframe] = useState();
@@ -86,6 +149,8 @@ const CourseInfo = (props) => {
           nextLesson={nextLesson}
           prevLesson={prevLesson}
           getActiveTest={props.getActiveTest}
+          isLastLesson={isLastLesson}
+          isLastModule={isLastModule}
         />
         {/* Тут еще слайдер добавить */}
       </>

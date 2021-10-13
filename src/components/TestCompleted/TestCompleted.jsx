@@ -4,18 +4,17 @@ import TestCompletedReviews from "../TestCompletedReviews/TestCompletedReviews";
 import { useLocation } from "react-router";
 
 const TestCompleted = (props) => {
-  debugger;
   let location = useLocation();
   console.log(location)
   return (
     <>
       <div className="test__container-wrapper test__wrapper-completed">
-        <TestCompletedInfo />
+        <TestCompletedInfo sertificate={location.state.completedResponse.sertificate} successAsks={location.state.completedResponse.successAsks} totalAsk={location.state.completedResponse.totalAsk}/>
         <TestCompletedReviews />
       </div>
       <div className="test__content">
         <div className="test__content-title">
-          Поздравляем, вы успешно завершили курс {props.title}
+          {location.state.completedResponse.content} {props.title}
         </div>
         <div className="test__container-text">
           Самое время применить полученные знания на практике

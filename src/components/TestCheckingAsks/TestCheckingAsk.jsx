@@ -3,6 +3,10 @@ import TestCheckingTitle from "./TestCheckingTitle";
 
 const TestCheckingdAsk = (props) => {
   return (
+    <>
+    <p className="test__container-text">
+        Вопросы, на которые вы ответили неправильно:
+      </p>
     <div className="test__ask">
       <TestCheckingTitle />
       <p className="test__container-text test__ask-question">
@@ -12,8 +16,9 @@ const TestCheckingdAsk = (props) => {
         Волонтёрская организация, у которой нет деятельности в интернете,
         вызывает подозрение
       </div>
-      <TestCheckingBtns />
+      
     </div>
+    </>
   );
 };
 

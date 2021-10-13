@@ -1,3 +1,5 @@
+import check from "../../assets/check.svg";
+
 const TestCompletedReviews = (props) => {
   return (
     <div className="test__completed">
@@ -67,7 +69,7 @@ const TestCompletedReviews = (props) => {
             </svg>
           </div>
           <div className="test__sidebar-block-check test__sidebar-block-check-completed">
-            <img src="img/course/icons/check.svg" alt=""></img>
+            <img src={check} alt=""></img>
           </div>
         </div>
       </div>

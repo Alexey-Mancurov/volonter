@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { TestsAPI } from "../../api/api";
 import TestAskList from "../TestAskList/TestAskList";
+import TestResultBtn from "../TestResultBtn/TestResultBtn";
+import { useLocation } from "react-router";
 
 const TestContainer = (props) => {
+  let location = useLocation();
+  console.log(location);
+
   let [currentAsk, setCurrentAsk] = useState(1);
 
   let [isTestEnd, setIsTestEnd] = useState(false);
@@ -19,7 +24,6 @@ const TestContainer = (props) => {
   const nextAsk = (id, checkedOption) => {
     setCurrentAsk(currentAsk + 1);
     setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
-    console.log(currentAsk + "--" + (askCount+1));
   };
 
   // const endTest = (id, checkedOption) => {
@@ -85,18 +89,15 @@ const TestContainer = (props) => {
     askList = <div>Подождите, идет загрузка</div>;
   }
 
-  return <div className="test__container">{askList}
-  
-          <NavLink
-          to={{
-            pathname: "/test-completed",
-            state: { completedResponse: completedResponse },
-          }}
-          className="test__ask-red test__ask-btn"
-          // onClick={props.localEndTest}
-        >
-          Смотреть результаты
-        </NavLink></div>;
+  return (<div className="test__container">{askList}
+        {currentAsk>askCount
+        ? 
+          completedResponse
+          ? <TestResultBtn isLastLesson={location.state.isLastLesson} completedResponse={completedResponse}/>
+          : <div>Пожалуйста, подождите</div>
+        : ''}
+        </div>)
+         
 };
 
 export default TestContainer;
