@@ -2,18 +2,20 @@ import { useLocation } from "react-router";
 import TestCheckingAsks from "../TestCheckingAsks/TestCheckingAsk";
 import TestCheckingHeader from "../TestCheckingHeader/TestCheckingHeader";
 import TestCheckingBtns from "../TestCheckingAsks/TestCheckingBtns";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { coursesAPI } from "../../api/api";
+import { Context } from "../../context/context";
 
 const TestChecking = (props) => {
   let location = useLocation();
   console.log(location);
 
+  const {courseId} = useContext(Context)
   // получаю список курсов
   let [lessonsList, setLessonsList] = useState();
   useEffect(() => {
-    coursesAPI.lessons(29, 2989).then((lessonsList) => {
+    coursesAPI.lessons(courseId, 2989).then((lessonsList) => {
       setLessonsList(lessonsList);
     });
   }, []);
@@ -37,7 +39,7 @@ const TestChecking = (props) => {
   let [lesson, setLessonItem] = useState();
   useEffect(() => {
     if (idCurrentLesson) {
-      coursesAPI.lessonItem(29, 2989, idCurrentLesson).then((lesson) => {
+      coursesAPI.lessonItem(courseId, 2989, idCurrentLesson).then((lesson) => {
         setLessonItem(lesson);
       });
     }
@@ -64,7 +66,7 @@ const TestChecking = (props) => {
           {location.state.completedResponse.totalAsk}{" "}
         </span>
       </p>
-      <TestCheckingAsks />
+      <TestCheckingAsks dataList={location.state.completedResponse.noCorrectAsks}/>
       <TestCheckingBtns nextLesson={nextLesson}/>
     </div>
   );

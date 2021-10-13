@@ -4,7 +4,8 @@ import TestAskActions from "../TestAskActions/TestAskActions";
 import TestHeader from "../TestHeader/TestHeader";
 
 const TestAskList = (props) => {
-  let id = props.id;
+  let id = props.id+1;
+  
 
   let [checkedOption, setCheckedOption] = useState(null);
 
@@ -19,19 +20,19 @@ const TestAskList = (props) => {
   //   props.endTest(id, checkedOption);
   // };
 
-  return props.currentAsk === props.id ? (
-    <div id={props.id}>
+  return props.currentAsk === id ? (
+    <div id={id}>
       <TestHeader
         ask={props.ask}
-        id={props.id}
-        key={props.id}
+        id={id}
+        key={id}
         currentAsk={props.currentAsk}
         askCount={props.askCount}
       />
       <TestAsk
         options={props.options}
-        id={props.id}
-        key={props.id}
+        id={id}
+        key={id}
         // currentAsk={currentAsk}
         // nextAsk={nextAsk}
         // prevAsk={prevAsk}

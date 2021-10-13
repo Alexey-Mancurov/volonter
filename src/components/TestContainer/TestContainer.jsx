@@ -57,12 +57,15 @@ const TestContainer = (props) => {
 
   let [testData, setTestData] = useState([]);
 
+  let idTest = location.state.idTest
+  console.log(idTest)
   useEffect(() => {
-    TestsAPI.testItem(3098).then((testData) => {
+    TestsAPI.testItem(idTest).then((testData) => {
       setTestData(testData);
       setAskCount(testData.askList.length);
     });
-  }, [testData]);
+  }, [idTest]);
+  console.log(testData)
 
   let [askCount, setAskCount] = useState(1);
 
@@ -70,10 +73,10 @@ const TestContainer = (props) => {
 
   let askList;
   if (testData.askList) {
-    askList = testData.askList.map((i) => (
+    askList = testData.askList.map((i,index) => (
       <TestAskList
-        id={i.id}
-        key={i.id}
+        id={index}
+        key={index}
         ask={i.ask}
         options={i.options}
         askCount={askCount}
@@ -81,19 +84,19 @@ const TestContainer = (props) => {
         nextAsk={nextAsk}
         prevAsk={prevAsk}
         setAnswerData={setAnswerData}
-        // endTest={endTest}
         completedResponse={completedResponse}
       />
     ));
   } else {
     askList = <div>Подождите, идет загрузка</div>;
   }
+  console.log(testData.askList)
 
   return (<div className="test__container">{askList}
         {currentAsk>askCount
         ? 
           completedResponse
-          ? <TestResultBtn isLastLesson={location.state.isLastLesson} completedResponse={completedResponse}/>
+          ? <TestResultBtn isLastLesson={location.state.isLastLesson} isLastModule={location.state.isLastModule} completedResponse={completedResponse}/>
           : <div>Пожалуйста, подождите</div>
         : ''}
         </div>)

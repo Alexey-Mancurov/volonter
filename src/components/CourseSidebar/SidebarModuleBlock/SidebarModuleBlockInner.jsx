@@ -24,7 +24,7 @@ const ModuleTitle = (props) => {
   return (
     <div className="test__sidebar-block-item">
       <NavLink
-        to={`/courses/${props.courseId}/modules/${props.moduleId}/lessons/1`}
+      to={'/lesson'}
         className="test__sidebar-text"
       >
         {props.title}

@@ -1209,6 +1209,7 @@ template {
   margin-top: 23px;
   height: auto;
   opacity: 1;
+  visibility:visible;
   -webkit-transition: all .3s;
   -o-transition: all .3s;
   transition: all .3s;
@@ -1270,6 +1271,7 @@ template {
 .test__sidebar-block-inner {
   height: 0;
   opacity: 0;
+  visibility: hidden;
   -webkit-transition: all .3s;
   -o-transition: all .3s;
   transition: all .3s;
@@ -1285,7 +1287,6 @@ template {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-
   cursor: pointer;
 }
 
@@ -1296,6 +1297,7 @@ template {
 .test__sidebar-text {
   font-size: 23px;
   line-height: 117.3913%;
+  color: #5C5C5C;
 }
 
 .test__sidebar-block-check {
@@ -1864,6 +1866,10 @@ template {
   width: 143px;
   min-height: 36px;
   font-size: 15px;
+}
+
+.test__info-completed-btn +.test__info-completed-btn{
+  margin-top: 10px;
 }
 
 .test__info-btnBox {

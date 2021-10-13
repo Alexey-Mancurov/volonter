@@ -8,10 +8,10 @@ const TestAskFooterBtns = (props) => {
   };
   return (
     <div className="test__ask-wrapper">
-      <NavLink to={"/courses/29/modules/2989/lessons/2989"} className={"test__ask-btn"}>
+      <NavLink to={"/lesson"} className={"test__ask-btn"}>
         <BorderBlueBtn addClass={"test__ask-btn"} text={"Пройти ещё раз"} />
       </NavLink>
-      <NavLink to={"/courses/29/modules/2989/lessons/2989"}>
+      <NavLink to={"/lesson"}>
         <RedBtn
           addClass={"test__ask-btn"}
           text={"Следующий урок"}

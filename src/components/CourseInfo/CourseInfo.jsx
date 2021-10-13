@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { coursesAPI } from "../../api/api";
+import { Context } from "../../context/context";
 import CourceInfoContent from "./CourceInfoContent";
 import CourseInfoActions from "./CourseInfoActions";
 import CourseInfoVideo from "./CourseInfoVideo";
 
 const CourseInfo = (props) => {
+  const {courseId}=useContext(Context)
+
   // Получаю список Модулей
   let [moduleList, setModuleList] = useState();
   useEffect(() => {
-    coursesAPI.modules(29).then((moduleList) => {
+    coursesAPI.modules(courseId).then((moduleList) => {
       setModuleList(moduleList);
     });
   }, []);
@@ -32,8 +35,8 @@ const CourseInfo = (props) => {
   // получаю список Уроков
   let [lessonsList, setLessonsList] = useState();
   useEffect(() => {
-    if (moduleList) {
-      coursesAPI.lessons(29, idCurrentModule).then((lessonsList) => {
+    if (moduleList && idCurrentModule) {
+      coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
         setLessonsList(lessonsList);
       });
     }
@@ -58,11 +61,16 @@ const CourseInfo = (props) => {
   let [lesson, setLessonItem] = useState();
   useEffect(() => {
     if (idCurrentLesson) {
-      coursesAPI.lessonItem(29, 2989, idCurrentLesson).then((lesson) => {
+      coursesAPI.lessonItem(courseId, idCurrentModule, idCurrentLesson).then((lesson) => {
         setLessonItem(lesson);
       });
     }
   }, [idCurrentLesson]);
+
+  // if(lesson.idListTests){
+  //    console.log(lesson.idListTests)
+  // }
+ 
 
   // Изменяю индекс Урока по клику на Следующий урок
   const nextLesson = () => {
@@ -110,12 +118,12 @@ const CourseInfo = (props) => {
       setCurrentLessonIndex((currentLessonIndex = 0));
       setCurrentLessonIndex((currentModuleIndex = 0));
       alert('Это самый первый урок')
-    } else if(currentLessonIndex ===0 && currentModuleIndex !== 0) {
+    } else if(currentLessonIndex > 0){
+      setCurrentLessonIndex(currentLessonIndex-1)
+    } else if(currentLessonIndex === 0 && currentModuleIndex !== 0) {
       setCurrentModuleIndex(currentModuleIndex - 1);
       setCurrentLessonIndex(currentLessonIndex=lessonsList.items.length-1)
-    } else if(currentLessonIndex !== 0){
-      setCurrentModuleIndex(currentLessonIndex - 1);
-    }
+    } 
   };
 
 
@@ -131,6 +139,7 @@ const CourseInfo = (props) => {
       );
     }
   }, [lesson]);
+
 
   if (lesson) {
     return (
@@ -151,6 +160,7 @@ const CourseInfo = (props) => {
           getActiveTest={props.getActiveTest}
           isLastLesson={isLastLesson}
           isLastModule={isLastModule}
+          lesson={lesson}
         />
         {/* Тут еще слайдер добавить */}
       </>
