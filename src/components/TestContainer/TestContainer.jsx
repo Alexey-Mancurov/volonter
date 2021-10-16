@@ -7,7 +7,6 @@ import { useLocation } from "react-router";
 
 const TestContainer = (props) => {
   let location = useLocation();
-  console.log(location);
 
   let [currentAsk, setCurrentAsk] = useState(1);
 
@@ -51,21 +50,16 @@ const TestContainer = (props) => {
     }
   }, [isTestEnd]);
 
-  useEffect(() => {
-    console.log(completedResponse);
-  }, [completedResponse]);
 
   let [testData, setTestData] = useState([]);
 
   let idTest = location.state.idTest
-  console.log(idTest)
   useEffect(() => {
     TestsAPI.testItem(idTest).then((testData) => {
       setTestData(testData);
       setAskCount(testData.askList.length);
     });
   }, [idTest]);
-  console.log(testData)
 
   let [askCount, setAskCount] = useState(1);
 
@@ -90,13 +84,12 @@ const TestContainer = (props) => {
   } else {
     askList = <div>Подождите, идет загрузка</div>;
   }
-  console.log(testData.askList)
 
   return (<div className="test__container">{askList}
         {currentAsk>askCount
         ? 
           completedResponse
-          ? <TestResultBtn isLastLesson={location.state.isLastLesson} isLastModule={location.state.isLastModule} completedResponse={completedResponse}/>
+          ? <TestResultBtn isLastLesson={location.state.isLastLesson} isLastModule={location.state.isLastModule} completedResponse={completedResponse} courseId={props.courseId}/>
           : <div>Пожалуйста, подождите</div>
         : ''}
         </div>)

@@ -1,131 +1,31 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useLocation } from "react-router";
 import { coursesAPI } from "../../api/api";
 import { Context } from "../../context/context";
 import CourceInfoContent from "./CourceInfoContent";
 import CourseInfoActions from "./CourseInfoActions";
 import CourseInfoVideo from "./CourseInfoVideo";
+import CourseInfoActionsCompleted from "./CourseInfoActionsCompleted";
+import Preloader from "../common/Preloader";
 
 const CourseInfo = (props) => {
-  const {courseId}=useContext(Context)
 
-  // Получаю список Модулей
-  let [moduleList, setModuleList] = useState();
-  useEffect(() => {
-    coursesAPI.modules(courseId).then((moduleList) => {
-      setModuleList(moduleList);
-    });
-  }, []);
-
-  // Получаю Модуль по индексу
-  let [currentModuleIndex, setCurrentModuleIndex] = useState(0);
-
-  // Получаю id Модуля по индексу
-  let [idCurrentModule, setIdCurrentModule] = useState();
-
-  // Добавляю id Модуля в state
-  useEffect(() => {
-    if (moduleList) {
-      setIdCurrentModule(
-        (idCurrentModule = moduleList.items[currentModuleIndex].id)
-      );
-    }
-  }, [moduleList, currentModuleIndex]);
-
-  // получаю список Уроков
-  let [lessonsList, setLessonsList] = useState();
-  useEffect(() => {
-    if (moduleList && idCurrentModule) {
-      coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
-        setLessonsList(lessonsList);
-      });
-    }
-  }, [moduleList, idCurrentModule]);
-
-  // Получаю Урок по индексу
-  let [currentLessonIndex, setCurrentLessonIndex] = useState(0);
-
-  // Получаю id Урока по индексу
-  let [idCurrentLesson, setIdCurrentLesson] = useState();
-
-  // Добавляю id Урока в state
-  useEffect(() => {
-    if (lessonsList) {
-      setIdCurrentLesson(
-        (idCurrentLesson = lessonsList.items[currentLessonIndex].id)
-      );
-    }
-  }, [lessonsList, currentLessonIndex]);
+  let [isLoading, setIsLoading] = useState(false);
 
   // Получаю данные об Уроке
   let [lesson, setLessonItem] = useState();
   useEffect(() => {
-    if (idCurrentLesson) {
-      coursesAPI.lessonItem(courseId, idCurrentModule, idCurrentLesson).then((lesson) => {
-        setLessonItem(lesson);
-      });
+    if (props.idCurrentLesson) {
+      setIsLoading(true);
+      coursesAPI
+        .lessonItem(props.courseId, props.idCurrentModule, props.idCurrentLesson)
+        .then((lesson) => {
+          setLessonItem(lesson);
+          setIsLoading(false);
+        });
     }
-  }, [idCurrentLesson]);
-
-  // if(lesson.idListTests){
-  //    console.log(lesson.idListTests)
-  // }
- 
-
-  // Изменяю индекс Урока по клику на Следующий урок
-  const nextLesson = () => {
-    if (lessonsList.items.length !== currentLessonIndex + 1) {
-      setCurrentLessonIndex(currentLessonIndex + 1);
-    } else {
-      if (moduleList.items.length !== currentModuleIndex + 1) {
-        setCurrentModuleIndex(currentModuleIndex + 1);
-        setCurrentLessonIndex((currentLessonIndex = 0));
-      } else{
-        alert('Это последний урок')
-      }
-    }
-  };
-
-  // Последний модуль в курсе?
-  let [isLastModule, setIsLastModule] = useState(false)
-  useEffect(()=>{
-    if(moduleList && currentModuleIndex && moduleList.items.length === currentModuleIndex+1){
-      setIsLastModule(isLastModule =true)
-    }else{
-      setIsLastModule(isLastModule=false)
-    }
-  }, [currentModuleIndex, moduleList])
-
-
-  // Последний урок в курсе?
-  let [isLastLesson, setIsLastLesson] = useState(false);
-  useEffect(() => {
-
-    if (
-      lessonsList &&
-      currentLessonIndex &&
-      lessonsList.items.length === (currentLessonIndex+1)
-    ) {
-      setIsLastLesson(isLastLesson = true);
-    } else {
-      setIsLastLesson(isLastLesson = false);
-    }
-  }, [currentLessonIndex, lessonsList]);
-
-  // Изменяю индекс Урока по клику на Предыдущий урок
-  const prevLesson = () => {
-    if (currentLessonIndex === 0 && currentModuleIndex === 0) {
-      setCurrentLessonIndex((currentLessonIndex = 0));
-      setCurrentLessonIndex((currentModuleIndex = 0));
-      alert('Это самый первый урок')
-    } else if(currentLessonIndex > 0){
-      setCurrentLessonIndex(currentLessonIndex-1)
-    } else if(currentLessonIndex === 0 && currentModuleIndex !== 0) {
-      setCurrentModuleIndex(currentModuleIndex - 1);
-      setCurrentLessonIndex(currentLessonIndex=lessonsList.items.length-1)
-    } 
-  };
-
+  }, [props.idCurrentLesson]);
 
   // Преобразование linkVideo чтобы, отображать и в iframe, и ссылкой
   let [linkVideoForIframe, setLinkVideoForIframe] = useState();
@@ -142,29 +42,46 @@ const CourseInfo = (props) => {
 
 
   if (lesson) {
-    return (
-      <>
-        <div className="test__info">
-          <CourseInfoVideo linkVideo={linkVideoForIframe} />
-          <CourceInfoContent
-            title={lesson.item.title}
-            description={lesson.item.description}
-            info={lesson.item.info}
-            linkVideo={lesson.item.linkVideo}
-          />
-        </div>
-        <CourseInfoActions
-          // currentLesson={currentLessonIndex}
-          nextLesson={nextLesson}
-          prevLesson={prevLesson}
-          getActiveTest={props.getActiveTest}
-          isLastLesson={isLastLesson}
-          isLastModule={isLastModule}
-          lesson={lesson}
-        />
-        {/* Тут еще слайдер добавить */}
-      </>
-    );
+    if (!isLoading) {
+      return (
+        <>
+          <div className="test__info">
+            <CourseInfoVideo linkVideo={linkVideoForIframe} />
+            <CourceInfoContent
+              title={lesson.item.title}
+              description={lesson.item.description}
+              info={lesson.item.info}
+              linkVideo={lesson.item.linkVideo}
+            />
+          </div>
+          {lesson.item.check ? (
+            <CourseInfoActionsCompleted
+              // currentLesson={currentLessonIndex}
+              nextLesson={props.nextLesson}
+              prevLesson={props.prevLesson}
+              getActiveTest={props.getActiveTest}
+              isLastLesson={props.isLastLesson}
+              isLastModule={props.isLastModule}
+              lesson={lesson}
+            />
+          ) : (
+            <CourseInfoActions
+              // currentLesson={currentLessonIndex}
+              nextLesson={props.nextLesson}
+              prevLesson={props.prevLesson}
+              getActiveTest={props.getActiveTest}
+              isLastLesson={props.isLastLesson}
+              isLastModule={props.isLastModule}
+              lesson={lesson}
+            />
+          )}
+
+          {/* Тут еще слайдер добавить */}
+        </>
+      );
+    } else {
+      return <Preloader />;
+    }
   } else {
     return <div>Подождите, идет загрузка</div>;
   }

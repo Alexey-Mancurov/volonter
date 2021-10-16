@@ -3,35 +3,63 @@ import { coursesAPI } from "../../api/api";
 import SidebarDataAboutTestDesctop from "./SidebarDataAboutTestDesctop";
 import SidebarModuleBlock from "./SidebarModuleBlock/SidebarModuleBlock";
 import ProgressCourse from "./SidebarProgressCourse";
+import {createBrowserHistory } from 'history'
+import qs from 'qs'
+import { useLocation } from "react-router";
 
 const CourseSidebar = (props) => {
+    // // Сохраняю данные в url, чтобы при перезагрузке не слетало
+    // const history = createBrowserHistory()
 
-  let [modules, setModules] = useState({});
-  useEffect(() => {
-    coursesAPI.modules(props.courseId).then((modules) => {
-      setModules(modules);
-    });
-    setProgressCoursePercent();
-  }, []);
+    // useEffect(() => {
+    //   const filterParams = history.location.search.substr(1);
+    //   const filtersFromParams = qs.parse(filterParams);
+    //   if (filtersFromParams.courseId) {
+    //     props.setCourseId(Number(filtersFromParams.courseId));
+    //   }
+    // }, []);
+  
+    // useEffect(() => {
+    //   history.push(`*/?courseId=${props.courseId}`);
+    // }, [props.courseId]);
+    // useEffect(() => {
+    //   if(props.courseId && props.currentModuleIndex && props.currentLessonIndex)
+    //     window.localStorage.setItem('courseId', props.courseId);
+    //     window.localStorage.setItem('currentModuleIndex', props.currentModuleIndex);
+    //     window.localStorage.setItem('currentLessonIndex', props.currentLessonIndex);
+    // }, [props.courseId,props.currentModuleIndex,props.currentLessonIndex]);
 
-  let [progressCoursePercent, setProgressCoursePercent] = useState();
+    // courseId, currentModuleIndex, currentLessonIndex
 
-  useEffect(() => {
-    if (props.course) {
-      let calculateProgress =
-        Math.round((props.course.course.checkAsks / props.course.course.totalAsks) * 100);
-      setProgressCoursePercent(progressCoursePercent=calculateProgress);
-    }
-  }, [props.course]);
+
+
+    // reservedCourseId={reservedCourseId}
+    // setReservedCourseId={setReservedCourseId}
+
+
+    let location = useLocation()
+    
+      useEffect(()=>{
+        if(!props.courseId){
+          props.setReservedCourseId(JSON.parse(window.localStorage.getItem('courseId')));
+        }
+      }, [])
+    
 
   let moduleList;
-  if (modules.items) {
-    moduleList = modules.items.map((i) => (
+  if (props.modules) {
+    moduleList = props.modules.items.map((i, index) => (
       <SidebarModuleBlock
         key={i.id}
         title={i.title}
         courseId={props.courseId}
         moduleId={i.id}
+        moduleIndex={index}
+        getModuleId={props.getModuleId}
+        lessonId={props.lessonId}
+        getLessonId={props.getLessonId}
+        moduleMenuToggle={props.moduleMenuToggle}
+        lessonMenuToggle={props.lessonMenuToggle}
       />
     ));
   } else {
@@ -44,7 +72,7 @@ const CourseSidebar = (props) => {
       <SidebarDataAboutTestDesctop course={props.course} />
 
       <ProgressCourse
-        progressCourse={progressCoursePercent}
+        progressCourse={props.progressCoursePercent}
         // totalLessons={props.course.totalLessons}
         // checkLessons={props.course.checkLessons}
       />

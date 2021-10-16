@@ -5,18 +5,17 @@ import { coursesAPI } from "../../api/api";
 import { Context } from "../../context/context";
 
 const TestResultBtn = (props) => {
-  const {courseId}=useContext(Context)
+
   let [moduleList, setModuleList] = useState();
   useEffect(() => {
-    coursesAPI.modules(courseId).then((moduleList) => {
+    coursesAPI.modules(props.courseId).then((moduleList) => {
       setModuleList(moduleList);
-      console.log(moduleList)
     });
   }, []);
   let isAllLessonsChecked
   if (moduleList) {
     moduleList.items.map((i) =>
-      coursesAPI.lessons(courseId, i.id).then((lessonsList) => {
+      coursesAPI.lessons(props.courseId, i.id).then((lessonsList) => {
         isAllLessonsChecked = lessonsList.items.every((i)=>i.check===true)
       })
     );

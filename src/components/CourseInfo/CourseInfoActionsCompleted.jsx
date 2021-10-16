@@ -18,6 +18,21 @@ const CourseInfoActions = (props) => {
   ));
   return (
     <div className="test__info-wrapper">
+      {props.lesson.item.check ? (
+      <div className="test__completed test__completed-info">
+        <div className="test__info-completed-wrapper">
+          <p className="test__info-completed-text">
+            Вы уже выполнили этот тест успешно. Можете пройти следующий урок
+          </p>
+          <div
+            className="test__ask-blueBorder test__info-completed-btn"
+            onClick={props.nextLesson}
+          >
+            Далее
+          </div>
+        </div>
+      </div>
+      ) : (
       <div className="test__completed test__completed-info">
         <div className="test__info-completed-title">
           Проверка полученных знаний
@@ -31,6 +46,7 @@ const CourseInfoActions = (props) => {
           </div>
         </div>
       </div>
+       )} 
       <div className="test__info-btnBox">
         <div
           className="test__ask-blueBorder test__info-btn"

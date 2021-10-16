@@ -9,9 +9,9 @@ const TestAskFooterBtns = (props) => {
   return (
     <div className="test__ask-wrapper">
       <NavLink to={"/lesson"} className={"test__ask-btn"}>
-        <BorderBlueBtn addClass={"test__ask-btn"} text={"Пройти ещё раз"} />
+        <BorderBlueBtn addClass={"test__ask-btn"} text={"Пройти ещё раз"}/>
       </NavLink>
-      <NavLink to={"/lesson"}>
+      <NavLink to={"/lesson"} onClick={props.nextLesson}>
         <RedBtn
           addClass={"test__ask-btn"}
           text={"Следующий урок"}

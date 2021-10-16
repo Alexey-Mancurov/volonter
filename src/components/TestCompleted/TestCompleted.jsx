@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 
 const TestCompleted = (props) => {
   let location = useLocation();
-  console.log(location)
+
   return (
     <>
       <div className="test__container-wrapper test__wrapper-completed">

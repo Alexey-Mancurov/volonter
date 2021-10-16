@@ -10,8 +10,6 @@ const TestCheckingdAsk = (props) => {
   ))
   }
 
-  console.log(answersListChecking)
-
   return (
     <div>
       {answersListChecking}

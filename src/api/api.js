@@ -23,6 +23,7 @@ export const coursesAPI = {
             })
     },
     courseItem: (courseId) => {
+        
         return instanse
             .get(`courses/${courseId}`)
             .then(response => {

@@ -1980,12 +1980,14 @@ template {
   -ms-flex-pack: center;
   justify-content: center;
   cursor: pointer;
+  transition: all .3;
 }
 
 .courses__item-favorit svg,
 .courses__item-favorit img {
   width: 21px;
   height: 30px;
+  transition: all .3;
 }
 
 .courses__item-text {
@@ -4519,4 +4521,77 @@ template {
   .desc_partners {
     max-width: 257px;
   }
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #000;
+  border-color: rgb(0, 0, 0) transparent rgb(0, 0, 0) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* tabs start */
+.tabs {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs__item {
+  margin: 0 30px 14px 0;
+}
+
+.tabs__link,
+.tabs__link:visited {
+  font-size: 20px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4D9EF8;
+  padding: 15px 50px;
+  border: 2.81667px solid #4D9EF8;
+  box-sizing: border-box;
+  border-radius: 321.1px;
+  text-decoration: none;
+  transition: .5s;
+  overflow: visible;
+}
+
+.tabs__link.active,
+.tabs__link.active:visited {
+  color: #FFFFFF;
+  background: #EB3624;
+  border-color: #EB3624;
+  filter: drop-shadow(0px 0px 32.11px rgba(235, 54, 36, 0.44));
+}
+
+.tabs__link:hover:not(.active),
+.tabs__link:focus:not(.active) {
+  color: #FFFFFF;
+  background: #0491FB;
+}
+
+.tabs_document {
+  margin: 77px 0 58px;
 }
