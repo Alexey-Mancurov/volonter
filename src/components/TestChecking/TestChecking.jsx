@@ -6,7 +6,7 @@ import TestCheckingBtns from "../TestCheckingAsks/TestCheckingBtns";
 
 const TestChecking = (props) => {
   let location = useLocation();
-
+console.log(location)
   return (
     <div className="test__container">
       <TestCheckingHeader

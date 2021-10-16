@@ -35,6 +35,7 @@ function App() {
     setCourseId(courseId=id)
   }
 
+
   
     // Получаю данные текущего курса
     let [course, setCourseItem] = useState();
@@ -63,6 +64,10 @@ function App() {
 
     // Получаю id Модуля по индексу
     let [idCurrentModule, setIdCurrentModule] = useState();
+
+    const helpRenderModule = (index)=>{
+      setCurrentModuleIndex(currentModuleIndex=index)
+    }
   
     // Добавляю id Модуля в state
     useEffect(() => {
@@ -181,31 +186,6 @@ function App() {
       }
     }, [course]);
 
-    // Сохраняю данные в url, чтобы при перезагрузке не слетало
-    // const history = createBrowserHistory()
-
-    // useEffect(() => {
-    //   const filterParams = history.location.search.substr(1);
-    //   const filtersFromParams = qs.parse(filterParams);
-    //   if (filtersFromParams.courseId) {
-    //     setCourseId(Number(filtersFromParams.courseId));
-    //   }
-    //   // if (filtersFromParams.idCurrentModule) {
-    //   //   setCourseId(Number(filtersFromParams.idCurrentModule));
-    //   // }
-    //   // if (filtersFromParams.idCurrentLesson) {
-    //   //   setCourseId(Number(filtersFromParams.idCurrentLesson));
-    //   // }
-    // }, []);
-  
-    // useEffect(() => {
-    //   if(courseId){
-    //     history.push(`?courseId=${courseId}`);
-    //     // history.push(`?courseId=${courseId}?idCurrentModule=${idCurrentModule}?idCurrentLesson=${idCurrentLesson}`);
-    //   }
-    // }, [courseId]);
-
-
     useEffect(() => {
         if(!courseId && location.pathname !== '/courses'){
           setCourseId(JSON.parse(window.localStorage.getItem('courseId')));
@@ -217,13 +197,25 @@ function App() {
         window.localStorage.setItem('courseId', courseId)
       }
     },[courseId])
-  
 
+  //   useEffect(() => {
+  //     if(!currentModuleIndex && location.pathname !== '/courses'){
+  //       setCourseId(JSON.parse(window.localStorage.getItem('courseId')));
+  //     }
+  // }, []);
+
+  // useEffect(()=>{
+  //   if(courseId){
+  //     window.localStorage.setItem('courseId', courseId)
+  //   }
+  // },[courseId])
+  
+console.log(location.pathname)
 
     if(!courseId && location.pathname !== '/courses'){
       <div className="test__wrapper">
         <CourseSidebar reservedCourseId={reservedCourseId}
-                setReservedCourseId={setReservedCourseId} helpRender={helpRender}/>
+        setReservedCourseId={setReservedCourseId} helpRender={helpRender} helpRenderModule={helpRenderModule}/>
       </div>
     }
     return (
@@ -259,8 +251,8 @@ function App() {
             </Route>
             
               <Route path={'/test'}>
-              <TestContainer courseId={courseId}/>
-                </Route>
+                <TestContainer courseId={courseId}/>
+              </Route>
               <Route path={'/test-completed'}>
                 <TestCompleted title={course.course.title} courseId={courseId}/>
               </Route>

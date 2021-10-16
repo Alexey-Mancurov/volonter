@@ -44,7 +44,7 @@ const ModuleTitle = (props) => {
     <div className="test__sidebar-block-item">
       <NavLink
         to={{
-          pathname: `/lesson/${props.moduleIndex}/${props.lessonIndex}`,
+          pathname: `/lesson`,
           state: {
             lessonIndex: props.lessonIndex,
             moduleIndex: props.moduleIndex,

@@ -10,7 +10,6 @@ import CourseInfoActionsCompleted from "./CourseInfoActionsCompleted";
 import Preloader from "../common/Preloader";
 
 const CourseInfo = (props) => {
-
   let [isLoading, setIsLoading] = useState(false);
 
   // Получаю данные об Уроке
@@ -19,7 +18,11 @@ const CourseInfo = (props) => {
     if (props.idCurrentLesson) {
       setIsLoading(true);
       coursesAPI
-        .lessonItem(props.courseId, props.idCurrentModule, props.idCurrentLesson)
+        .lessonItem(
+          props.courseId,
+          props.idCurrentModule,
+          props.idCurrentLesson
+        )
         .then((lesson) => {
           setLessonItem(lesson);
           setIsLoading(false);
@@ -31,15 +34,20 @@ const CourseInfo = (props) => {
   let [linkVideoForIframe, setLinkVideoForIframe] = useState();
   useEffect(() => {
     if (lesson) {
-      setLinkVideoForIframe(
-        (linkVideoForIframe = lesson.item.linkVideo.replace(
-          "watch?v=",
-          "embed/"
-        ))
-      );
+      if (lesson.item.linkVideo) {
+        setLinkVideoForIframe(
+          (linkVideoForIframe = lesson.item.linkVideo.replace(
+            "watch?v=",
+            "embed/"
+          ))
+        );
+      } else {
+        setLinkVideoForIframe(
+          (linkVideoForIframe = null)
+        );
+      }
     }
   }, [lesson]);
-
 
   if (lesson) {
     if (!isLoading) {

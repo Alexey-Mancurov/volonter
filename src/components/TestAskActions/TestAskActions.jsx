@@ -10,6 +10,7 @@ const TestAskActions = (props) => {
     setIsFullEndTest(true);
   };
   if (isFullEndTest) {
+
     return (
       <div className="test__ask-wrapper">
         <NavLink
