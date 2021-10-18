@@ -29,9 +29,6 @@ const SidebarModuleBlockInner = (props) => {
 };
 
 const ModuleTitle = (props) => {
-
-  let moduleId = props.moduleId;
-  let lessonId = props.lessonId
   let [lessonIndex, setLessonIndex] = useState()
   useEffect(()=>{
     setLessonIndex(lessonIndex=props.lessonIndex)
@@ -41,13 +38,6 @@ const ModuleTitle = (props) => {
   useEffect(()=>{
     setModuleIndex(moduleIndex=props.moduleIndex)
   }, [props.moduleIndex])
-  // let lessonIndex = props.lessonIndex
-  // let moduleIndex = props.moduleIndex
-  // const [isCompleted, setCompleted] = useState(false);
-
-  // const checkCompleted = () => {
-  //   setCompleted(true);
-  // };
 
   return (
     <div className="test__sidebar-block-item">

@@ -19,7 +19,6 @@ const TestAskActions = (props) => {
             state: { completedResponse: props.completedResponse },
           }}
           className="test__ask-red test__ask-btn"
-          // onClick={props.localEndTest}
         >
           Смотреть результаты
         </NavLink>

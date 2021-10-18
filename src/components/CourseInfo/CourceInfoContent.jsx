@@ -6,7 +6,7 @@ const CourceInfoContent = (props) => {
     return  <div className="test__info-content">
     <div className="test__info-content-box">
       <p className="test__info-briefly">
-        ОШИБКА описания
+        -----
       </p>
       <ContentList info={props.info}/>
     </div>

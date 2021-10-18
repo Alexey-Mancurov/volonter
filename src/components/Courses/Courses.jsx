@@ -2,14 +2,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { coursesAPI } from "../../api/api";
 import Preloader from "../common/Preloader";
-import CourseItem from "../CourseItem/CourseItem";
 import CoursesHeader from "../CoursesHeader/CoursesHeader";
 import CoursesList from "../CoursesList/CoursesList";
 
 const Courses = (props) => {
   const favoriteToggle = (courseId) => {
     coursesAPI.courseFavorite(courseId).then((response) => {
-      console.log(response);
       if (response.success) {
         coursesAPI.courses().then((courses) => {
           setCourses(courses);
@@ -33,11 +31,10 @@ const Courses = (props) => {
     }
   }, [courses]);
 
-  const allCourses = (e) => {
+  const allCourses = () => {
     setFilter(courses.items.filter((item) => item.id));
   };
 
-  console.log(courses);
   const filterFavorits = () => {
     setFilter(courses.items.filter((item) => item.isFavorite === true));
   };
@@ -57,7 +54,7 @@ const Courses = (props) => {
   if (courses) {
     return (
       <>
-        <h1 class="title">Курсы</h1>
+        <h1 className="title">Курсы</h1>
 
         <CoursesHeader
           allCourses={allCourses}
@@ -75,11 +72,7 @@ const Courses = (props) => {
       </>
     );
   } else {
-    return (
-      <div>
-        <Preloader />
-      </div>
-    );
+    return <Preloader />;
   }
 };
 

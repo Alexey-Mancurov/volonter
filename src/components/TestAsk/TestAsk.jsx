@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import TestAskActions from "../TestAskActions/TestAskActions";
 import TestAskItem from "../TestAskItem/TestAskItem";
 
 const TestAsk = (props) => {

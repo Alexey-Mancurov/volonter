@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import { coursesAPI } from "../../api/api";
-import { Context } from "../../context/context";
 
 const TestResultBtn = (props) => {
 
@@ -12,6 +11,8 @@ const TestResultBtn = (props) => {
       setModuleList(moduleList);
     });
   }, []);
+
+  // Проверка, выполнены ли все уроки
   let isAllLessonsChecked
   if (moduleList) {
     moduleList.items.map((i) =>

@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router";
 import { coursesAPI } from "../../api/api";
-import { Context } from "../../context/context";
 import CourceInfoContent from "./CourceInfoContent";
 import CourseInfoActions from "./CourseInfoActions";
 import CourseInfoVideo from "./CourseInfoVideo";
@@ -10,6 +8,8 @@ import CourseInfoActionsCompleted from "./CourseInfoActionsCompleted";
 import Preloader from "../common/Preloader";
 
 const CourseInfo = (props) => {
+
+  // Для отображения прелоадера
   let [isLoading, setIsLoading] = useState(false);
 
   // Получаю данные об Уроке
@@ -39,8 +39,9 @@ const CourseInfo = (props) => {
           (linkVideoForIframe = lesson.item.linkVideo.replace(
             "watch?v=",
             "embed/"
-          ))
+          ).replace('youtube', 'youtube-nocookie'))
         );
+
       } else {
         setLinkVideoForIframe(
           (linkVideoForIframe = null)
@@ -48,6 +49,7 @@ const CourseInfo = (props) => {
       }
     }
   }, [lesson]);
+
 
   if (lesson) {
     if (!isLoading) {
@@ -64,7 +66,6 @@ const CourseInfo = (props) => {
           </div>
           {lesson.item.check ? (
             <CourseInfoActionsCompleted
-              // currentLesson={currentLessonIndex}
               nextLesson={props.nextLesson}
               prevLesson={props.prevLesson}
               getActiveTest={props.getActiveTest}
@@ -74,7 +75,6 @@ const CourseInfo = (props) => {
             />
           ) : (
             <CourseInfoActions
-              // currentLesson={currentLessonIndex}
               nextLesson={props.nextLesson}
               prevLesson={props.prevLesson}
               getActiveTest={props.getActiveTest}
@@ -83,15 +83,13 @@ const CourseInfo = (props) => {
               lesson={lesson}
             />
           )}
-
-          {/* Тут еще слайдер добавить */}
         </>
       );
     } else {
       return <Preloader />;
     }
   } else {
-    return <div>Подождите, идет загрузка</div>;
+    return  <Preloader />;
   }
 };
 

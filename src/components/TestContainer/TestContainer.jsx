@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { TestsAPI } from "../../api/api";
 import TestAskList from "../TestAskList/TestAskList";
 import TestResultBtn from "../TestResultBtn/TestResultBtn";
 import { useLocation } from "react-router";
+import Preloader from "../common/Preloader";
 
 const TestContainer = (props) => {
   let location = useLocation();
@@ -24,11 +24,6 @@ const TestContainer = (props) => {
     setCurrentAsk(currentAsk + 1);
     setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
   };
-
-  // const endTest = (id, checkedOption) => {
-  //   setCurrentAsk(currentAsk + 1);
-  //   setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
-  // };
 
   useEffect(() => {
     // закомментированный код ниже, на случай, если автокомплит исправит круглые скобки
@@ -63,8 +58,6 @@ const TestContainer = (props) => {
 
   let [askCount, setAskCount] = useState(1);
 
-  // let [testId, setTestId] = useState(testData.id)
-
   let askList;
   if (testData.askList) {
     askList = testData.askList.map((i,index) => (
@@ -82,7 +75,7 @@ const TestContainer = (props) => {
       />
     ));
   } else {
-    askList = <div>Подождите, идет загрузка</div>;
+    askList = <Preloader />;
   }
 
   return (<div className="test__container">{askList}
@@ -90,7 +83,7 @@ const TestContainer = (props) => {
         ? 
           completedResponse
           ? <TestResultBtn isLastLesson={location.state.isLastLesson} isLastModule={location.state.isLastModule} completedResponse={completedResponse} courseId={props.courseId}/>
-          : <div>Пожалуйста, подождите</div>
+          : <Preloader />
         : ''}
         </div>)
          

@@ -27,7 +27,7 @@ const CoursesList = (props) => {
     }
   }
 
-  return <div class="courses__list">{courseList}</div>;
+  return <div className="courses__list">{courseList}</div>;
 };
 
 export default CoursesList;

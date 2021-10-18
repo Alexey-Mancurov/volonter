@@ -1,3 +1,5 @@
+import Preloader from "../common/Preloader";
+
 const ProgressCourse = (props) => {
   if (Number.isInteger(props.progressCourse)) {
     let widthActiveLine = {
@@ -18,7 +20,7 @@ const ProgressCourse = (props) => {
       </div>
     );
   } else {
-    return <div>Подождите, шкала прогресса загружается</div>
+    return <Preloader />
   }
 };
 

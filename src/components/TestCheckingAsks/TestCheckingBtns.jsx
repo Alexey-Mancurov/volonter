@@ -2,10 +2,7 @@ import { NavLink } from "react-router-dom";
 import BorderBlueBtn from "../common/BorderBlueBtn";
 import RedBtn from "../common/RedBtn";
 
-const TestAskFooterBtns = (props) => {
-  let displayBlock = {
-    display: "block",
-  };
+const TestCheckingBtns = (props) => {
   return (
     <div className="test__ask-wrapper">
       <NavLink to={"/lesson"} className={"test__ask-btn"}>
@@ -21,4 +18,4 @@ const TestAskFooterBtns = (props) => {
   );
 };
 
-export default TestAskFooterBtns;
+export default TestCheckingBtns;

@@ -9,10 +9,6 @@ const instanse = axios.create({
 
 
 })
-// export default function courseItem(courseId) {
-//     return axios
-//         .get(`courses/${courseId}`)
-// }
 
 export const coursesAPI = {
     courses: () => {
@@ -75,7 +71,6 @@ export const TestsAPI = {
     testCompleted: (data) => {
         return instanse
             .post(`tests/completed`, data).then(response=>{
-                console.log(response.data)
                 return response.data
             })
     },

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {  Route, browserHistory } from "react-router-dom";
+import {  Route } from "react-router-dom";
 import "./App.css";
 import CourseInfo from "./components/CourseInfo/CourseInfo";
 import LessonTitle from "./components/LessonTitle/LessonTitle";
@@ -8,13 +8,9 @@ import TestContainer from "./components/TestContainer/TestContainer";
 import CourseSidebar from "./components/CourseSidebar/CourseSidebar";
 import TestChecking from "./components/TestChecking/TestChecking";
 import { coursesAPI } from "./api/api";
-import { Context } from "./context/context";
 import Courses from "./components/Courses/Courses";
-import LessonPage from "./components/LessonPage/LessonPage";
-import Preloader from "./components/common/Preloader";
-import {createBrowserHistory } from 'history'
-import qs from 'qs'
 import { useLocation } from "react-router";
+import Preloader from "./components/common/Preloader";
 
 
 function App() {
@@ -29,24 +25,24 @@ function App() {
 
   const getCourseId = (id) =>{
     setCourseId(courseId=id)
+    window.localStorage.setItem('courseId', id)
   }
 
   const helpRender = (id)=>{
     setCourseId(courseId=id)
   }
 
+  // Получаю данные текущего курса
+  let [course, setCourseItem] = useState();
+  useEffect(() => {
+    if(courseId){
+      coursesAPI.courseItem(courseId).then((course) => {
+      setCourseItem(course);
+    });
+    }
+  }, [courseId]);
 
-  
-    // Получаю данные текущего курса
-    let [course, setCourseItem] = useState();
-    useEffect(() => {
-      if(courseId){
-        coursesAPI.courseItem(courseId).then((course) => {
-        setCourseItem(course);
-      });
-      }
-    }, [courseId]);
-    // Получаю список модулей
+  // Получаю список модулей
   let [modules, setModules] = useState();
 
   useEffect(() => {
@@ -94,8 +90,6 @@ function App() {
   
     // Получаю Урок по индексу
     let [currentLessonIndex, setCurrentLessonIndex] = useState(0);
-
-  console.log(currentLessonIndex)
 
     // Получаю id Урока по индексу
     let [idCurrentLesson, setIdCurrentLesson] = useState();
@@ -211,27 +205,20 @@ function App() {
       }
     },[courseId])
 
-  //   useEffect(() => {
-  //     if(!currentModuleIndex && location.pathname !== '/courses'){
-  //       setCourseId(JSON.parse(window.localStorage.getItem('courseId')));
-  //     }
-  // }, []);
-
-  // useEffect(()=>{
-  //   if(courseId){
-  //     window.localStorage.setItem('courseId', courseId)
-  //   }
-  // },[courseId])
-
     if(!courseId && location.pathname !== exactPathRoute){
       return <div className="test__wrapper">
         <CourseSidebar reservedCourseId={reservedCourseId}
         setReservedCourseId={setReservedCourseId} helpRender={helpRender} helpRenderModule={helpRenderModule}/>
       </div>
     }
+   
     return (
         <div className="App" >
           <main className="main main_inner">
+            {!course && location.pathname !== exactPathRoute
+              ? <Preloader />
+              : ''
+            }
             {course && location.pathname !== exactPathRoute
             ? <>
             <LessonTitle title={course.course.title} />

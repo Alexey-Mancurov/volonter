@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const CoursesHeaderItem = (props) => {
 
   const filter =()=>{
@@ -15,7 +13,7 @@ const CoursesHeaderItem = (props) => {
   }
 
   return (
-    <li class="tabs__item ">
+    <li className="tabs__item ">
       <div
         className={`tabs__link tabs__course-link ${props.isActiveFilter ? 'active' : ''}`}
         onClick={() => {props.isActiveToggle(props.index); filter()}}

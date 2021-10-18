@@ -1,5 +1,5 @@
 const ContentList = (props) => {
-  const items = props.info.map((i) => <ContentListItem text={i} />);
+  const items = props.info.map((i, index) => <ContentListItem text={i} key={index}/>);
   return <ul className="cource__content-list ">{items}</ul>;
 };
 

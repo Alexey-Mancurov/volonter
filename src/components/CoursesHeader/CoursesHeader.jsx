@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
 import CourseLevel from "../CourseLevel/CourseLevel";
 import CoursesHeaderItem from "../CoursesHeaderItem/CoursesHeaderItem";
 
@@ -43,10 +42,9 @@ const CoursesListHeader = (props) => {
     );
   };
 
-  console.log(state);
-
   let itemList = state.map((i, index) => (
     <CoursesHeaderItem
+      key={index}
       index={index}
       text={i.text}
       isActiveFilter={i.isActiveFilter}
@@ -59,9 +57,10 @@ const CoursesListHeader = (props) => {
     />
   ));
 
-  let levelList = level.map((i,index) => (
+  let levelList = level.map((i, index) => (
     <CourseLevel
-    index={index}
+      key={index}
+      index={index}
       text={i.text}
       isActive={i.isActive}
       action={i.action}

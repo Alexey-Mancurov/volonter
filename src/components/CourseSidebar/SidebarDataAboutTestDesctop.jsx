@@ -1,3 +1,4 @@
+import Preloader from "../common/Preloader";
 import SidebarDataTotalFractional from "./SidebarDataTotalFractional";
 import SidebarDataTotalInteger from "./SidebarDataTotalInteger";
 
@@ -22,7 +23,7 @@ const SidebarDataAboutTestDesctop = (props) => {
       </>
     );
   } else {
-    return <div>Подождите, идет загрузка</div>;
+    return <Preloader />;
   }
 };
 

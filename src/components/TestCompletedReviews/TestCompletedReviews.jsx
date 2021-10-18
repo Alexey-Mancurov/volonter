@@ -1,6 +1,6 @@
 import check from "../../assets/check.svg";
 
-const TestCompletedReviews = (props) => {
+const TestCompletedReviews = () => {
   return (
     <div className="test__completed">
       <div className="test__completed-wrapper test__wrapper-review">
