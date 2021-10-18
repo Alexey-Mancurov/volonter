@@ -22,6 +22,13 @@ export const coursesAPI = {
                 return response.data
             })
     },
+    courseFavorite: (courseId)=>{
+        return instanse
+        .post('/courses/favorite', courseId)
+        .then(response => {
+            return response.data
+        })
+    },
     courseItem: (courseId) => {
         
         return instanse

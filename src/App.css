@@ -473,6 +473,7 @@ template {
   text-align: center;
   color: #4D9EF8;
   padding: 20px 70px;
+  cursor: pointer;
 }
 
 .course__preview {
@@ -867,6 +868,7 @@ template {
   -webkit-transition: all .3s;
   -o-transition: all .3s;
   transition: all .3s;
+  cursor: pointer;
 }
 
 .cource__level-item:hover {

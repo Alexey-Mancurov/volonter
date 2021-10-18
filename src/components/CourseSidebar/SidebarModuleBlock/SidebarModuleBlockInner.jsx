@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import check from "../../../assets/check.svg";
 
@@ -29,11 +29,20 @@ const SidebarModuleBlockInner = (props) => {
 };
 
 const ModuleTitle = (props) => {
-  debugger
+
   let moduleId = props.moduleId;
   let lessonId = props.lessonId
-  let lessonIndex = props.lessonIndex
-  let moduleIndex = props.moduleIndex
+  let [lessonIndex, setLessonIndex] = useState()
+  useEffect(()=>{
+    setLessonIndex(lessonIndex=props.lessonIndex)
+  }, [props.lessonIndex])
+
+  let [moduleIndex, setModuleIndex] = useState()
+  useEffect(()=>{
+    setModuleIndex(moduleIndex=props.moduleIndex)
+  }, [props.moduleIndex])
+  // let lessonIndex = props.lessonIndex
+  // let moduleIndex = props.moduleIndex
   // const [isCompleted, setCompleted] = useState(false);
 
   // const checkCompleted = () => {

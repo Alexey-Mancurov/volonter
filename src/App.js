@@ -41,24 +41,24 @@ function App() {
     let [course, setCourseItem] = useState();
     useEffect(() => {
       if(courseId){
-              coursesAPI.courseItem(courseId).then((course) => {
+        coursesAPI.courseItem(courseId).then((course) => {
         setCourseItem(course);
-        console.log(course);
       });
       }
     }, [courseId]);
     // Получаю список модулей
   let [modules, setModules] = useState();
+
   useEffect(() => {
     if(courseId){
-          coursesAPI.modules(courseId).then((modules) => {
+      coursesAPI.modules(courseId).then((modules) => {
       setModules(modules);
-      console.log(modules);
       });
       setProgressCoursePercent();
     }
 
   }, [courseId]);
+
     // Получаю Модуль по индексу
     let [currentModuleIndex, setCurrentModuleIndex] = useState(0);
 
@@ -71,13 +71,13 @@ function App() {
   
     // Добавляю id Модуля в state
     useEffect(() => {
-      debugger
       if (modules) {
         setIdCurrentModule(
           (idCurrentModule = modules.items[currentModuleIndex].id)
         );
       }
     }, [modules, currentModuleIndex]);
+
   
     // получаю список Уроков
     let [lessonsList, setLessonsList] = useState();
@@ -90,19 +90,30 @@ function App() {
           });
       }
     }, [modules, idCurrentModule]);
+
   
     // Получаю Урок по индексу
     let [currentLessonIndex, setCurrentLessonIndex] = useState(0);
-  
+
+  console.log(currentLessonIndex)
+
     // Получаю id Урока по индексу
     let [idCurrentLesson, setIdCurrentLesson] = useState();
   
     // Добавляю id Урока в state
     useEffect(() => {
       if (lessonsList) {
-        setIdCurrentLesson(
+        try{
+          setIdCurrentLesson(
           (idCurrentLesson = lessonsList.items[currentLessonIndex].id)
         );
+        }catch{
+          coursesAPI
+          .lessons(courseId, idCurrentModule)
+          .then((lessonsList) => {
+            setLessonsList(lessonsList);
+          });
+        }
       }
     }, [lessonsList, currentLessonIndex]);
   
@@ -186,8 +197,10 @@ function App() {
       }
     }, [course]);
 
+    const exactPathRoute = '/'
+
     useEffect(() => {
-        if(!courseId && location.pathname !== '/courses'){
+        if(!courseId && location.pathname !== exactPathRoute){
           setCourseId(JSON.parse(window.localStorage.getItem('courseId')));
         }
     }, []);
@@ -209,11 +222,9 @@ function App() {
   //     window.localStorage.setItem('courseId', courseId)
   //   }
   // },[courseId])
-  
-console.log(location.pathname)
 
-    if(!courseId && location.pathname !== '/courses'){
-      <div className="test__wrapper">
+    if(!courseId && location.pathname !== exactPathRoute){
+      return <div className="test__wrapper">
         <CourseSidebar reservedCourseId={reservedCourseId}
         setReservedCourseId={setReservedCourseId} helpRender={helpRender} helpRenderModule={helpRenderModule}/>
       </div>
@@ -221,7 +232,7 @@ console.log(location.pathname)
     return (
         <div className="App" >
           <main className="main main_inner">
-            {course 
+            {course && location.pathname !== exactPathRoute
             ? <>
             <LessonTitle title={course.course.title} />
             <div className="test__wrapper">
@@ -262,7 +273,7 @@ console.log(location.pathname)
             </div>
             </div>
             </>
-            : <Route exact path={'/courses'} component={Courses}>
+            : <Route exact path={exactPathRoute} >
               <Courses getCourseId={getCourseId}/>
             </Route>
           }
