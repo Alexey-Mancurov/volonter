@@ -1,7 +1,7 @@
 import CourseItem from "../CourseItem/CourseItem";
 
 const CoursesList = (props) => {
-  debugger;
+
   let courseList;
   if (props.courses) {
     courseList = props.courses.map((i) => (
@@ -20,7 +20,7 @@ const CoursesList = (props) => {
     ));
     if (props.courses.length === 0) {
       return (
-        <div className="courses__item-level">
+        <div className="courses__none-items">
           Курсы с заданными параметрами не найдены
         </div>
       );

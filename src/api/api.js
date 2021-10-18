@@ -24,7 +24,7 @@ export const coursesAPI = {
     },
     courseFavorite: (courseId)=>{
         return instanse
-        .post('/courses/favorite', courseId)
+        .post('/courses/favorite', {courseId})
         .then(response => {
             return response.data
         })

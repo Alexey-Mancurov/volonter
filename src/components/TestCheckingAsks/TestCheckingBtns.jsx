@@ -11,7 +11,7 @@ const TestAskFooterBtns = (props) => {
       <NavLink to={"/lesson"} className={"test__ask-btn"}>
         <BorderBlueBtn addClass={"test__ask-btn"} text={"Пройти ещё раз"}/>
       </NavLink>
-      <NavLink to={"/lesson"} onClick={props.nextLesson}>
+      <NavLink to={"/lesson"} className={"test__ask-btn"} onClick={props.nextLesson}>
         <RedBtn
           addClass={"test__ask-btn"}
           text={"Следующий урок"}

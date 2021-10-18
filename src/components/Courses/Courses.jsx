@@ -7,11 +7,16 @@ import CoursesHeader from "../CoursesHeader/CoursesHeader";
 import CoursesList from "../CoursesList/CoursesList";
 
 const Courses = (props) => {
-  const favoriteToggle =(courseId)=>{
-    coursesAPI.courseFavorite(courseId).then(response=>
-    console.log(response)
-    )
-  }
+  const favoriteToggle = (courseId) => {
+    coursesAPI.courseFavorite(courseId).then((response) => {
+      console.log(response);
+      if (response.success) {
+        coursesAPI.courses().then((courses) => {
+          setCourses(courses);
+        });
+      }
+    });
+  };
 
   let [courses, setCourses] = useState();
   useEffect(() => {
@@ -49,8 +54,6 @@ const Courses = (props) => {
     setFilter(courses.items.filter((item) => item.tier === true));
   };
 
-
-
   if (courses) {
     return (
       <>
@@ -64,7 +67,11 @@ const Courses = (props) => {
           filterAdvanced={filterAdvanced}
         />
 
-        <CoursesList courses={filter} getCourseId={props.getCourseId} favoriteToggle={favoriteToggle}/>
+        <CoursesList
+          courses={filter}
+          getCourseId={props.getCourseId}
+          favoriteToggle={favoriteToggle}
+        />
       </>
     );
   } else {
