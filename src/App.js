@@ -164,7 +164,7 @@ function App() {
       } else if (currentLessonIndex === 0 && currentModuleIndex !== 0) {
         setCurrentModuleIndex(currentModuleIndex - 1);
         setCurrentLessonIndex(
-          (currentLessonIndex = lessonsList.items.length - 1)
+          (currentLessonIndex = 0)
         );
       }
     };
