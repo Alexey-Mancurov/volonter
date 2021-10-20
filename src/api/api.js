@@ -18,15 +18,38 @@ export const coursesAPI = {
                 return response.data
             })
     },
-    courseFavorite: (courseId)=>{
+    courseFavorite: (courseId) => {
         return instanse
-        .post('/courses/favorite', {courseId})
-        .then(response => {
-            return response.data
-        })
+            .post('/courses/favorite', {
+                courseId
+            })
+            .then(response => {
+                return response.data
+            })
+    },
+    coursesReviews: (courseId) => {
+        return instanse
+            .get(`/courses/detail/${courseId}/reviews`)
+            .then(response => {
+                return response.data
+            })
+    },
+    coursesReviewAdded: (courseId, rating, text) => {
+        return instanse
+            .post(`/courses/detail/${courseId}/reviews`, {rating, text})
+            .then(response => {
+                return response.data
+            })
+    },
+    coursesDetail: (courseId) => {
+        return instanse
+            .get(`/courses/detail/${courseId}`)
+            .then(response => {
+                return response.data
+            })
     },
     courseItem: (courseId) => {
-        
+
         return instanse
             .get(`courses/${courseId}`)
             .then(response => {
@@ -50,7 +73,7 @@ export const coursesAPI = {
     lessonItem: (courseId, moduleId, lessonId) => {
         return instanse
             .get(`courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`)
-            .then(response=>{
+            .then(response => {
                 return response.data
             })
     }
@@ -70,7 +93,7 @@ export const TestsAPI = {
     },
     testCompleted: (data) => {
         return instanse
-            .post(`tests/completed`, data).then(response=>{
+            .post(`tests/completed`, data).then(response => {
                 return response.data
             })
     },

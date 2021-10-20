@@ -11,6 +11,7 @@ import { coursesAPI } from "./api/api";
 import Courses from "./components/Courses/Courses";
 import { useLocation } from "react-router";
 import Preloader from "./components/common/Preloader";
+import CourseDetail from "./components/CourseDetail/CourseDetail";
 
 
 function App() {
@@ -191,7 +192,7 @@ function App() {
       }
     }, [course]);
 
-    const exactPathRoute = '/'
+    const exactPathRoute = '/courses/'
 
     useEffect(() => {
         if(!courseId && location.pathname !== exactPathRoute){
@@ -222,7 +223,11 @@ function App() {
             {course && location.pathname !== exactPathRoute
             ? <>
             <LessonTitle title={course.course.title} />
-            <div className="test__wrapper">
+            {location.pathname ==='/courseDetail'
+             ?<Route path={'/courseDetail'} >
+              <CourseDetail courseId={courseId} course={course} modules={modules} setReservedCourseId={setReservedCourseId} getCourseId={getCourseId}/>
+            </Route>
+            :<div className="test__wrapper">
             <CourseSidebar
                 course={course}
                 courseId={courseId}
@@ -259,13 +264,14 @@ function App() {
               </Route>
             </div>
             </div>
+            }
+            
+            
             </>
             : <Route exact path={exactPathRoute} >
               <Courses getCourseId={getCourseId}/>
             </Route>
           }
-            
-            
           </main>
         </div>
   );

@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 import { coursesAPI } from "../../api/api";
 
 const TestResultBtn = (props) => {

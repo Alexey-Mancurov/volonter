@@ -10,7 +10,7 @@ const TestCompleted = (props) => {
     <>
       <div className="test__container-wrapper test__wrapper-completed">
         <TestCompletedInfo sertificate={location.state.completedResponse.sertificate} successAsks={location.state.completedResponse.successAsks} totalAsk={location.state.completedResponse.totalAsk}/>
-        <TestCompletedReviews />
+        <TestCompletedReviews courseId={props.courseId}/>
       </div>
       <div className="test__content">
         <div className="test__content-title">

@@ -5,6 +5,7 @@ import SidebarModuleBlock from "./SidebarModuleBlock/SidebarModuleBlock";
 import ProgressCourse from "./SidebarProgressCourse";
 
 const CourseSidebar = (props) => {
+
   useEffect(() => {
     if (!props.courseId) {
       props.setReservedCourseId(

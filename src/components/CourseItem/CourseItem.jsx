@@ -43,7 +43,7 @@ const CourseItem = (props) => {
         </div>
         <NavLink
           to={{
-            pathname: "/lesson",
+            pathname: "/courseDetail",
             state: {
               courseId: props.id,
             },

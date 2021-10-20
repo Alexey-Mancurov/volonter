@@ -1,81 +1,86 @@
+import { useRef, useState } from "react";
+import { useEffect } from "react";
+import { coursesAPI } from "../../api/api";
 import check from "../../assets/check.svg";
+import DarkStar from "../common/DarkStart";
+import GoldStar from "../common/GoldStart";
 
-const TestCompletedReviews = () => {
+const TestCompletedReviews = (props) => {
+  let [darkStarList, setDarkStarList] = useState([
+    { rating: 1, isGold: false },
+    { rating: 2, isGold: false },
+    { rating: 3, isGold: false },
+    { rating: 4, isGold: false },
+    { rating: 5, isGold: false },
+  ]);
+
+  const getDarkStarList = (index) => {
+    setDarkStarList(
+      darkStarList.map((i, ind) => {
+        if (ind === index) {
+          return { ...i, isGold: true };
+        }
+        if (ind !== index) {
+          return i;
+        }
+      })
+    );
+    let nums = darkStarList.filter(gold=>gold.isGold===true);
+    setStarsNum(nums.length+1)
+  };
+
+  let [allStarsList, setAllStartList] = useState();
+
+  useEffect(() => {
+    if (darkStarList) {
+      setAllStartList(
+        darkStarList.map((i, index) => (
+          <DarkStar
+            rating={i.rating}
+            isGold={i.isGold}
+            getDarkStarList={getDarkStarList}
+            index={index}
+          />
+        ))
+      );
+    }
+  }, [darkStarList]);
+
+  let [reviewValue, setReviewValue] = useState("");
+
+  const getReviewValue = (e) => {
+    setReviewValue(e.target.value);
+  };
+
+  let [starsNums, setStarsNum] = useState(0);
+
+  let [isTextareaDisabled, setIsTextareaDisabled]=useState(false)
+
+  const sendReview = () => {
+    coursesAPI.coursesReviewAdded(props.courseId, starsNums, reviewValue).then(response=>{
+      console.log(response)
+    })
+    setReviewValue('Отзыв Принят')
+    setIsTextareaDisabled(isTextareaDisabled=true)
+  };
+
   return (
     <div className="test__completed">
       <div className="test__completed-wrapper test__wrapper-review">
         <div className="test__completed-title">Оставить отзыв</div>
         <div className="test__completed-review">
-          <div className="test__completed-rating">
-            <svg
-              width="32"
-              height="30"
-              viewBox="0 0 32 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.762 0.865234L19.4519 11.8666H31.3925L21.7324 18.6658L25.4222 29.6671L15.762 22.8679L6.10185 29.6671L9.79171 18.6658L0.131529 11.8666H12.0722L15.762 0.865234Z"
-                fill="#F5EE33"
-              />
-            </svg>
-            <svg
-              width="32"
-              height="30"
-              viewBox="0 0 32 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.762 0.865234L19.4519 11.8666H31.3925L21.7324 18.6658L25.4222 29.6671L15.762 22.8679L6.10185 29.6671L9.79171 18.6658L0.131529 11.8666H12.0722L15.762 0.865234Z"
-                fill="#F5EE33"
-              />
-            </svg>
-            <svg
-              width="32"
-              height="30"
-              viewBox="0 0 32 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.762 0.865234L19.4519 11.8666H31.3925L21.7324 18.6658L25.4222 29.6671L15.762 22.8679L6.10185 29.6671L9.79171 18.6658L0.131529 11.8666H12.0722L15.762 0.865234Z"
-                fill="#F5EE33"
-              />
-            </svg>
-            <svg
-              width="32"
-              height="30"
-              viewBox="0 0 32 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.6707 0.865234L19.3606 11.8666H31.3012L21.641 18.6658L25.3309 29.6671L15.6707 22.8679L6.01054 29.6671L9.7004 18.6658L0.0402203 11.8666H11.9809L15.6707 0.865234Z"
-                fill="#C4C4C4"
-              />
-            </svg>
-            <svg
-              width="32"
-              height="30"
-              viewBox="0 0 32 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.6707 0.865234L19.3606 11.8666H31.3012L21.641 18.6658L25.3309 29.6671L15.6707 22.8679L6.01054 29.6671L9.7004 18.6658L0.0402203 11.8666H11.9809L15.6707 0.865234Z"
-                fill="#C4C4C4"
-              />
-            </svg>
-          </div>
-          <div className="test__sidebar-block-check test__sidebar-block-check-completed">
+          <div className="test__completed-rating">{allStarsList}</div>
+          <button className="test__sidebar-block-check test__sidebar-block-check-completed" onClick={sendReview} disabled={isTextareaDisabled}>
             <img src={check} alt=""></img>
-          </div>
+          </button>
         </div>
       </div>
       <textarea
         className="test__completed-textarea"
         placeholder="Текст"
+        value={reviewValue}
+        onChange={getReviewValue}
+        disabled={isTextareaDisabled}
       ></textarea>
     </div>
   );
