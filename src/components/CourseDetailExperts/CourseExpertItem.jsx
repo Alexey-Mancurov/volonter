@@ -1,12 +1,12 @@
 const CourseExpertItem =(props)=>{
-    return <div class="cource__expert-item">
+    return <div className="cource__expert-item">
     <img
-      class="cource__expert-img"
+      className="cource__expert-img"
       src={props.img}
       alt=""
     />
-    <p class="cource__expert-name">{props.name}</p>
-    <p class="cource__expert-text">
+    <p className="cource__expert-name">{props.name}</p>
+    <p className="cource__expert-text">
       {props.description}
     </p>
   </div>

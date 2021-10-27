@@ -4,7 +4,7 @@ const GoldStar = ()=>{
     return <img
     src={start_gold}
     alt=""
-    class="cource__reviews-star"
+    className="cource__reviews-star"
   />
 }
 export default GoldStar

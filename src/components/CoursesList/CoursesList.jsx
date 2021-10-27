@@ -19,8 +19,8 @@ const CoursesList = (props) => {
     ));
     if (props.courses.length === 0) {
       return (
-        <div class="your__courses">
-          <p class="your__courses-text">
+        <div className="your__courses">
+          <p className="your__courses-text">
             Курсы с заданными параметрами не найдены
           </p>
         </div>

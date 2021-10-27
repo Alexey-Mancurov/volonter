@@ -4,21 +4,18 @@ import { coursesAPI } from "../../api/api";
 import CoureseReviewItem from "./CoureseReviewItem";
 
 const CourseReviews = (props) => {
-  debugger;
-
   let [reviewsList, setReviewsList] = useState([]);
   useEffect(() => {
     coursesAPI.coursesReviews(props.courseId).then((reviews) => {
       setReviewsList(reviews);
     });
-    console.log(reviewsList);
   }, []);
 
   let list;
   if (reviewsList.items) {
-    console.log(list);
-    list = reviewsList.items.map((i) => (
+    list = reviewsList.items.map((i, index) => (
       <CoureseReviewItem
+        key={index}
         length={reviewsList.items.length}
         img={i.img}
         rating={i.rating}
@@ -31,36 +28,35 @@ const CourseReviews = (props) => {
 
   if (reviewsList.items) {
     return (
-      <div class="cource__reviews">
+      <div className="cource__reviews">
         {list}
-        <div class="cource__reviews-info">
-          <div class="cource__reviews-info-box">
-            <div class="cource__reviews-info-item">
-              <div class="cource__reviews-info-item">
+        <div className="cource__reviews-info">
+          <div className="cource__reviews-info-box">
+            <div className="cource__reviews-info-item">
+              <div className="cource__reviews-info-item">
                 Всего отзывов <span>{reviewsList.items.length}</span>
               </div>
             </div>
-            <div class="cource__reviews-info-item">
-              Записалось на курс <span>135947</span>
+            <div className="cource__reviews-info-item">
+              Записалось на курс <span>{reviewsList.num}</span>
             </div>
           </div>
         </div>
       </div>
     );
-  } else{
+  } else {
     return (
-      <div class="cource__reviews">
+      <div className="cource__reviews">
         {list}
-        <div class="cource__reviews-info">
-          <div class="cource__reviews-info-box">
-            
-            <div class="cource__reviews-info-item">
+        <div className="cource__reviews-info">
+          <div className="cource__reviews-info-box">
+            {/* <div className="cource__reviews-info-item">
               Записалось на курс <span>135947</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
-    )
+    );
   }
 };
 

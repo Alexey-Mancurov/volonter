@@ -1,7 +1,7 @@
 import CourseMaterialsBlock from "./CourseMaterialsBlock";
 
 const CourseDetailMaterials = (props) => {
-    let moduleList;
+  let moduleList;
   if (props.modules) {
     moduleList = props.modules.items.map((i, index) => (
       <CourseMaterialsBlock
@@ -15,13 +15,7 @@ const CourseDetailMaterials = (props) => {
     moduleList = <div>Подождите, идет загрузка</div>;
   }
 
-  return (
-    <div class="course__inside">
-
-      {moduleList}
-
-    </div>
-  );
+  return <div className="course__inside">{moduleList}</div>;
 };
 
 export default CourseDetailMaterials;

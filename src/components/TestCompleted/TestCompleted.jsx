@@ -24,7 +24,10 @@ const TestCompleted = (props) => {
           частью команды добра
         </div>
         <NavLink
-          to={"/test-checking"}
+          to={{
+            pathname: "/test-checking",
+            state: { completedResponse: location.state.completedResponse },
+          }}
           className="test__ask-blueBorder test__content-btn"
         >
           Подробнее

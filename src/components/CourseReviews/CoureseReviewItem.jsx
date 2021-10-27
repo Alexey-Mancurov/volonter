@@ -3,7 +3,7 @@ import DarkStar from "../common/DarkStart";
 
 
 const CoureseReviewItem =(props)=>{
-  debugger
+
     let goldList = []
     let darkList =[]
 
@@ -14,20 +14,20 @@ const CoureseReviewItem =(props)=>{
         darkList.push(<DarkStar />)
     }
 
-    return <div class="cource__content-box cource__reviews-item">
-    <div class="cource__reviews-box">
+    return <div className="cource__content-box cource__reviews-item">
+    <div className="cource__reviews-box">
       <img src={props.img} alt="" />
-      <div class="cource__reviews-rating">
+      <div className="cource__reviews-rating">
           {goldList}
           {darkList}
       </div>
     </div>
-    <div class="cource__reviews-content">
-      <div class="cource__reviews-name">
+    <div className="cource__reviews-content">
+      <div className="cource__reviews-name">
         {props.name}
       </div>
-      <div class="cource__reviews-date">{props.date}</div>
-      <p class="cource__reviews-text">
+      <div className="cource__reviews-date">{props.date}</div>
+      <p className="cource__reviews-text">
         {props.text}
       </p>
     </div>

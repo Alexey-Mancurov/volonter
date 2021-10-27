@@ -18,7 +18,7 @@ const CourseInsideBlock = (props) => {
   }
   return (
     <>
-      <p class="cource__title-2">{props.title}</p>
+      <p className="cource__title-2">{props.title}</p>
       
       {list}
        

@@ -18,6 +18,8 @@ const TestContainer = (props) => {
 
   const prevAsk = () => {
     setCurrentAsk(currentAsk - 1);
+    asksList.splice(-1, 1)
+    setAskList(asksList)
   };
 
   const nextAsk = (id, checkedOption) => {
@@ -62,8 +64,9 @@ const TestContainer = (props) => {
   if (testData.askList) {
     askList = testData.askList.map((i,index) => (
       <TestAskList
-        id={index}
+        id={i.id}
         key={index}
+        index={index}
         ask={i.ask}
         options={i.options}
         askCount={askCount}

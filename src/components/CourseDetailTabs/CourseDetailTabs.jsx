@@ -11,7 +11,7 @@ const CourseDetailTabs = (props) => {
   }
 
   return (
-    <ul class="tabs tabs__course">
+    <ul className="tabs tabs__course">
         {tabsList}
     </ul>
   );

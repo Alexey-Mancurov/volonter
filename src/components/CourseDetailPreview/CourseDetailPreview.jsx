@@ -20,13 +20,13 @@ const CourseDetailPreview = (props) => {
 
   let previewList;
   if (props.courseDetailData.whatGive) {
-    previewList = props.courseDetailData.whatGive.map((i) => (
-      <li class="course__list-item course__preview-item">{i}</li>
+    previewList = props.courseDetailData.whatGive.map((i, index) => (
+      <li key={index} className="course__list-item course__preview-item">{i}</li>
     ));
   }
   return (
-    <div class="course__preview">
-      <div class="course__preview-video">
+    <div className="course__preview">
+      <div className="course__preview-video">
         <iframe
           width="790"
           height="447"
@@ -37,16 +37,16 @@ const CourseDetailPreview = (props) => {
           allowfullscreen
         ></iframe>
       </div>
-      <div class="course__preview-content">
-        <p class="course__title-4 course__preview-title">
+      <div className="course__preview-content">
+        <p className="course__title-4 course__preview-title">
           Что вы получите, пройдя курс
         </p>
-        <p class="course__text">Благодаря этому курсу, вы:</p>
-        <ul class="cource__content-list course__preview-list">
+        <p className="course__text">Благодаря этому курсу, вы:</p>
+        <ul className="cource__content-list course__preview-list">
           {previewList}
         </ul>
-        <p class="course__title-4">Для кого подходит курс</p>
-        <p class="course__text">
+        <p className="course__title-4">Для кого подходит курс</p>
+        <p className="course__text">
           {props.courseDetailData.howNeed}
         </p>
       </div>

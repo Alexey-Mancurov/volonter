@@ -56,7 +56,7 @@ const CourseDetail = (props) => {
         <CourseDetailHeader
           courseId={props.courseId}
           modulesLength={props.modules.items.length}
-          asksLength={props.course.course.totalAsks}
+          lessonsLength={props.course.course.totalLessons}
           time={courseDetailData.time}
         />
         <CourseDetailTabs getPath={getPath} tabsData={tabsData} isActiveToggle={isActiveToggle}/>

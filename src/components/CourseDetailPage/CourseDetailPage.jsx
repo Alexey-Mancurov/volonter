@@ -16,13 +16,21 @@ const CourseDetailPage = (props) => {
     });
   }, []);
 
+  let contentList
+
+  if(props.courseDetailData){
+    contentList = props.courseDetailData.contentList.map((i,index)=>(
+      <CourseDetailContent key={index} title={i.title} text={i.text}/>
+    ))
+  }
+
   return (
     <>
       <CourseDetailPreview courseDetailData={props.courseDetailData} />
 
-      <section class="cource__info">
-        <h2 class="title">Информация</h2>
-        <CourseDetailContent contentList={props.courseDetailData.contentList} />
+      <section className="cource__info">
+        <h2 className="title">Информация</h2>
+        {contentList}
 
         <CourseDetailList
           willLearnList={props.courseDetailData.willLearnList}

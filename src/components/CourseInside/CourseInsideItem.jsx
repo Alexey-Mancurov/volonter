@@ -1,6 +1,6 @@
 const CourseInsideItem =(props)=>{
-    return <div class="cource__content-box course__inside-box">
-    <div class="course__inside-box-title">
+    return <div className="cource__content-box course__inside-box">
+    <div className="course__inside-box-title">
     {props.title}
   </div>
   </div>

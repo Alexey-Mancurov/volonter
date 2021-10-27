@@ -16,25 +16,25 @@ const CourseDetailHeader = (props) => {
     });
   };
   return (
-    <div class="course__header">
-      <div class="course__header-block">
-        <div class="course__header-circle">
+    <div className="course__header">
+      <div className="course__header-block">
+        <div className="course__header-circle">
           <img src={icon1} alt="" />
         </div>
-        <p class="course__header-title">
-          {props.modulesLength} модуля и {props.asksLength} уроков
+        <p className="course__header-title">
+          Модулей: {props.modulesLength}, Уроков: {props.lessonsLength}
         </p>
       </div>
-      <div class="course__header-block">
-        <div class="course__header-circle">
+      <div className="course__header-block">
+        <div className="course__header-circle">
           <img src={icon2} alt="" />
         </div>
-        <p class="course__header-title">
+        <p className="course__header-title">
           Прохождение <br /> {props.time}
         </p>
       </div>
-      <div class="course__header-btn-box">
-        <NavLink to={"/lesson"} class="course__header-btn">
+      <div className="course__header-btn-box">
+        <NavLink to={"/lesson"} className="course__header-btn">
           Пройти курс
         </NavLink>
         <CourseDetailAddedFavorite favoriteToggle={favoriteToggle} courseId={props.courseId} isFavorite={isFavorite}/>

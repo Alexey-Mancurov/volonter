@@ -25,8 +25,8 @@ const TestCompletedReviews = (props) => {
         }
       })
     );
-    let nums = darkStarList.filter(gold=>gold.isGold===true);
-    setStarsNum(nums.length+1)
+    let nums = darkStarList.filter((gold) => gold.isGold === true);
+    setStarsNum(nums.length + 1);
   };
 
   let [allStarsList, setAllStartList] = useState();
@@ -36,6 +36,7 @@ const TestCompletedReviews = (props) => {
       setAllStartList(
         darkStarList.map((i, index) => (
           <DarkStar
+            key={index}
             rating={i.rating}
             isGold={i.isGold}
             getDarkStarList={getDarkStarList}
@@ -54,14 +55,15 @@ const TestCompletedReviews = (props) => {
 
   let [starsNums, setStarsNum] = useState(0);
 
-  let [isTextareaDisabled, setIsTextareaDisabled]=useState(false)
+  let [isTextareaDisabled, setIsTextareaDisabled] = useState(false);
 
   const sendReview = () => {
-    coursesAPI.coursesReviewAdded(props.courseId, starsNums, reviewValue).then(response=>{
-      console.log(response)
-    })
-    setReviewValue('Отзыв Принят')
-    setIsTextareaDisabled(isTextareaDisabled=true)
+    coursesAPI
+      .coursesReviewAdded(props.courseId, starsNums, reviewValue)
+      .then((response) => {
+      });
+    setReviewValue("Отзыв Принят");
+    setIsTextareaDisabled((isTextareaDisabled = true));
   };
 
   return (
@@ -70,7 +72,11 @@ const TestCompletedReviews = (props) => {
         <div className="test__completed-title">Оставить отзыв</div>
         <div className="test__completed-review">
           <div className="test__completed-rating">{allStarsList}</div>
-          <button className="test__sidebar-block-check test__sidebar-block-check-completed" onClick={sendReview} disabled={isTextareaDisabled}>
+          <button
+            className="test__sidebar-block-check test__sidebar-block-check-completed"
+            onClick={sendReview}
+            disabled={isTextareaDisabled}
+          >
             <img src={check} alt=""></img>
           </button>
         </div>

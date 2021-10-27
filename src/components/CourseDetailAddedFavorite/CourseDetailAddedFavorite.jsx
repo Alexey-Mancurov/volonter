@@ -2,7 +2,7 @@ const CourseDetailAddedFavorite = (props) => {
   if (props.isFavorite) {
     return (
       <div
-        class="course__header-favorit"
+        className="course__header-favorit"
         onClick={() => {
           props.favoriteToggle(props.courseId);
         }}
@@ -13,7 +13,7 @@ const CourseDetailAddedFavorite = (props) => {
   } else {
       return(
               <div
-      class="course__header-favorit"
+      className="course__header-favorit"
       onClick={() => {
         props.favoriteToggle(props.courseId);
       }}

@@ -21,7 +21,7 @@ const CourseInside = (props) => {
 
   return (
     <>
-      <div class="course__inside">
+      <div className="course__inside">
         {moduleList}
       </div>
     </>
