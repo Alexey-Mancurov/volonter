@@ -192,7 +192,7 @@ function App() {
       }
     }, [course]);
 
-    const exactPathRoute = '/courses/'
+    const exactPathRoute = '/'
 
     useEffect(() => {
         if(!courseId && location.pathname !== exactPathRoute){
