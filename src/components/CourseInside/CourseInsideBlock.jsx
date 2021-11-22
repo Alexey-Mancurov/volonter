@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { coursesAPI } from "../../api/api";
 import Context from "../../context/context";
+import store from "../../store/store";
 import ContentBoxCource from "../common/ContentBoxCource";
 import CourceTitle2 from "../common/CourceTitle2";
 
@@ -10,9 +11,10 @@ const CourseInsideBlock = ({title, moduleId}) => {
 
   const [lessonsList, setLessonsList] = useState();
   useEffect(() => {
-    coursesAPI.lessons(context.courseId, moduleId).then((lessonsList) => {
-      setLessonsList(lessonsList);
-    });
+    setLessonsList(store.coursesAPI.lessons[context.courseId][moduleId])
+    // coursesAPI.lessons(context.courseId, moduleId).then((lessonsList) => {
+    //   setLessonsList(lessonsList);
+    // });
   }, [context.courseId, moduleId]);
 
   let list;

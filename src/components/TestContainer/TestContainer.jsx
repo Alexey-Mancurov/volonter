@@ -4,6 +4,7 @@ import TestAskList from "../TestAskList/TestAskList";
 import TestResultBtn from "../TestResultBtn/TestResultBtn";
 import { useLocation } from "react-router";
 import Preloader from "../common/Preloader";
+import store from "../../store/store";
 
 const TestContainer = () => {
   const location = useLocation();
@@ -45,10 +46,12 @@ const TestContainer = () => {
 
   useEffect(() => {
     const getTestData = (() => {
-      TestsAPI.testItem(idTest).then((testData) => {
-        setTestData(testData);
-        setAskCount(testData.askList.length);
-      });
+      setTestData(store.TestsAPI.testItem[idTest])
+      setAskCount(store.TestsAPI.testItem[idTest].askList.length)
+      // TestsAPI.testItem(idTest).then((testData) => {
+      //   setTestData(testData);
+      //   setAskCount(testData.askList.length);
+      // });
     })();
   }, [idTest]);
 

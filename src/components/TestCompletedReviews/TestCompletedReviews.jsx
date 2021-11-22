@@ -64,7 +64,7 @@ const TestCompletedReviews = () => {
       .then((response) => {
         if (response.success) {
           setReviewValue("Отзыв Принят");
-          setIsTextareaDisabled((isTextareaDisabled = true));
+          setIsTextareaDisabled(true);
         } else {
           console.log("Ошибка");
         }

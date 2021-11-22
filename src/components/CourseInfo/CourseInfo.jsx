@@ -7,6 +7,7 @@ import Preloader from "../common/Preloader";
 import Context from "../../context/context";
 import editYoutubeLinkForIframe from "../../Controller/editYoutubeLinkForIframe";
 import IframeYoutube from "../common/IframeYoutube";
+import store from "../../store/store";
 
 const CourseInfo = (props) => {
   const context = useContext(Context);
@@ -18,16 +19,18 @@ const CourseInfo = (props) => {
     if (props.idCurrentLesson) {
       setIsLoading(true);
       const getLessonData = (() => {
-        coursesAPI
-          .lessonItem(
-            context.courseId,
-            props.idCurrentModule,
-            props.idCurrentLesson
-          )
-          .then((lesson) => {
-            setLessonData(lesson);
-            setIsLoading(false);
-          });
+        setLessonData(store.coursesAPI.lessonItem[context.courseId][props.idCurrentModule][props.idCurrentLesson])
+        setIsLoading(false)
+        // coursesAPI
+        //   .lessonItem(
+        //     context.courseId,
+        //     props.idCurrentModule,
+        //     props.idCurrentLesson
+        //   )
+        //   .then((lesson) => {
+        //     setLessonData(lesson);
+        //     setIsLoading(false);
+        //   });
       })();
     }
   }, [props.idCurrentLesson, context.courseId, props.idCurrentModule]);

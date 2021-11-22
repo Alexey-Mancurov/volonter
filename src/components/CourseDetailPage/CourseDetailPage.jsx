@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { coursesAPI } from "../../api/api";
+import store from "../../store/store";
 import CourseDetailExperts from "../CourseDetailExperts/CourseDetailExperts";
 import CourseDetailContent from "../CourseDetailInfo/CourseDetailContent";
 import CourseDetailList from "../CourseDetailList/CourseDetailList";
@@ -11,9 +12,10 @@ const CourseDetailPage = (props) => {
 
   const [courses, setCourses] = useState();
   useEffect(() => {
-    coursesAPI.courses().then((courses) => {
-      setCourses(courses);
-    });
+    setCourses(store.coursesAPI.courses)
+    // coursesAPI.courses().then((courses) => {
+    //   setCourses(courses);
+    // });
   }, []);
 
   let contentList;

@@ -1,17 +1,18 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { coursesAPI } from "../../api/api";
 import Context from "../../context/context";
+import store from "../../store/store";
 
 const TestResultBtn = ({ isLastLesson, isLastModule, completedResponse }) => {
   const context = useContext(Context);
 
   const [moduleList, setModuleList] = useState();
   useEffect(() => {
-    coursesAPI.modules(context.courseId).then((moduleList) => {
-      setModuleList(moduleList);
-    });
+    setModuleList(store.coursesAPI.modules[context.courseId]);
+    // coursesAPI.modules(context.courseId).then((moduleList) => {
+    //   setModuleList(moduleList);
+    // });
   }, [context.courseId]);
 
   const [isAllLessonsChecked, setIsAllLessonsChecked] = useState(false);
@@ -19,12 +20,16 @@ const TestResultBtn = ({ isLastLesson, isLastModule, completedResponse }) => {
   useEffect(() => {
     const getIsAllLessonsChecked = (() => {
       if (moduleList) {
-        moduleList.items.map((i) =>
-          coursesAPI.lessons(context.courseId, i.id).then((lessonsList) => {
+        moduleList.items.map(
+          (i) =>
             setIsAllLessonsChecked(
-              lessonsList.items.every((i) => i.check === true)
-            );
-          })
+              store.coursesAPI.lessons[context.courseId][i.id]
+            )
+          // coursesAPI.lessons(context.courseId, i.id).then((lessonsList) => {
+          //   setIsAllLessonsChecked(
+          //     lessonsList.items.every((i) => i.check === true)
+          //   );
+          // })
         );
       }
     })();

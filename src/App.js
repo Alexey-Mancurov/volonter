@@ -13,6 +13,7 @@ import { useLocation } from "react-router";
 import Preloader from "./components/common/Preloader";
 import CourseDetail from "./components/CourseDetail/CourseDetail";
 import Context from "./context/context";
+import store from "./store/store";
 
 function App() {
   const location = useLocation();
@@ -41,14 +42,17 @@ function App() {
 
   useEffect(() => {
     const getCurrentCourse = () => {
-      coursesAPI.courseItem(courseId).then((course) => {
-        setCourseItem(course);
-      });
+      setCourseItem(store.coursesAPI.courseItem[courseId]);
+
+      // coursesAPI.courseItem(courseId).then((course) => {
+      //   setCourseItem(course);
+      // });
     };
     const getModulesList = () => {
-      coursesAPI.modules(courseId).then((modules) => {
-        setModules(modules);
-      });
+      setModules(store.coursesAPI.modules[courseId])
+      // coursesAPI.modules(courseId).then((modules) => {
+      //   setModules(modules);
+      // });
       setProgressCoursePercent();
     };
 
@@ -75,9 +79,10 @@ function App() {
     const getLessonsList = (() => {
       modules &&
         idCurrentModule &&
-        coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
-          setLessonsList(lessonsList);
-        });
+        setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule])
+        // coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
+        //   setLessonsList(lessonsList);
+        // });
     })();
   }, [courseId, modules, idCurrentModule]);
 
@@ -91,9 +96,10 @@ function App() {
         try {
           setIdCurrentLesson(lessonsList.items[currentLessonIndex].id);
         } catch {
-          coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
-            setLessonsList(lessonsList);
-          });
+          setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule])
+          // coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
+          //   setLessonsList(lessonsList);
+          // });
         }
       }
     })();
@@ -102,7 +108,7 @@ function App() {
   const [isLastModule, setIsLastModule] = useState(false);
 
   const [isLastLesson, setIsLastLesson] = useState(false);
-  
+
   useEffect(() => {
     const getIsLastModule = (() => {
       modules &&

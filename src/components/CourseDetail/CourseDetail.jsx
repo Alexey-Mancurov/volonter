@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { coursesAPI } from "../../api/api";
 import Context from "../../context/context";
+import store from "../../store/store";
 import Preloader from "../common/Preloader";
 import Tabs from "../common/Tabs/Tabs";
 import CourseDetailHeader from "../CourseDetailHeader/CourseDetailHeader";
@@ -29,9 +30,10 @@ const CourseDetail = () => {
 
   const [courseDetailData, setCourseDetailData] = useState();
   useEffect(() => {
-    coursesAPI.coursesDetail(context.courseId).then((courseDetailData) => {
-      setCourseDetailData(courseDetailData);
-    });
+    setCourseDetailData(store.coursesAPI.coursesDetail[context.courseId])
+    // coursesAPI.coursesDetail(context.courseId).then((courseDetailData) => {
+    //   setCourseDetailData(courseDetailData);
+    // });
   }, [context.courseId]);
 
   if (context.modules && courseDetailData) {

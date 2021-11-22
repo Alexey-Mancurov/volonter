@@ -21,9 +21,10 @@ const Courses = () => {
   };
 
   useEffect(() => {
-    coursesAPI.courses().then((courses) => {
-      setCourses(courses);
-    });
+    setCourses(store.coursesAPI.courses)
+    // coursesAPI.courses().then((courses) => {
+    //   setCourses(courses);
+    // });
   }, []);
 
   const [filter, setFilter] = useState();
