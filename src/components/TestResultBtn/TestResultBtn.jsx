@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import store from "../../store/store";
@@ -10,9 +9,6 @@ const TestResultBtn = ({ isLastLesson, isLastModule, completedResponse }) => {
   const [moduleList, setModuleList] = useState();
   useEffect(() => {
     setModuleList(store.coursesAPI.modules[context.courseId]);
-    // coursesAPI.modules(context.courseId).then((moduleList) => {
-    //   setModuleList(moduleList);
-    // });
   }, [context.courseId]);
 
   const [isAllLessonsChecked, setIsAllLessonsChecked] = useState(false);
@@ -25,11 +21,6 @@ const TestResultBtn = ({ isLastLesson, isLastModule, completedResponse }) => {
             setIsAllLessonsChecked(
               store.coursesAPI.lessons[context.courseId][i.id]
             )
-          // coursesAPI.lessons(context.courseId, i.id).then((lessonsList) => {
-          //   setIsAllLessonsChecked(
-          //     lessonsList.items.every((i) => i.check === true)
-          //   );
-          // })
         );
       }
     })();

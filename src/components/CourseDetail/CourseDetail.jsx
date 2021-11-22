@@ -1,6 +1,4 @@
-import { useContext, useState } from "react";
-import { useEffect } from "react";
-import { coursesAPI } from "../../api/api";
+import { useContext, useState, useEffect } from "react";
 import Context from "../../context/context";
 import store from "../../store/store";
 import Preloader from "../common/Preloader";
@@ -31,9 +29,6 @@ const CourseDetail = () => {
   const [courseDetailData, setCourseDetailData] = useState();
   useEffect(() => {
     setCourseDetailData(store.coursesAPI.coursesDetail[context.courseId])
-    // coursesAPI.coursesDetail(context.courseId).then((courseDetailData) => {
-    //   setCourseDetailData(courseDetailData);
-    // });
   }, [context.courseId]);
 
   if (context.modules && courseDetailData) {

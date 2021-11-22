@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { coursesAPI } from "../../api/api";
 import check from "../../assets/check.svg";
 import Context from "../../context/context";

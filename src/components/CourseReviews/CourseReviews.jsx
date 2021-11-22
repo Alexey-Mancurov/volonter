@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { useEffect } from "react";
-import { coursesAPI } from "../../api/api";
 import Context from "../../context/context";
 import store from "../../store/store";
 import CoureseReviewItem from "./CoureseReviewItem";
@@ -11,9 +10,6 @@ const CourseReviews = () => {
   const [reviewsList, setReviewsList] = useState([]);
   useEffect(() => {
     setReviewsList(store.coursesAPI.coursesReviews[context.courseId])
-    // coursesAPI.coursesReviews(context.courseId).then((reviews) => {
-    //   setReviewsList(reviews);
-    // });
   }, [context.courseId]);
 
   let list;

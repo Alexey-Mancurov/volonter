@@ -7,7 +7,6 @@ import TestCompleted from "./components/TestCompleted/TestCompleted";
 import TestContainer from "./components/TestContainer/TestContainer";
 import CourseSidebar from "./components/CourseSidebar/CourseSidebar";
 import TestChecking from "./components/TestChecking/TestChecking";
-import { coursesAPI } from "./api/api";
 import Courses from "./components/Courses/Courses";
 import { useLocation } from "react-router";
 import Preloader from "./components/common/Preloader";
@@ -43,16 +42,9 @@ function App() {
   useEffect(() => {
     const getCurrentCourse = () => {
       setCourseItem(store.coursesAPI.courseItem[courseId]);
-
-      // coursesAPI.courseItem(courseId).then((course) => {
-      //   setCourseItem(course);
-      // });
     };
     const getModulesList = () => {
       setModules(store.coursesAPI.modules[courseId])
-      // coursesAPI.modules(courseId).then((modules) => {
-      //   setModules(modules);
-      // });
       setProgressCoursePercent();
     };
 
@@ -80,9 +72,6 @@ function App() {
       modules &&
         idCurrentModule &&
         setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule])
-        // coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
-        //   setLessonsList(lessonsList);
-        // });
     })();
   }, [courseId, modules, idCurrentModule]);
 
@@ -97,9 +86,6 @@ function App() {
           setIdCurrentLesson(lessonsList.items[currentLessonIndex].id);
         } catch {
           setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule])
-          // coursesAPI.lessons(courseId, idCurrentModule).then((lessonsList) => {
-          //   setLessonsList(lessonsList);
-          // });
         }
       }
     })();

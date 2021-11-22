@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { coursesAPI } from "../../api/api";
 import filtration from "../../Controller/filtration";
 import store from "../../store/store";
@@ -22,9 +21,6 @@ const Courses = () => {
 
   useEffect(() => {
     setCourses(store.coursesAPI.courses)
-    // coursesAPI.courses().then((courses) => {
-    //   setCourses(courses);
-    // });
   }, []);
 
   const [filter, setFilter] = useState();

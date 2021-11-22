@@ -48,10 +48,6 @@ const TestContainer = () => {
     const getTestData = (() => {
       setTestData(store.TestsAPI.testItem[idTest])
       setAskCount(store.TestsAPI.testItem[idTest].askList.length)
-      // TestsAPI.testItem(idTest).then((testData) => {
-      //   setTestData(testData);
-      //   setAskCount(testData.askList.length);
-      // });
     })();
   }, [idTest]);
 

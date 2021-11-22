@@ -1,6 +1,4 @@
-import { useContext, useEffect } from "react";
-import { useState } from "react";
-import { coursesAPI } from "../../api/api";
+import { useState, useContext, useEffect } from "react";
 import CourceInfoContent from "./CourceInfoContent";
 import CourseInfoActions from "./CourseInfoActions";
 import Preloader from "../common/Preloader";
@@ -21,16 +19,6 @@ const CourseInfo = (props) => {
       const getLessonData = (() => {
         setLessonData(store.coursesAPI.lessonItem[context.courseId][props.idCurrentModule][props.idCurrentLesson])
         setIsLoading(false)
-        // coursesAPI
-        //   .lessonItem(
-        //     context.courseId,
-        //     props.idCurrentModule,
-        //     props.idCurrentLesson
-        //   )
-        //   .then((lesson) => {
-        //     setLessonData(lesson);
-        //     setIsLoading(false);
-        //   });
       })();
     }
   }, [props.idCurrentLesson, context.courseId, props.idCurrentModule]);
