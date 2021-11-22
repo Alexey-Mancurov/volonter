@@ -5,21 +5,23 @@ import TestResultBtn from "../TestResultBtn/TestResultBtn";
 import { useLocation } from "react-router";
 import Preloader from "../common/Preloader";
 
-const TestContainer = (props) => {
-  let location = useLocation();
+const TestContainer = () => {
+  const location = useLocation();
+  const idTest = location.state.idTest;
 
-  let [currentAsk, setCurrentAsk] = useState(1);
+  const [currentAsk, setCurrentAsk] = useState(1);
 
-  let [isTestEnd, setIsTestEnd] = useState(false);
+  const [isTestEnd, setIsTestEnd] = useState(false);
 
-  let [asksList, setAskList] = useState([]);
+  const [asksList, setAskList] = useState([]);
 
-  let [answerData, setAnswerData] = useState([]);
+  const [askCount, setAskCount] = useState(1);
+
+  const [answerData, setAnswerData] = useState([]);
 
   const prevAsk = () => {
     setCurrentAsk(currentAsk - 1);
-    asksList.splice(-1, 1)
-    setAskList(asksList)
+    setAskList((prev) => prev.splice(-1, 1));
   };
 
   const nextAsk = (id, checkedOption) => {
@@ -28,68 +30,66 @@ const TestContainer = (props) => {
   };
 
   useEffect(() => {
-    // закомментированный код ниже, на случай, если автокомплит исправит круглые скобки
-    // (currentAsk === (askCount+1) && currentAsk !== 1)
-    if (currentAsk === (askCount+1) && currentAsk !== 1) {
-      setAnswerData([...answerData, { asksList: asksList }]);
-      setAnswerData((answerData) => [...answerData, { id: testData.id }]);
-      setIsTestEnd(true);
-    }
-  }, [asksList]); 
+    const getAcswerData = (() => {
+      if (currentAsk === askCount + 1 && currentAsk !== 1) {
+        setAnswerData([...answerData, { asksList: asksList }]);
+        setAnswerData((answerData) => [...answerData, { id: testData.id }]);
+        setIsTestEnd(true);
+      }
+    })();
+  }, [asksList]);
 
-  let [completedResponse, setCompletedResponse] = useState();
+  const [testData, setTestData] = useState([]);
+
+  const [completedResponse, setCompletedResponse] = useState();
 
   useEffect(() => {
-    if (isTestEnd) {
-      TestsAPI.testCompleted(answerData).then((completedResponse) => {
-        setCompletedResponse(completedResponse);
+    const getTestData = (() => {
+      TestsAPI.testItem(idTest).then((testData) => {
+        setTestData(testData);
+        setAskCount(testData.askList.length);
       });
-    }
-  }, [isTestEnd]);
-
-
-  let [testData, setTestData] = useState([]);
-
-  let idTest = location.state.idTest
-  useEffect(() => {
-    TestsAPI.testItem(idTest).then((testData) => {
-      setTestData(testData);
-      setAskCount(testData.askList.length);
-    });
+    })();
   }, [idTest]);
 
-  let [askCount, setAskCount] = useState(1);
+  useEffect(() => {
+    const sendAnswerData = (() => {
+      isTestEnd &&
+        TestsAPI.testCompleted(answerData).then((completedResponse) => {
+          setCompletedResponse(completedResponse);
+        });
+    })();
+  }, [isTestEnd]);
 
   let askList;
-  if (testData.askList) {
-    askList = testData.askList.map((i,index) => (
-      <TestAskList
-        id={i.id}
-        key={index}
-        index={index}
-        ask={i.ask}
-        options={i.options}
-        askCount={askCount}
-        currentAsk={currentAsk}
-        nextAsk={nextAsk}
-        prevAsk={prevAsk}
-        setAnswerData={setAnswerData}
-        completedResponse={completedResponse}
-      />
-    ));
-  } else {
-    askList = <Preloader />;
-  }
+  testData.askList
+    ? (askList = testData.askList.map((i) => (
+        <TestAskList
+          id={i.id}
+          key={i.id}
+          ask={i.ask}
+          options={i.options}
+          askCount={askCount}
+          currentAsk={currentAsk}
+          nextAsk={nextAsk}
+          prevAsk={prevAsk}
+          completedResponse={completedResponse}
+        />
+      )))
+    : (askList = <Preloader />);
 
-  return (<div className="test__container">{askList}
-        {currentAsk>askCount
-        ? 
-          completedResponse
-          ? <TestResultBtn isLastLesson={location.state.isLastLesson} isLastModule={location.state.isLastModule} completedResponse={completedResponse} courseId={props.courseId}/>
-          : <Preloader />
-        : ''}
-        </div>)
-         
+  return (
+    <div className="test__container">
+      {askList}
+      {currentAsk > askCount && completedResponse && (
+        <TestResultBtn
+          isLastLesson={location.state.isLastLesson}
+          isLastModule={location.state.isLastModule}
+          completedResponse={completedResponse}
+        />
+      )}
+    </div>
+  );
 };
 
 export default TestContainer;

@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { coursesAPI } from "../../../api/api";
-import SidebarModuleBlockHeader from "./SidebarModuleBlockHeader";
-import SidebarModuleBlockInner from "./SidebarModuleBlockInner";
+import Context from "../../../context/context";
+import Header from "./Header";
+import List from "./List";
 
-const SidebarModuleBlock = (props) => {
-  let [isOpen, setIsOpen] = useState(false);
+const SidebarModuleBlock = ({moduleId, title, moduleIndex, moduleMenuToggle, lessonMenuToggle}) => {
+
+  const context = useContext(Context)
+
+  const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => {
     setIsOpen(!isOpen);
   };
 
-  let [lessonsList, setLessonsList] = useState({});
+  const [lessonsList, setLessonsList] = useState({});
   useEffect(() => {
-    coursesAPI.lessons(props.courseId, props.moduleId).then((lessonsList) => {
+    coursesAPI.lessons(context.courseId, moduleId).then((lessonsList) => {
       setLessonsList(lessonsList);
     });
-  }, []);
+  }, [context.courseId, moduleId]);
 
   return (
     <div
@@ -22,20 +26,15 @@ const SidebarModuleBlock = (props) => {
         isOpen ? `test__sidebar-block-open` : null
       }`}
     >
-      <SidebarModuleBlockHeader
-        title={props.title}
+      <Header
+        title={title}
         toggleIsOpen={toggleIsOpen}
       />
-      <SidebarModuleBlockInner
+      <List
         lessonsList={lessonsList}
-        courseId={props.courseId}
-        moduleId={props.moduleId}
-        moduleIndex={props.moduleIndex}
-        getModuleId={props.getModuleId}
-        lessonId={props.lessonId}
-        getLessonId={props.getLessonId}
-        moduleMenuToggle={props.moduleMenuToggle}
-        lessonMenuToggle={props.lessonMenuToggle}
+        moduleIndex={moduleIndex}
+        moduleMenuToggle={moduleMenuToggle}
+        lessonMenuToggle={lessonMenuToggle}
       />
     </div>
   );

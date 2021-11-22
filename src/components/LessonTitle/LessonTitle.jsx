@@ -1,5 +1,5 @@
-const LessonTitle = (props) => {
-  return <h1 className="title title-course">{props.title}</h1>;
+const LessonTitle = ({ title }) => {
+  return <h1 className="title title-course">{title}</h1>;
 };
 
 export default LessonTitle;

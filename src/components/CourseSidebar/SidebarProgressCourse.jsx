@@ -1,15 +1,16 @@
 import Preloader from "../common/Preloader";
 
-const ProgressCourse = (props) => {
-  if (Number.isInteger(props.progressCourse)) {
-    let widthActiveLine = {
-      width: `${props.progressCourse}%`,
+const ProgressCourse = ({ progressCourse }) => {
+  if (Number.isInteger(progressCourse)) {
+    const widthActiveLine = {
+      width: `${progressCourse}%`,
     };
+
     return (
       <div className="test__sidebar-box">
         <div className="test__sidebar-wrapper test__sidebar-progressWrapper">
           <div className="test__sidebar-subtitle">Прогресс по курсу</div>
-          <div className="test__sidebar-percent">{props.progressCourse}%</div>
+          <div className="test__sidebar-percent">{progressCourse}%</div>
         </div>
         <div className="test__sidebar-progress">
           <div
@@ -20,7 +21,7 @@ const ProgressCourse = (props) => {
       </div>
     );
   } else {
-    return <Preloader />
+    return <Preloader />;
   }
 };
 

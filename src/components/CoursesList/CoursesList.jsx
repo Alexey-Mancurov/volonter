@@ -1,23 +1,21 @@
 import CourseItem from "../CourseItem/CourseItem";
 
-const CoursesList = (props) => {
+const CoursesList = ({ courses, favoriteToggle }) => {
   let courseList;
-  if (props.courses) {
-    courseList = props.courses.map((i) => (
+  if (courses) {
+    courseList = courses.map((i) => (
       <CourseItem
         key={i.id}
         id={i.id}
         title={i.title}
         description={i.description}
         tier={i.tier}
-        isCompleted={i.isCompleted}
         isFavorite={i.isFavorite}
         author={i.author}
-        getCourseId={props.getCourseId}
-        favoriteToggle={props.favoriteToggle}
+        favoriteToggle={favoriteToggle}
       />
     ));
-    if (props.courses.length === 0) {
+    if (courses.length === 0) {
       return (
         <div className="your__courses">
           <p className="your__courses-text">

@@ -1,7 +1,7 @@
-const SidebarModuleBlockHeader = (props) => {
+const Header = ({title, toggleIsOpen}) => {
   return (
-    <div className="test__sidebar-block-box" onClick={props.toggleIsOpen}>
-      <div className="test__sidebar-block-title">{props.title}</div>
+    <div className="test__sidebar-block-box" onClick={toggleIsOpen}>
+      <div className="test__sidebar-block-title">{title}</div>
       <svg
         width="24"
         height="19"
@@ -18,4 +18,4 @@ const SidebarModuleBlockHeader = (props) => {
   );
 };
 
-export default SidebarModuleBlockHeader;
+export default Header;

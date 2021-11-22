@@ -1,13 +1,17 @@
+import { useContext } from "react";
+import Context from "../../context/context";
 import CourseMaterialsBlock from "./CourseMaterialsBlock";
 
-const CourseDetailMaterials = (props) => {
+const CourseDetailMaterials = () => {
+
+  const context = useContext(Context)
+
   let moduleList;
-  if (props.modules) {
-    moduleList = props.modules.items.map((i, index) => (
+  if (context.modules) {
+    moduleList = context.modules.items.map((i) => (
       <CourseMaterialsBlock
         key={i.id}
         title={i.title}
-        courseId={props.courseId}
         moduleId={i.id}
       />
     ));

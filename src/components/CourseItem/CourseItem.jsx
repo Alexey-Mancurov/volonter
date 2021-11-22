@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import Context from "../../context/context";
 
 const CourseItem = (props) => {
-  let id = props.id;
+  const context = useContext(Context)
 
   return (
     <div className="courses__list-item">
@@ -16,7 +18,7 @@ const CourseItem = (props) => {
         </div>
           <div
             className={`courses__item-favorit ${props.isFavorite ? 'courses__item-favorit-active' : ''}`}
-            onClick={()=>{props.favoriteToggle(id)}}
+            onClick={()=>{props.favoriteToggle(props.id)}}
           >
             <svg
               width="22"
@@ -49,7 +51,7 @@ const CourseItem = (props) => {
             },
           }}
           className="test__ask-blue courses__item-btn"
-          onClick={() => props.getCourseId(id)}
+          onClick={() => context.getCourseId(props.id)}
         >
           Пройти курс
         </NavLink>

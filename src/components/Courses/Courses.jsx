@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { coursesAPI } from "../../api/api";
+import filtration from "../../Controller/filtration";
+import store from "../../store/store";
 import Preloader from "../common/Preloader";
 import CoursesHeader from "../CoursesHeader/CoursesHeader";
 import CoursesList from "../CoursesList/CoursesList";
 
-const Courses = (props) => {
+const Courses = () => {
+  const [courses, setCourses] = useState();
+
   const favoriteToggle = (courseId) => {
     coursesAPI.courseFavorite(courseId).then((response) => {
       if (response.success) {
@@ -16,14 +20,13 @@ const Courses = (props) => {
     });
   };
 
-  let [courses, setCourses] = useState();
   useEffect(() => {
     coursesAPI.courses().then((courses) => {
       setCourses(courses);
     });
   }, []);
 
-  let [filter, setFilter] = useState();
+  const [filter, setFilter] = useState();
 
   useEffect(() => {
     if (courses) {
@@ -31,25 +34,29 @@ const Courses = (props) => {
     }
   }, [courses]);
 
-  const allCourses = () => {
-    setFilter(courses.items.filter((item) => item.id));
+  const filterStatic = [
+    { text: "Все курсы", path: "allCourses" },
+    { text: "Избранные", path: "filterFavorits" },
+    { text: "Пройденные", path: "filterCompleted" },
+  ];
+
+  const filterLevel = [
+    { text: "Базовый", path: "base" },
+    { text: "Продвинутый", path: "advanced" },
+  ];
+
+  const complienceFilter = {
+    allCourses: "id",
+    filterFavorits: "isFavorite",
+    filterCompleted: "isCompleted",
+    base: "!tier",
+    advanced: "tier",
   };
 
-  const filterFavorits = () => {
-    setFilter(courses.items.filter((item) => item.isFavorite === true));
+  const getFilter = (param) => {
+    filtration(courses.items, complienceFilter, param, setFilter);
   };
 
-  const filterCompleted = () => {
-    setFilter(courses.items.filter((item) => item.isCompleted === true));
-  };
-
-  const filterBase = () => {
-    setFilter(courses.items.filter((item) => item.tier === false));
-  };
-
-  const filterAdvanced = () => {
-    setFilter(courses.items.filter((item) => item.tier === true));
-  };
 
   if (courses) {
     return (
@@ -57,18 +64,12 @@ const Courses = (props) => {
         <h1 className="title">Курсы</h1>
 
         <CoursesHeader
-          allCourses={allCourses}
-          filterFavorits={filterFavorits}
-          filterCompleted={filterCompleted}
-          filterBase={filterBase}
-          filterAdvanced={filterAdvanced}
+          filterStatic={filterStatic}
+          filterLevel={filterLevel}
+          getFilter={getFilter}
         />
 
-        <CoursesList
-          courses={filter}
-          getCourseId={props.getCourseId}
-          favoriteToggle={favoriteToggle}
-        />
+        <CoursesList courses={filter} favoriteToggle={favoriteToggle} />
       </>
     );
   } else {

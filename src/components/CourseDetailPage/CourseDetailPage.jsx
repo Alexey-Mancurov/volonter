@@ -9,19 +9,19 @@ import CourseDetailPreview from "../CourseDetailPreview/CourseDetailPreview";
 
 const CourseDetailPage = (props) => {
 
-  let [courses, setCourses] = useState();
+  const [courses, setCourses] = useState();
   useEffect(() => {
     coursesAPI.courses().then((courses) => {
       setCourses(courses);
     });
   }, []);
 
-  let contentList
+  let contentList;
 
-  if(props.courseDetailData){
-    contentList = props.courseDetailData.contentList.map((i,index)=>(
-      <CourseDetailContent key={index} title={i.title} text={i.text}/>
-    ))
+  if (props.courseDetailData) {
+    contentList = props.courseDetailData.contentList.map((i, index) => (
+      <CourseDetailContent key={index} title={i.title} text={i.text} />
+    ));
   }
 
   return (
@@ -36,16 +36,12 @@ const CourseDetailPage = (props) => {
           willLearnList={props.courseDetailData.willLearnList}
         />
 
-        <CourseDetailExperts experts={props.courseDetailData.experts }/>
+        <CourseDetailExperts experts={props.courseDetailData.experts} />
 
-        {courses ? (
+        {courses && (
           <CourseDetailMore
-          courses={courses}
-            getCourseId={props.getCourseId}
-            courseId={props.courseId}
+            courses={courses}
           />
-        ) : (
-          ""
         )}
       </section>
     </>

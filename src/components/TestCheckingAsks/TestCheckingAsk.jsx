@@ -1,9 +1,9 @@
 import TestCheckingTitle from "./TestCheckingTitle";
 
-const TestCheckingdAsk = (props) => {
+const TestCheckingAsks = ({dataList}) => {
   let answersListChecking;
-  if (props.dataList) {
-    answersListChecking = props.dataList.map((i, index) => (
+  if (dataList) {
+    answersListChecking = dataList.map((i) => (
       <TestCheckingdAskItem
         num={i.id}
         key={i.id}
@@ -16,20 +16,19 @@ const TestCheckingdAsk = (props) => {
   return <div>{answersListChecking}</div>;
 };
 
-const TestCheckingdAskItem = (props) => {
-  let allAnswers = props.options;
-  let answersLength = allAnswers.length;
-  let answerCorrect = allAnswers[answersLength - 2];
-  let answerVolont = allAnswers[answersLength - 1];
+const TestCheckingdAskItem = ({options, num, ask}) => {
+  const allAnswers = options;
+  const answerCorrect = allAnswers[allAnswers.length - 2];
+  const answerVolont = allAnswers[allAnswers.length - 1];
 
   return (
     <div className="test__ask">
       <TestCheckingTitle
-        num={props.num}
+        num={num}
         answerCorrect={answerCorrect}
         answerVolont={answerVolont}
       />
-      <p className="test__container-text test__ask-question">{props.ask}</p>
+      <p className="test__container-text test__ask-question">{ask}</p>
       <div className="test__container-text test__ask-text">
         {allAnswers[answerCorrect]}
       </div>
@@ -37,4 +36,4 @@ const TestCheckingdAskItem = (props) => {
   );
 };
 
-export default TestCheckingdAsk;
+export default TestCheckingAsks;

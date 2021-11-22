@@ -1,69 +1,55 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { coursesAPI } from "../../api/api";
+import Context from "../../context/context";
 import Preloader from "../common/Preloader";
+import Tabs from "../common/Tabs/Tabs";
 import CourseDetailHeader from "../CourseDetailHeader/CourseDetailHeader";
 import CourseDetailPage from "../CourseDetailPage/CourseDetailPage";
-import CourseDetailTabs from "../CourseDetailTabs/CourseDetailTabs";
 import CourseInside from "../CourseInside/CourseInside";
 import CourseMaterials from "../CourseMaterials/CourseMaterials";
 import CourseReviews from "../CourseReviews/CourseReviews";
 
-const CourseDetail = (props) => {
-  useEffect(() => {
-    if (!props.courseId) {
-      props.setReservedCourseId(
-        JSON.parse(window.localStorage.getItem("courseId"))
-      );
-    }
-  }, []);
+const CourseDetail = () => {
+  const context = useContext(Context);
 
-  let [tabsData, setTabsData]=useState([
-      {text: 'Информация', path: '/', isActive: true},
-      {text: 'Содержание', path: '/inside', isActive: false},
-      {text: 'Материалы', path: '/materials', isActive: false},
-      {text: 'Отзывы', path: '/reviews', isActive: false},
-  ])
-  let [path, setPath] = useState("/");
+  const tabsData = [
+    { text: "Информация", path: "/" },
+    { text: "Содержание", path: "/inside" },
+    { text: "Материалы", path: "/materials" },
+    { text: "Отзывы", path: "/reviews" },
+  ];
 
-  const isActiveToggle = (index) => {
-    setTabsData(
-        tabsData.map((i, ind) => {
-        if (ind === index) {
-          return { ...i, isActive: true };
-        }
-        if (ind !== index) {
-          return { ...i, isActive: false };
-        }
-      })
-    );
-  };
-
+  const [path, setPath] = useState("/");
   const getPath = (action) => {
     setPath(action);
   };
-  let [courseDetailData, setCourseDetailData]=useState()
-  useEffect(()=>{
-    coursesAPI.coursesDetail(props.courseId).then((courseDetailData)=>{
-      setCourseDetailData(courseDetailData)
-    })
-  }, [])
 
+  const [indexCurrentTab, setIndexCurrentTab] = useState(0);
 
-  if (props.modules && courseDetailData) {
+  const [courseDetailData, setCourseDetailData] = useState();
+  useEffect(() => {
+    coursesAPI.coursesDetail(context.courseId).then((courseDetailData) => {
+      setCourseDetailData(courseDetailData);
+    });
+  }, [context.courseId]);
+
+  if (context.modules && courseDetailData) {
     return (
       <>
-        <CourseDetailHeader
-          courseId={props.courseId}
-          modulesLength={props.modules.items.length}
-          lessonsLength={props.course.course.totalLessons}
-          time={courseDetailData.time}
+        <CourseDetailHeader time={courseDetailData.time} />
+        <Tabs
+          list={tabsData}
+          action={getPath}
+          setActive={setIndexCurrentTab}
+          currentActive={indexCurrentTab}
         />
-        <CourseDetailTabs getPath={getPath} tabsData={tabsData} isActiveToggle={isActiveToggle}/>
-        {path === "/" ? <CourseDetailPage courseId={props.courseId} courseDetailData={courseDetailData} getCourseId={props.getCourseId}/> : ""}
-        {path === "/inside" ? <CourseInside modules={props.modules} courseId={props.courseId}/> : ""}
-        {path === "/materials" ? <CourseMaterials modules={props.modules} courseId={props.courseId}/> : ""}
-        {path === "/reviews" ? <CourseReviews courseId={props.courseId} tabsData={tabsData}/> : ""}
+        {path === "/" && (
+          <CourseDetailPage courseDetailData={courseDetailData} />
+        )}
+        {path === "/inside" && <CourseInside />}
+        {path === "/materials" && <CourseMaterials />}
+        {path === "/reviews" && <CourseReviews tabsData={tabsData} />}
       </>
     );
   } else {

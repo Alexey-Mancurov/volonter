@@ -1,79 +1,31 @@
 import { useState } from "react";
-import CourseLevel from "../CourseLevel/CourseLevel";
-import CoursesHeaderItem from "../CoursesHeaderItem/CoursesHeaderItem";
+import Tabs from "../common/Tabs/Tabs";
+import TabsGrayUnderline from "../common/TabsGrayUnderline/TabsGrayUnderline";
 
-const CoursesListHeader = (props) => {
-  let [state, setState] = useState([
-    { text: "Все курсы", isActiveFilter: true, action: "allCourses" },
-    { text: "Избранные", isActiveFilter: false, action: "filterFavorits" },
-    { text: "Пройденные", isActiveFilter: false, action: "filterCompleted" },
-  ]);
+const CoursesListHeader = ({ filterStatic, filterLevel, getFilter }) => {
+  const [currentIndexActiveLvl, setCurrentIndexActiveLvl] = useState();
 
-  let [level, setLevel] = useState([
-    { text: "Базовый", isActive: false, action: "base" },
-    { text: "Продвинутый", isActive: false, action: "advanced" },
-  ]);
+  const [currentIndexActiveTab, setCurrentIndexActiveTab] = useState(0);
 
-  let [isActive, setIsActive] = useState(false);
-
-  const isActiveToggle = (index) => {
-    setState(
-      state.map((i, ind) => {
-        if (ind === index) {
-          return { ...i, isActiveFilter: true };
-        }
-        if (ind !== index) {
-          return { ...i, isActiveFilter: false };
-        }
-      })
-    );
+  const actionFilter = (param) => {
+    param === "allCourses" && setCurrentIndexActiveLvl(null);
+    getFilter(param);
   };
-
-  const isActiveLevel = (index) => {
-    setLevel(
-      level.map((i, ind) => {
-        if (ind === index) {
-          return { ...i, isActive: true };
-        }
-        if (ind !== index) {
-          return { ...i, isActive: false };
-        }
-      })
-    );
-  };
-
-  let itemList = state.map((i, index) => (
-    <CoursesHeaderItem
-      key={index}
-      index={index}
-      text={i.text}
-      isActiveFilter={i.isActiveFilter}
-      action={i.action}
-      isActiveToggle={isActiveToggle}
-      isActive={isActive}
-      allCourses={props.allCourses}
-      filterFavorits={props.filterFavorits}
-      filterCompleted={props.filterCompleted}
-    />
-  ));
-
-  let levelList = level.map((i, index) => (
-    <CourseLevel
-      key={index}
-      index={index}
-      text={i.text}
-      isActive={i.isActive}
-      action={i.action}
-      filterBase={props.filterBase}
-      filterAdvanced={props.filterAdvanced}
-      isActiveLevel={isActiveLevel}
-    />
-  ));
 
   return (
     <div className="cource__tab-wrapper">
-      <ul className="tabs tabs__course">{itemList}</ul>
-      <div className="cource__level">{levelList}</div>
+      <Tabs
+        list={filterStatic}
+        action={actionFilter}
+        setActive={setCurrentIndexActiveTab}
+        currentActive={currentIndexActiveTab}
+      />
+      <TabsGrayUnderline
+        list={filterLevel}
+        action={actionFilter}
+        setActive={setCurrentIndexActiveLvl}
+        currentActive={currentIndexActiveLvl}
+      />
     </div>
   );
 };

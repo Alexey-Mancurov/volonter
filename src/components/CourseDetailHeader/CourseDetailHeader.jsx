@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
 import { coursesAPI } from "../../api/api";
 import icon1 from "../../assets/icon1.svg";
 import icon2 from "../../assets/icon2.svg";
-import CourseDetailAddedFavorite from "../CourseDetailAddedFavorite/CourseDetailAddedFavorite";
+import Context from "../../context/context";
+import LinkGrayUnderline from "../common/LinkGrayUnderline";
 
 const CourseDetailHeader = (props) => {
+  const context = useContext(Context);
 
-    let [isFavorite, setIsFavorite]=useState()
+  const [isFavorite, setIsFavorite] = useState();
+
   const favoriteToggle = (courseId) => {
     coursesAPI.courseFavorite(courseId).then((response) => {
       if (response.success) {
-        setIsFavorite(response.isFavorite)
+        setIsFavorite(response.isFavorite);
       }
     });
   };
+
+  const [modulesLength, setModulesLength] = useState();
+  const [lessonsLength, setLessonsLength] = useState();
+
+  useEffect(() => {
+    setModulesLength(context.modules.items.length);
+  }, [context.modules.items.length]);
+
+  useEffect(() => {
+    setLessonsLength(context.course.course.totalLessons);
+  }, [context.course.course.totalLessons]);
+
   return (
     <div className="course__header">
       <div className="course__header-block">
@@ -22,7 +38,7 @@ const CourseDetailHeader = (props) => {
           <img src={icon1} alt="" />
         </div>
         <p className="course__header-title">
-          Модулей: {props.modulesLength}, Уроков: {props.lessonsLength}
+          Модулей: {modulesLength}, Уроков: {lessonsLength}
         </p>
       </div>
       <div className="course__header-block">
@@ -37,7 +53,13 @@ const CourseDetailHeader = (props) => {
         <NavLink to={"/lesson"} className="course__header-btn">
           Пройти курс
         </NavLink>
-        <CourseDetailAddedFavorite favoriteToggle={favoriteToggle} courseId={props.courseId} isFavorite={isFavorite}/>
+        <LinkGrayUnderline
+          action={favoriteToggle}
+          data={context.courseId}
+          child={
+            isFavorite ? "Удалить из избранного" : "Добавить в избранное"
+          }
+        />
       </div>
     </div>
   );

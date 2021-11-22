@@ -1,9 +1,5 @@
-const RedBtn = (props) => {
-  return (
-    <div className={`test__ask-red ${props.addClass}`}>
-      {props.text}
-    </div>
-  );
+const RedBtn = ({ text, addClass }) => {
+  return <div className={`test__ask-red ${addClass}`}>{text}</div>;
 };
 
 export default RedBtn;

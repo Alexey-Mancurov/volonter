@@ -1,28 +1,34 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { coursesAPI } from "../../api/api";
-import CourseInsideItem from "./CourseInsideItem";
+import Context from "../../context/context";
+import ContentBoxCource from "../common/ContentBoxCource";
+import CourceTitle2 from "../common/CourceTitle2";
 
-const CourseInsideBlock = (props) => {
-  let [lessonsList, setLessonsList] = useState();
+const CourseInsideBlock = ({title, moduleId}) => {
+
+  const context = useContext(Context)
+
+  const [lessonsList, setLessonsList] = useState();
   useEffect(() => {
-    coursesAPI.lessons(props.courseId, props.moduleId).then((lessonsList) => {
+    coursesAPI.lessons(context.courseId, moduleId).then((lessonsList) => {
       setLessonsList(lessonsList);
     });
-  }, []);
+  }, [context.courseId, moduleId]);
 
   let list;
   if (lessonsList) {
     list = lessonsList.items.map((i) => (
-      <CourseInsideItem key={i.id} title={i.title}/>
+      <ContentBoxCource
+        key={i.id}
+        addedClass={"course__inside-box"}
+        child={<div className="course__inside-box-title">{i.title}</div>}
+      />
     ));
   }
   return (
     <>
-      <p className="cource__title-2">{props.title}</p>
-      
+      <CourceTitle2 title={title} />
       {list}
-       
-
     </>
   );
 };

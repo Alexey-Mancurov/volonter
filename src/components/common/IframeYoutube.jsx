@@ -1,10 +1,10 @@
-const CourseInfoVideo = (props) => {
+const IframeYoutube = ({link, addedClass}) => {
   return (
-    <div className="test__info-video">
+    <div className={`${addedClass ? addedClass : ''}`}>
       <iframe
         width="587px"
         height="332px"
-        src={props.linkVideo}
+        src={link}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -14,4 +14,4 @@ const CourseInfoVideo = (props) => {
   );
 };
 
-export default CourseInfoVideo;
+export default IframeYoutube;

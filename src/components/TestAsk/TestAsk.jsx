@@ -1,15 +1,20 @@
 import TestAskItem from "../TestAskItem/TestAskItem";
 
-const TestAsk = (props) => {
-  const askList = props.options.map((i, index) => (
-    <TestAskItem title={i} key={index} index={index} getCheckedOption={props.getCheckedOption}/>
-  ));
+const TestAsk = ({ options, getCheckedOption }) => {
+  let askList;
 
-  return (
-    <div className="test__ask">
-      {askList}
-    </div>
-  );
+  if (options) {
+    askList = options.map((i, index) => (
+      <TestAskItem
+        title={i}
+        key={index}
+        index={index}
+        action={getCheckedOption}
+      />
+    ));
+  }
+
+  return <div className="test__ask">{askList}</div>;
 };
 
 export default TestAsk;

@@ -1,15 +1,17 @@
-
+import { useContext } from "react";
+import Context from "../../context/context";
 import CourseInsideBlock from "./CourseInsideBlock";
 
-const CourseInside = (props) => {
+const CourseInside = () => {
+  
+  const context = useContext(Context);
 
   let moduleList;
-  if (props.modules) {
-    moduleList = props.modules.items.map((i, index) => (
+  if (context.modules) {
+    moduleList = context.modules.items.map((i) => (
       <CourseInsideBlock
         key={i.id}
         title={i.title}
-        courseId={props.courseId}
         moduleId={i.id}
       />
     ));
@@ -17,15 +19,7 @@ const CourseInside = (props) => {
     moduleList = <div>Подождите, идет загрузка</div>;
   }
 
-
-
-  return (
-    <>
-      <div className="course__inside">
-        {moduleList}
-      </div>
-    </>
-  );
+  return <div className="course__inside">{moduleList}</div>;
 };
 
 export default CourseInside;

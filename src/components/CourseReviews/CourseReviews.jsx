@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { coursesAPI } from "../../api/api";
+import Context from "../../context/context";
 import CoureseReviewItem from "./CoureseReviewItem";
 
-const CourseReviews = (props) => {
-  let [reviewsList, setReviewsList] = useState([]);
+const CourseReviews = () => {
+  const context = useContext(Context);
+
+  const [reviewsList, setReviewsList] = useState([]);
   useEffect(() => {
-    coursesAPI.coursesReviews(props.courseId).then((reviews) => {
+    coursesAPI.coursesReviews(context.courseId).then((reviews) => {
       setReviewsList(reviews);
     });
-  }, []);
+  }, [context.courseId]);
 
   let list;
   if (reviewsList.items) {
     list = reviewsList.items.map((i, index) => (
       <CoureseReviewItem
         key={index}
-        length={reviewsList.items.length}
         img={i.img}
         rating={i.rating}
         name={i.name}
@@ -24,9 +26,7 @@ const CourseReviews = (props) => {
         text={i.text}
       />
     ));
-  }
 
-  if (reviewsList.items) {
     return (
       <div className="cource__reviews">
         {list}
@@ -45,18 +45,13 @@ const CourseReviews = (props) => {
       </div>
     );
   } else {
-    return (
-      <div className="cource__reviews">
-        {list}
-        <div className="cource__reviews-info">
-          <div className="cource__reviews-info-box">
-            {/* <div className="cource__reviews-info-item">
-              Записалось на курс <span>135947</span>
-            </div> */}
-          </div>
-        </div>
+    return <div className="cource__reviews">
+      <div className="your__courses">
+        <p className="your__courses-text">
+          Отзывов на этот курс пока нет
+        </p>
       </div>
-    );
+    </div>;
   }
 };
 

@@ -1,30 +1,28 @@
+import ContentBoxCource from "../common/ContentBoxCource";
 import CourseMaterialsLink from "./CourseMaterialsLink";
 
-const CourseMaterialsItem = (props) => {
-
+const CourseMaterialsItem = ({ title, materials }) => {
   let materialsList;
-  if (props.materials) {
-    materialsList=props.materials.map((i, index)=>(
-      <CourseMaterialsLink key={index} text={i.text} link={i.link}/>
-
+  if (materials) {
+    materialsList = materials.map((i, index) => (
+      <CourseMaterialsLink key={index} text={i.text} link={i.link} />
     ));
   }
-  if(props.materials){
-    return (
-    <div className="cource__content-box course__inside-box">
-      <div className="course__inside-box-title">{props.title}</div>
-      <div className="course__inside-inner">
-          {materialsList}
-      </div>
-    </div>
+
+  const materialsBox = materials && (
+    <div className="course__inside-inner">{materialsList}</div>
   );
-  }else{
-    return (
-      <div className="cource__content-box course__inside-box">
-      <div className="course__inside-box-title">{props.title}</div>
-    </div>
-    )
-  }
-  
+
+  return (
+    <ContentBoxCource
+      addedClass={"course__inside-box"}
+      child={
+        <>
+          <div className="course__inside-box-title">{title}</div>
+          {materialsBox}
+        </>
+      }
+    />
+  );
 };
 export default CourseMaterialsItem;

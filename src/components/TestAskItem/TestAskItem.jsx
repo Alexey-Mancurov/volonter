@@ -1,7 +1,7 @@
-const TestAskItem = (props) => {
+const TestAskItem = ({ index, title, action }) => {
   
   const localGetCheckedOption = () => {
-    props.getCheckedOption(props.index);
+    action(index);
   };
 
   return (
@@ -13,7 +13,7 @@ const TestAskItem = (props) => {
         onChange={localGetCheckedOption}
       ></input>
       <span className="test__ask-checkboxRadio"></span>
-      <span className="test__ask-textRadio">{props.title}</span>
+      <span className="test__ask-textRadio">{title}</span>
     </label>
   );
 };

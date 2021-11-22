@@ -1,51 +1,44 @@
-import { useEffect } from "react";
+import { useContext } from "react";
+import Context from "../../context/context";
 import Preloader from "../common/Preloader";
-import SidebarDataAboutTestDesctop from "./SidebarDataAboutTestDesctop";
+import AboutCourse from "./AboutCourse";
 import SidebarModuleBlock from "./SidebarModuleBlock/SidebarModuleBlock";
 import ProgressCourse from "./SidebarProgressCourse";
 
 const CourseSidebar = (props) => {
+  const context = useContext(Context);
 
-  useEffect(() => {
-    if (!props.courseId) {
-      props.setReservedCourseId(
-        JSON.parse(window.localStorage.getItem("courseId"))
-      );
+  if (context) {
+    let moduleList;
+
+    if (context.modules) {
+      moduleList = context.modules.items.map((i, index) => (
+        <SidebarModuleBlock
+          key={i.id}
+          title={i.title}
+          moduleId={i.id}
+          moduleIndex={index}
+          moduleMenuToggle={props.moduleMenuToggle}
+          lessonMenuToggle={props.lessonMenuToggle}
+        />
+      ));
     }
-  }, []);
 
-  let moduleList;
-  if (props.modules) {
-    moduleList = props.modules.items.map((i, index) => (
-      <SidebarModuleBlock
-        key={i.id}
-        title={i.title}
-        courseId={props.courseId}
-        moduleId={i.id}
-        moduleIndex={index}
-        getModuleId={props.getModuleId}
-        lessonId={props.lessonId}
-        getLessonId={props.getLessonId}
-        moduleMenuToggle={props.moduleMenuToggle}
-        lessonMenuToggle={props.lessonMenuToggle}
-      />
-    ));
+    if (context.modules && props.progressCoursePercent && context.course) {
+      return (
+        <div className="test__wrapper-sidebar">
+          <AboutCourse />
+
+          <ProgressCourse progressCourse={props.progressCoursePercent} />
+
+          {moduleList}
+        </div>
+      );
+    } else {
+      return <Preloader />;
+    }
   } else {
-    moduleList = <div>Подождите, идет загрузка</div>;
-  }
-
-  if (props.modules && props.progressCoursePercent && props.course) {
-    return (
-      <div className="test__wrapper-sidebar">
-        <SidebarDataAboutTestDesctop course={props.course} />
-
-        <ProgressCourse progressCourse={props.progressCoursePercent} />
-
-        {moduleList}
-      </div>
-    );
-  } else{
-    return <Preloader />
+    return <Preloader />;
   }
 };
 

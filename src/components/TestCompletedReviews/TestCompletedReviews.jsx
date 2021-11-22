@@ -1,12 +1,15 @@
-import { useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { coursesAPI } from "../../api/api";
 import check from "../../assets/check.svg";
+import Context from "../../context/context";
 import DarkStar from "../common/DarkStart";
-import GoldStar from "../common/GoldStart";
 
-const TestCompletedReviews = (props) => {
-  let [darkStarList, setDarkStarList] = useState([
+const TestCompletedReviews = () => {
+
+  const context = useContext(Context)
+
+  const [darkStarList, setDarkStarList] = useState([
     { rating: 1, isGold: false },
     { rating: 2, isGold: false },
     { rating: 3, isGold: false },
@@ -14,22 +17,23 @@ const TestCompletedReviews = (props) => {
     { rating: 5, isGold: false },
   ]);
 
+  const [starsNums, setStarsNum] = useState(0);
+
   const getDarkStarList = (index) => {
     setDarkStarList(
       darkStarList.map((i, ind) => {
         if (ind === index) {
           return { ...i, isGold: true };
         }
-        if (ind !== index) {
-          return i;
-        }
+
+        return i;
       })
     );
-    let nums = darkStarList.filter((gold) => gold.isGold === true);
+    const nums = darkStarList.filter((gold) => gold.isGold);
     setStarsNum(nums.length + 1);
   };
 
-  let [allStarsList, setAllStartList] = useState();
+  const [allStarsList, setAllStartList] = useState();
 
   useEffect(() => {
     if (darkStarList) {
@@ -37,9 +41,8 @@ const TestCompletedReviews = (props) => {
         darkStarList.map((i, index) => (
           <DarkStar
             key={index}
-            rating={i.rating}
             isGold={i.isGold}
-            getDarkStarList={getDarkStarList}
+            action={getDarkStarList}
             index={index}
           />
         ))
@@ -47,23 +50,25 @@ const TestCompletedReviews = (props) => {
     }
   }, [darkStarList]);
 
-  let [reviewValue, setReviewValue] = useState("");
+  const [reviewValue, setReviewValue] = useState("");
 
   const getReviewValue = (e) => {
     setReviewValue(e.target.value);
   };
 
-  let [starsNums, setStarsNum] = useState(0);
-
-  let [isTextareaDisabled, setIsTextareaDisabled] = useState(false);
+  const [isTextareaDisabled, setIsTextareaDisabled] = useState(false);
 
   const sendReview = () => {
     coursesAPI
-      .coursesReviewAdded(props.courseId, starsNums, reviewValue)
+      .coursesReviewAdded(context.courseId, starsNums, reviewValue)
       .then((response) => {
+        if (response.success) {
+          setReviewValue("Отзыв Принят");
+          setIsTextareaDisabled((isTextareaDisabled = true));
+        } else {
+          console.log("Ошибка");
+        }
       });
-    setReviewValue("Отзыв Принят");
-    setIsTextareaDisabled((isTextareaDisabled = true));
   };
 
   return (

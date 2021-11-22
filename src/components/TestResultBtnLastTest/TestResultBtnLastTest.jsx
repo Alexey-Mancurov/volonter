@@ -1,15 +1,17 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
-const TestResultBtnLastTest = (props)=>{
-    return <NavLink
-    to={{
-      pathname: "/test-completed",
-      state: { completedResponse: props.completedResponse },
-    }}
-    className="test__ask-red test__ask-btn"
-  >
-    Смотреть результаты
-  </NavLink>
-}
+const TestResultBtnLastTest = ({ completedResponse }) => {
+  return (
+    <NavLink
+      to={{
+        pathname: "/test-completed",
+        state: { completedResponse: completedResponse },
+      }}
+      className="test__ask-red test__ask-btn"
+    >
+      Смотреть результаты
+    </NavLink>
+  );
+};
 
-export default TestResultBtnLastTest
+export default TestResultBtnLastTest;

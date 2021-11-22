@@ -2,21 +2,26 @@ import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const TestAskActions = (props) => {
-  
-  let [isFullEndTest, setIsFullEndTest] = useState(false);
+const TestAskActions = ({
+  completedResponse,
+  currentAsk,
+  prevAsk,
+  askCount,
+  localNextAsk,
+}) => {
+  const [isFullEndTest, setIsFullEndTest] = useState(false);
 
   const getIsFellEndTest = () => {
     setIsFullEndTest(true);
   };
-  if (isFullEndTest) {
 
+  if (isFullEndTest) {
     return (
       <div className="test__ask-wrapper">
         <NavLink
           to={{
             pathname: "/TestChecking",
-            state: { completedResponse: props.completedResponse },
+            state: { completedResponse: completedResponse },
           }}
           className="test__ask-red test__ask-btn"
         >
@@ -24,38 +29,32 @@ const TestAskActions = (props) => {
         </NavLink>
       </div>
     );
-  } else {
-    return (
-      <div className="test__ask-wrapper">
-        {props.currentAsk !== 1 ? (
-          <div
-            className="test__ask-blueBorder test__ask-btn"
-            onClick={props.prevAsk}
-          >
-            Назад
-          </div>
-        ) : (
-          ""
-        )}
-        {props.currentAsk !== props.askCount &&
-        props.currentAsk < props.askCount ? (
-          <div
-            className="test__ask-red test__ask-btn"
-            onClick={props.localNextAsk}
-          >
-            Следующий вопрос
-          </div>
-        ) : (
-          <div
-            className="test__ask-red test__ask-btn"
-            onClick={()=>{props.localNextAsk(); getIsFellEndTest()}}
-          >
-            Завершить Тест
-          </div>
-        )}
-      </div>
-    );
   }
+
+  return (
+    <div className="test__ask-wrapper">
+      {currentAsk !== 1 && (
+        <div className="test__ask-blueBorder test__ask-btn" onClick={prevAsk}>
+          Назад
+        </div>
+      )}
+      {currentAsk !== askCount && currentAsk < askCount ? (
+        <div className="test__ask-red test__ask-btn" onClick={localNextAsk}>
+          Следующий вопрос
+        </div>
+      ) : (
+        <div
+          className="test__ask-red test__ask-btn"
+          onClick={() => {
+            localNextAsk();
+            getIsFellEndTest();
+          }}
+        >
+          Завершить Тест
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default TestAskActions;

@@ -1,12 +1,11 @@
+import ContentBoxCource from "../common/ContentBoxCource";
+import CourceTitle2 from "../common/CourceTitle2";
+
 const CourseDetailContent = (props) => {
   return (
     <>
-      <p className="cource__title-2">{props.title}</p>
-      <div className="cource__content-box">
-        <p>
-          {props.text}
-        </p>
-      </div>
+      <CourceTitle2 title={props.title} />
+      <ContentBoxCource child={<p>{props.text}</p>} />
     </>
   );
 };

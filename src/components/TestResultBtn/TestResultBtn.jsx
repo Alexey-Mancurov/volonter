@@ -1,52 +1,53 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { coursesAPI } from "../../api/api";
+import Context from "../../context/context";
 
-const TestResultBtn = (props) => {
+const TestResultBtn = ({ isLastLesson, isLastModule, completedResponse }) => {
+  const context = useContext(Context);
 
-  let [moduleList, setModuleList] = useState();
+  const [moduleList, setModuleList] = useState();
   useEffect(() => {
-    coursesAPI.modules(props.courseId).then((moduleList) => {
+    coursesAPI.modules(context.courseId).then((moduleList) => {
       setModuleList(moduleList);
     });
-  }, []);
+  }, [context.courseId]);
 
-  // Проверка, выполнены ли все уроки
-  let isAllLessonsChecked
-  if (moduleList) {
-    moduleList.items.map((i) =>
-      coursesAPI.lessons(props.courseId, i.id).then((lessonsList) => {
-        isAllLessonsChecked = lessonsList.items.every((i)=>i.check===true)
-      })
-    );
-  }
+  const [isAllLessonsChecked, setIsAllLessonsChecked] = useState(false);
 
-  if (props.isLastLesson && props.isLastModule && isAllLessonsChecked) {
-    return (
-      <NavLink
-        to={{
-          pathname: "/test-completed",
-          state: { completedResponse: props.completedResponse },
-        }}
-        className="test__ask-red test__ask-btn"
-      >
-        Смотреть результаты
-      </NavLink>
-    );
-  } else {
-    return (
-      <NavLink
-        to={{
-          pathname: "/test-checking",
-          state: { completedResponse: props.completedResponse },
-        }}
-        className="test__ask-red test__ask-btn"
-      >
-        Смотреть результаты
-      </NavLink>
-    );
-  }
+  useEffect(() => {
+    const getIsAllLessonsChecked = (() => {
+      if (moduleList) {
+        moduleList.items.map((i) =>
+          coursesAPI.lessons(context.courseId, i.id).then((lessonsList) => {
+            setIsAllLessonsChecked(
+              lessonsList.items.every((i) => i.check === true)
+            );
+          })
+        );
+      }
+    })();
+  }, [context.courseId, moduleList]);
+
+  const [lastStep, setLastStep] = useState();
+  useEffect(() => {
+    isLastLesson && isLastModule && isAllLessonsChecked
+      ? setLastStep("/test-completed")
+      : setLastStep("/test-checking");
+  }, [isLastLesson, isLastModule, isAllLessonsChecked]);
+
+  return (
+    <NavLink
+      to={{
+        pathname: { lastStep },
+        state: { completedResponse: completedResponse },
+      }}
+      className="test__ask-red test__ask-btn"
+    >
+      Смотреть результаты
+    </NavLink>
+  );
 };
 
 export default TestResultBtn;
