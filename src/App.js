@@ -43,6 +43,7 @@ function App() {
     const getCurrentCourse = () => {
       setCourseItem(store.coursesAPI.courseItem[courseId]);
     };
+    
     const getModulesList = () => {
       setModules(store.coursesAPI.modules[courseId])
       setProgressCoursePercent();

@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 import { coursesAPI } from "../../api/api";
 import icon1 from "../../assets/icon1.svg";
 import icon2 from "../../assets/icon2.svg";
@@ -20,10 +19,11 @@ const CourseDetailHeader = (props) => {
     });
   };
 
-  const [modulesLength, setModulesLength] = useState();
-  const [lessonsLength, setLessonsLength] = useState();
+  const [modulesLength, setModulesLength] = useState(0);
+  const [lessonsLength, setLessonsLength] = useState(0);
 
   useEffect(() => {
+    console.log(context.modules.items.length)
     setModulesLength(context.modules.items.length);
   }, [context.modules.items.length]);
 
