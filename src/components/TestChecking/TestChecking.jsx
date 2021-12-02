@@ -1,10 +1,10 @@
 import { useLocation } from "react-router";
 import TestCheckingAsks from "../TestCheckingAsks/TestCheckingAsk";
-import TestCheckingHeader from "../TestCheckingHeader/TestCheckingHeader";
-import TestCheckingBtns from "../TestCheckingAsks/TestCheckingBtns";
+import TestCheckingHeader from "./TestCheckingHeader";
+import TestCheckingBtns from "./TestCheckingBtns";
 import Preloader from "../common/Preloader";
 
-const TestChecking = ({ nextLesson }) => {
+const TestChecking = () => {
   const location = useLocation();
 
   if (location.state) {
@@ -21,11 +21,11 @@ const TestChecking = ({ nextLesson }) => {
           </span>
         </p>
         <TestCheckingAsks dataList={completedResponse.noCorrectAsks} />
-        <TestCheckingBtns nextLesson={nextLesson} />
+        <TestCheckingBtns />
       </div>
     );
-  } 
-  return <Preloader />
+  }
+  return <Preloader />;
 };
 
 export default TestChecking;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import editYoutubeLinkForIframe from "../../Controller/editYoutubeLinkForIframe";
+import editYoutubeLinkForIframe from "../../utils/editYoutubeLinkForIframe";
 import IframeYoutube from "../common/IframeYoutube";
 
 const CourseDetailPreview = (props) => {

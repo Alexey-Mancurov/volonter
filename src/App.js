@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
-import CourseInfo from "./components/CourseInfo/CourseInfo";
-import LessonTitle from "./components/LessonTitle/LessonTitle";
-import TestCompleted from "./components/TestCompleted/TestCompleted";
-import TestContainer from "./components/TestContainer/TestContainer";
-import CourseSidebar from "./components/CourseSidebar/CourseSidebar";
-import TestChecking from "./components/TestChecking/TestChecking";
-import Courses from "./components/Courses/Courses";
+import CourseTitle from "./components/common/CourseTitle";
+import Courses from "./components/Courses";
 import { useLocation } from "react-router";
 import Preloader from "./components/common/Preloader";
 import CourseDetail from "./components/CourseDetail/CourseDetail";
 import Context from "./context/context";
 import store from "./store/store";
+import TestContext from "./context/testContext";
+import SuspensePreloader from "./components/common/SuspensePreloader";
+import useIsLastItem from "./customHooks/useIsLastItem";
+import { next, prev } from "./utils/toggleLessons";
+const TestWrapper = React.lazy(() => import("./components/TestWrapper"));
 
 function App() {
   const location = useLocation();
@@ -35,7 +35,6 @@ function App() {
     const getReservedCourseId = () => {
       setCourseId(JSON.parse(window.localStorage.getItem("courseId")));
     };
-
     !courseId && pathname !== exactPathRoute && getReservedCourseId();
   }, [courseId, pathname]);
 
@@ -43,9 +42,9 @@ function App() {
     const getCurrentCourse = () => {
       setCourseItem(store.coursesAPI.courseItem[courseId]);
     };
-    
+
     const getModulesList = () => {
-      setModules(store.coursesAPI.modules[courseId])
+      setModules(store.coursesAPI.modules[courseId]);
       setProgressCoursePercent();
     };
 
@@ -72,7 +71,7 @@ function App() {
     const getLessonsList = (() => {
       modules &&
         idCurrentModule &&
-        setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule])
+        setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule]);
     })();
   }, [courseId, modules, idCurrentModule]);
 
@@ -86,35 +85,11 @@ function App() {
         try {
           setIdCurrentLesson(lessonsList.items[currentLessonIndex].id);
         } catch {
-          setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule])
+          setLessonsList(store.coursesAPI.lessons[courseId][idCurrentModule]);
         }
       }
     })();
   }, [courseId, idCurrentModule, lessonsList, currentLessonIndex]);
-
-  const [isLastModule, setIsLastModule] = useState(false);
-
-  const [isLastLesson, setIsLastLesson] = useState(false);
-
-  useEffect(() => {
-    const getIsLastModule = (() => {
-      modules &&
-      currentModuleIndex &&
-      modules.items.length === currentModuleIndex + 1
-        ? setIsLastModule(true)
-        : setIsLastModule(false);
-    })();
-  }, [currentModuleIndex, modules]);
-
-  useEffect(() => {
-    const getLastLesson = (() => {
-      lessonsList &&
-      currentLessonIndex &&
-      lessonsList.items.length === currentLessonIndex + 1
-        ? setIsLastLesson(true)
-        : setIsLastLesson(false);
-    })();
-  }, [currentLessonIndex, lessonsList]);
 
   const [progressCoursePercent, setProgressCoursePercent] = useState(0);
 
@@ -124,35 +99,33 @@ function App() {
         const progressPercent = Math.round(
           (course.course.checkAsks / course.course.totalAsks) * 100
         );
-        course && setProgressCoursePercent(progressPercent);
+        setProgressCoursePercent(progressPercent);
       })();
     }
   }, [course]);
 
+  const isLastModule = useIsLastItem(modules, currentModuleIndex);
+
+  const isLastLesson = useIsLastItem(lessonsList, currentLessonIndex);
+
   const nextLesson = () => {
-    if (lessonsList.items.length !== currentLessonIndex + 1) {
-      setCurrentLessonIndex(currentLessonIndex + 1);
-    } else {
-      if (modules.items.length !== currentModuleIndex + 1) {
-        setCurrentModuleIndex(currentModuleIndex + 1);
-        setCurrentLessonIndex(0);
-      } else {
-        alert("Это последний урок");
-      }
-    }
+    next(
+      lessonsList,
+      modules,
+      currentLessonIndex,
+      currentModuleIndex,
+      setCurrentLessonIndex,
+      setCurrentModuleIndex
+    );
   };
 
   const prevLesson = () => {
-    if (currentLessonIndex === 0 && currentModuleIndex === 0) {
-      setCurrentLessonIndex(0);
-      setCurrentModuleIndex(0);
-      alert("Это самый первый урок");
-    } else if (currentLessonIndex > 0) {
-      setCurrentLessonIndex(currentLessonIndex - 1);
-    } else if (currentLessonIndex === 0 && currentModuleIndex !== 0) {
-      setCurrentModuleIndex(currentModuleIndex - 1);
-      setCurrentLessonIndex(0);
-    }
+    prev(
+      currentLessonIndex,
+      currentModuleIndex,
+      setCurrentLessonIndex,
+      setCurrentModuleIndex
+    );
   };
 
   const moduleMenuToggle = (index) => {
@@ -170,6 +143,20 @@ function App() {
     getCourseId,
   };
 
+  const testContextValue = {
+    currentModuleIndex,
+    currentLessonIndex,
+    moduleMenuToggle,
+    lessonMenuToggle,
+    idCurrentLesson,
+    idCurrentModule,
+    progressCoursePercent,
+    nextLesson,
+    prevLesson,
+    isLastLesson,
+    isLastModule,
+  };
+
   return (
     <Context.Provider value={contextValue}>
       <div className="App">
@@ -177,47 +164,19 @@ function App() {
           {!course && pathname !== exactPathRoute && <Preloader />}
           {course && pathname !== exactPathRoute ? (
             <>
-              <LessonTitle title={course.course.title} />
+              <CourseTitle title={course.course.title} />
               {pathname === "/courseDetail" ? (
-                <Route path={"/courseDetail"}>
-                  <CourseDetail />
-                </Route>
+                <Route path={"/courseDetail"} children={<CourseDetail />} />
               ) : (
-                <div className="test__wrapper">
-                  <CourseSidebar
-                    progressCoursePercent={progressCoursePercent}
-                    lessonId={idCurrentLesson}
-                    moduleMenuToggle={moduleMenuToggle}
-                    lessonMenuToggle={lessonMenuToggle}
+                <TestContext.Provider value={testContextValue}>
+                  <SuspensePreloader
+                    child={<TestWrapper title={course.course.title} />}
                   />
-                  <div className="test__wrapper-body">
-                    <Route path={"/lesson"}>
-                      <CourseInfo
-                        nextLesson={nextLesson}
-                        prevLesson={prevLesson}
-                        isLastLesson={isLastLesson}
-                        isLastModule={isLastModule}
-                        idCurrentLesson={idCurrentLesson}
-                        idCurrentModule={idCurrentModule}
-                      />
-                    </Route>
-                    <Route path={"/test"}>
-                      <TestContainer />
-                    </Route>
-                    <Route path={"/test-completed"}>
-                      <TestCompleted title={course.course.title} />
-                    </Route>
-                    <Route path={"/test-checking"}>
-                      <TestChecking nextLesson={nextLesson} />
-                    </Route>
-                  </div>
-                </div>
+                </TestContext.Provider>
               )}
             </>
           ) : (
-            <Route exact path={exactPathRoute}>
-              <Courses />
-            </Route>
+            <Route exact path={exactPathRoute} children={<Courses />} />
           )}
         </main>
       </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TestsAPI } from "../../api/api";
-import TestAskList from "../TestAskList/TestAskList";
-import TestResultBtn from "../TestResultBtn/TestResultBtn";
+import TestAsks from "../TestAsks";
+import TestResultBtn from "./TestResultBtn";
 import { useLocation } from "react-router";
 import Preloader from "../common/Preloader";
 import store from "../../store/store";
@@ -63,7 +63,7 @@ const TestContainer = () => {
   let askList;
   testData.askList
     ? (askList = testData.askList.map((i) => (
-        <TestAskList
+        <TestAsks
           id={i.id}
           key={i.id}
           ask={i.ask}

@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import Context from "../../context/context";
+import TestContext from "../../context/testContext";
 import Preloader from "../common/Preloader";
 import AboutCourse from "./AboutCourse";
 import SidebarModuleBlock from "./SidebarModuleBlock/SidebarModuleBlock";
 import ProgressCourse from "./SidebarProgressCourse";
 
-const CourseSidebar = (props) => {
+const CourseSidebar = () => {
   const context = useContext(Context);
 
   if (context) {
@@ -18,19 +19,15 @@ const CourseSidebar = (props) => {
           title={i.title}
           moduleId={i.id}
           moduleIndex={index}
-          moduleMenuToggle={props.moduleMenuToggle}
-          lessonMenuToggle={props.lessonMenuToggle}
         />
       ));
     }
 
-    if (context.modules && props.progressCoursePercent && context.course) {
+    if (context.modules && context.course) {
       return (
         <div className="test__wrapper-sidebar">
           <AboutCourse />
-
-          <ProgressCourse progressCourse={props.progressCoursePercent} />
-
+          <ProgressCourse />
           {moduleList}
         </div>
       );

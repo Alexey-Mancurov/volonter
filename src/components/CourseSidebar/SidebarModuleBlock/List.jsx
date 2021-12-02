@@ -1,7 +1,7 @@
 import Title from "./Title";
 
-const List = ({lessonsList, moduleIndex, moduleMenuToggle, lessonMenuToggle}) => {
-
+const List = ({lessonsList, moduleIndex}) => {
+  console.log('List')
   let lessonList;
   if (lessonsList.items) {
     lessonList = lessonsList.items.map((i, index) => (
@@ -11,8 +11,6 @@ const List = ({lessonsList, moduleIndex, moduleMenuToggle, lessonMenuToggle}) =>
         title={i.title}
         check={i.check}
         indexModule={moduleIndex}
-        moduleMenuToggle={moduleMenuToggle}
-        lessonMenuToggle={lessonMenuToggle}
       />
     ));
     return <div className="test__sidebar-block-inner">{lessonList}</div>;

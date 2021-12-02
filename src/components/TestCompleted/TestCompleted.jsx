@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import TestCompletedInfo from "../TestCompletedInfo/TestCompletedInfo";
-import TestCompletedReviews from "../TestCompletedReviews/TestCompletedReviews";
+import Info from "./Info";
+import Reviews from "./Reviews";
 import { useLocation } from "react-router";
 
 const TestCompleted = (props) => {
@@ -11,12 +11,12 @@ const TestCompleted = (props) => {
   return (
     <>
       <div className="test__container-wrapper test__wrapper-completed">
-        <TestCompletedInfo
+        <Info
           sertificate={completedResponse.sertificate}
           successAsks={completedResponse.successAsks}
           totalAsk={completedResponse.totalAsk}
         />
-        <TestCompletedReviews />
+        <Reviews />
       </div>
       <div className="test__content">
         <div className="test__content-title">

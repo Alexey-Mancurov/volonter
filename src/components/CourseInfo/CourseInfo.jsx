@@ -3,25 +3,28 @@ import CourceInfoContent from "./CourceInfoContent";
 import CourseInfoActions from "./CourseInfoActions";
 import Preloader from "../common/Preloader";
 import Context from "../../context/context";
-import editYoutubeLinkForIframe from "../../Controller/editYoutubeLinkForIframe";
+import editYoutubeLinkForIframe from "../../utils/editYoutubeLinkForIframe";
 import IframeYoutube from "../common/IframeYoutube";
 import store from "../../store/store";
+import TestContext from "../../context/testContext";
 
 const CourseInfo = (props) => {
   const context = useContext(Context);
+  const testContext = useContext(TestContext)
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [lessonData, setLessonData] = useState();
+
   useEffect(() => {
-    if (props.idCurrentLesson) {
+    if (testContext.idCurrentLesson) {
       setIsLoading(true);
       const getLessonData = (() => {
-        setLessonData(store.coursesAPI.lessonItem[context.courseId][props.idCurrentModule][props.idCurrentLesson])
+        setLessonData(store.coursesAPI.lessonItem[context.courseId][testContext.idCurrentModule][testContext.idCurrentLesson])
         setIsLoading(false)
       })();
     }
-  }, [props.idCurrentLesson, context.courseId, props.idCurrentModule]);
+  }, [testContext.idCurrentLesson, context.courseId, testContext.idCurrentModule]);
 
   const [linkVideoForIframe, setLinkVideoForIframe] = useState();
   useEffect(() => {
@@ -31,8 +34,6 @@ const CourseInfo = (props) => {
         setLinkVideoForIframe
       );
   }, [lessonData]);
-
-  console.log(lessonData);
 
   if (lessonData) {
     if (!isLoading) {
@@ -53,11 +54,6 @@ const CourseInfo = (props) => {
           <CourseInfoActions
             lesson={lessonData}
             isChecked={lessonData.item.check}
-            nextLesson={props.nextLesson}
-            prevLesson={props.prevLesson}
-            getActiveTest={props.getActiveTest}
-            isLastLesson={props.isLastLesson}
-            isLastModule={props.isLastModule}
           />
         </>
       );

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import check from "../../../assets/check.svg";
+import TestContext from "../../../context/testContext";
 
 const Title = ({
   indexLesson,
   title,
   isChecked,
   indexModule,
-  moduleMenuToggle,
-  lessonMenuToggle,
 }) => {
+
+  const testContext = useContext(TestContext)
   
   const [lessonIndex, setLessonIndex] = useState();
   useEffect(() => {
@@ -33,8 +34,8 @@ const Title = ({
         }}
         className="test__sidebar-text"
         onClick={() => {
-          moduleMenuToggle(moduleIndex);
-          lessonMenuToggle(lessonIndex);
+          testContext.moduleMenuToggle(moduleIndex);
+          testContext.lessonMenuToggle(lessonIndex);
         }}
       >
         {title}

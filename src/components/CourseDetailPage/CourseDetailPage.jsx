@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
 import CourseDetailExperts from "../CourseDetailExperts/CourseDetailExperts";
 import CourseDetailContent from "../CourseDetailInfo/CourseDetailContent";
@@ -8,10 +8,7 @@ import CourseDetailPreview from "../CourseDetailPreview/CourseDetailPreview";
 
 const CourseDetailPage = (props) => {
 
-  const [courses, setCourses] = useState();
-  useEffect(() => {
-    setCourses(store.coursesAPI.courses)
-  }, []);
+  const courses = useRequestData([store.coursesAPI.courses], [])
 
   let contentList;
 

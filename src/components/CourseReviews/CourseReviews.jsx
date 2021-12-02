@@ -1,19 +1,19 @@
-import { useContext, useState } from "react";
-import { useEffect } from "react";
+import { useContext } from "react";
 import Context from "../../context/context";
+import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
 import CoureseReviewItem from "./CoureseReviewItem";
 
 const CourseReviews = () => {
   const context = useContext(Context);
 
-  const [reviewsList, setReviewsList] = useState([]);
-  useEffect(() => {
-    setReviewsList(store.coursesAPI.coursesReviews[context.courseId])
-  }, [context.courseId]);
+  const reviewsList = useRequestData(
+    [store.coursesAPI.coursesReviews[context.courseId]],
+    [context.courseId]
+  );
 
   let list;
-  if (reviewsList.items) {
+  if (reviewsList) {
     list = reviewsList.items.map((i, index) => (
       <CoureseReviewItem
         key={index}
@@ -43,13 +43,13 @@ const CourseReviews = () => {
       </div>
     );
   } else {
-    return <div className="cource__reviews">
-      <div className="your__courses">
-        <p className="your__courses-text">
-          Отзывов на этот курс пока нет
-        </p>
+    return (
+      <div className="cource__reviews">
+        <div className="your__courses">
+          <p className="your__courses-text">Отзывов на этот курс пока нет</p>
+        </div>
       </div>
-    </div>;
+    );
   }
 };
 

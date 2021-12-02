@@ -1,17 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Context from "../../context/context";
+import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
 import CourceTitle2 from "../common/CourceTitle2";
 import CourseMaterialsItem from "./CourseMaterialsItem";
 
-const CourseMaterialsBlock = ({title, moduleId}) => {
+const CourseMaterialsBlock = ({ title, moduleId }) => {
+  const context = useContext(Context);
 
-  const context = useContext(Context)
-
-  const [lessonsList, setLessonsList] = useState();
-  useEffect(() => {
-    setLessonsList(store.coursesAPI.lessons[context.courseId][moduleId])
-  }, [context.courseId, moduleId]);
+  const lessonsList = useRequestData(
+    [store.coursesAPI.lessons[context.courseId][moduleId]],
+    [context.courseId, moduleId]
+  );
 
   let list;
   if (lessonsList) {

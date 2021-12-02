@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import TestContext from "../../context/testContext";
 import Preloader from "../common/Preloader";
 
-const ProgressCourse = ({ progressCourse }) => {
+const ProgressCourse = () => {
+  const testContext = useContext(TestContext);
+  const progressCourse = testContext.progressCoursePercent;
+
   if (Number.isInteger(progressCourse)) {
     const widthActiveLine = {
       width: `${progressCourse}%`,
