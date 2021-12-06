@@ -8,23 +8,44 @@ import IframeYoutube from "../common/IframeYoutube";
 import store from "../../store/store";
 import TestContext from "../../context/testContext";
 
-const CourseInfo = (props) => {
+const CourseInfo = () => {
   const context = useContext(Context);
-  const testContext = useContext(TestContext)
+  const testContext = useContext(TestContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [lessonData, setLessonData] = useState();
+  type TLessonData = {
+    success: boolean;
+    item: {
+      id: number | string;
+      title: string;
+      check: boolean;
+      linkVideo: string;
+      description: string;
+      info: Array<string>;
+      idListTests: Array<string>;
+    };
+  };
+  const [lessonData, setLessonData] = useState<TLessonData>();
 
   useEffect(() => {
     if (testContext.idCurrentLesson) {
       setIsLoading(true);
       const getLessonData = (() => {
-        setLessonData(store.coursesAPI.lessonItem[context.courseId][testContext.idCurrentModule][testContext.idCurrentLesson])
-        setIsLoading(false)
+        setLessonData(
+          // @ts-ignore
+          store.coursesAPI.lessonItem[context.courseId][
+            testContext.idCurrentModule
+          ][testContext.idCurrentLesson]
+        );
+        setIsLoading(false);
       })();
     }
-  }, [testContext.idCurrentLesson, context.courseId, testContext.idCurrentModule]);
+  }, [
+    testContext.idCurrentLesson,
+    context.courseId,
+    testContext.idCurrentModule,
+  ]);
 
   const [linkVideoForIframe, setLinkVideoForIframe] = useState();
   useEffect(() => {
@@ -52,7 +73,7 @@ const CourseInfo = (props) => {
             />
           </div>
           <CourseInfoActions
-            lesson={lessonData}
+            idListTests={lessonData.item.idListTests}
             isChecked={lessonData.item.check}
           />
         </>

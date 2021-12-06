@@ -2,16 +2,18 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import TestContext from "../../context/testContext";
 
-const CourseInfoActions = ({
-  lesson,
-  isChecked,
-}) => {
-  const testContext = useContext(TestContext);
+type TProps = {
+  idListTests: Array<string>;
 
+  isChecked: boolean;
+};
+
+const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
+  const testContext = useContext(TestContext);
   let testList;
-  if (lesson.item) {
-    console.log(lesson)
-    testList = lesson.item.idListTests.map((i, index) => (
+  if (idListTests) {
+    //@ts-ignore
+    testList = idListTests.map((i, index) => (
       <NavLink
         key={index}
         to={{

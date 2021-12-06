@@ -2,7 +2,21 @@ import GoldStar from "../common/GoldStart";
 import DarkStar from "../common/DarkStart";
 import ContentBoxCource from "../common/ContentBoxCource";
 
-const CoureseReviewItem = ({name, date, text, rating, img}) => {
+type TProps = {
+  name: string;
+  date: string;
+  text: string;
+  rating: any|string | number;
+  img: string;
+};
+
+const CoureseReviewItem: React.FC<TProps> = ({
+  name,
+  date,
+  text,
+  rating,
+  img,
+}) => {
   const goldList = [];
   const darkList = [];
 

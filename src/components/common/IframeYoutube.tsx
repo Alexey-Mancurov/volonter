@@ -1,5 +1,5 @@
 type PropsType = {
-  link: string;
+  link: string | undefined;
   addedClass: string;
 };
 

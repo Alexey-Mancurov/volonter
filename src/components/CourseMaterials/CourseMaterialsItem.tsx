@@ -1,7 +1,12 @@
 import ContentBoxCource from "../common/ContentBoxCource";
 import CourseMaterialsLink from "./CourseMaterialsLink";
 
-const CourseMaterialsItem = ({ title, materials }) => {
+type TProps = {
+  title: string;
+  materials: Array<{ text: string; link: string }>;
+};
+
+const CourseMaterialsItem: React.FC<TProps> = ({ title, materials }) => {
   let materialsList;
   if (materials) {
     materialsList = materials.map((i, index) => (

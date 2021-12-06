@@ -1,18 +1,35 @@
-export type CoursesType = {
+export type GenericBlockType<A> = {
   success: boolean;
-  items: Array<{
-    id: number;
-    title: string;
-    description: string;
-    tier: boolean;
-    isFavorite: boolean;
-    isCompleted: boolean;
-    author: {
-      img: string;
-      name: string;
-    };
-  }>;
+  items: Array<A>;
 };
+
+export type CoursesType = GenericBlockType<{
+  id: number | string;
+  title: string;
+  description: string;
+  tier: boolean;
+  isFavorite: boolean;
+  isCompleted: boolean;
+  author: {
+    img: string;
+    name: string;
+  };
+}>;
+
+export type ModulesType = GenericBlockType<{
+  id: number | string;
+  title: string;
+}>;
+
+export type LessonsType = GenericBlockType<{
+  id: number | string;
+  title: string;
+  check: boolean;
+  materials?: Array<{
+    text: string;
+    link: string;
+  }>;
+}>;
 
 export type CoursesReviewsType = {
   num: number;
@@ -60,27 +77,6 @@ export type CourseItemType = {
     totalLessons: number;
     checkLessons: number;
   };
-};
-
-export type ModulesType = {
-  success: boolean;
-  items: {
-    id: number | string;
-    title: string;
-  };
-};
-
-export type LessonsType = {
-  success: boolean;
-  items: Array<{
-    id: number | string;
-    title: string;
-    check: boolean;
-    materials?: Array<{
-      text: string;
-      link: string;
-    }>;
-  }>;
 };
 
 export type LessonItemType = {

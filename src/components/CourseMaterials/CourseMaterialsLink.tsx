@@ -1,4 +1,9 @@
-const CourseMaterialsLink = ({text, link}) => {
+type TProps = {
+  text: string;
+  link: string;
+};
+
+const CourseMaterialsLink:React.FC<TProps> = ({ text, link }) => {
   return (
     <>
       <div className="course__inside-item">

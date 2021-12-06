@@ -2,7 +2,7 @@ import React from "react";
 
 type PropsType = {
   isFavorite: boolean;
-  id: number;
+  id: number | string;
   action: Function;
 };
 const FavoriteToggle: React.FC<PropsType> = ({ isFavorite, id, action }) => {

@@ -4,9 +4,10 @@
 
 import { useEffect, useState } from "react";
 
-const useRequestData = (params, listening) => {
+const useRequestData = (params:Array<any>, listening:Array<any>) => {
   const [data, setData] = useState();
   useEffect(() => {
+    // @ts-ignore
     setData(...params);
   }, listening);
 

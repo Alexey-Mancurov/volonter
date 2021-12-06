@@ -1,8 +1,8 @@
 import start_dark from "../../assets/star-dark.svg";
 type PropsType = {
-  index: number;
-  isGold: boolean;
-  action: (index: number) => void;
+  index?: number;
+  isGold?: boolean;
+  action?: (index: number|undefined) => void;
 };
 const DarkStar: React.FC<PropsType> = ({ index, isGold, action }) => {
   if (action) {

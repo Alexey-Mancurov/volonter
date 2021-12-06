@@ -3,32 +3,50 @@ import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import FavoriteToggle from "../common/FavoriteToggle";
 
-const CourseItem = (props) => {
+type TProps = {
+  id: number | string;
+  tier: any;
+  title: string;
+  description: string;
+  isFavorite: boolean;
+  favoriteToggle: any;
+  author: { img: string; name: string };
+};
+
+const CourseItem:React.FC<TProps> = ({
+  id,
+  tier,
+  title,
+  description,
+  isFavorite,
+  favoriteToggle,
+  author,
+}) => {
   const context = useContext(Context);
 
   return (
     <div className="courses__list-item">
       <div className="courses__item-wrapper">
         <div className="courses__item-container">
-          {props.tier ? (
+          {tier ? (
             <p className="courses__item-level">Продвинутый</p>
           ) : (
             <p className="courses__item-level">Базовый</p>
           )}
-          <div className="courses__item-title">{props.title}</div>
+          <div className="courses__item-title">{title}</div>
         </div>
         <FavoriteToggle
-          isFavorite={props.isFavorite}
-          id={props.id}
-          action={props.favoriteToggle}
+          isFavorite={isFavorite}
+          id={id}
+          action={favoriteToggle}
         />
       </div>
-      <p className="courses__item-text">{props.description}</p>
+      <p className="courses__item-text">{description}</p>
       <div className="courses__item-footer">
         <div className="courses__item-footer-inner">
-          <img src={props.author.img} alt="" className="courses__item-img" />
+          <img src={author.img} alt="" className="courses__item-img" />
           <div className="courses__item-footer-box">
-            <p className="courses__item-name">{props.author.name}</p>
+            <p className="courses__item-name">{author.name}</p>
             <p className="courses__item-status">Автор курса</p>
           </div>
         </div>
@@ -36,11 +54,11 @@ const CourseItem = (props) => {
           to={{
             pathname: "/courseDetail",
             state: {
-              courseId: props.id,
+              courseId: id,
             },
           }}
           className="test__ask-blue courses__item-btn"
-          onClick={() => context.getCourseId(props.id)}
+          onClick={() => context.getCourseId(id)}
         >
           Пройти курс
         </NavLink>

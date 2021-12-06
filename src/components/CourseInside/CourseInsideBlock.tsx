@@ -2,17 +2,27 @@ import { useContext } from "react";
 import Context from "../../context/context";
 import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
+import { TLessonItems, TLessonList } from "../../types/types";
 import ContentBoxCource from "../common/ContentBoxCource";
 import CourceTitle2 from "../common/CourceTitle2";
 
-const CourseInsideBlock = ({title, moduleId}) => {
+type TProps = {
+  title: string;
+  moduleId: string | number;
+};
 
-  const context = useContext(Context)
+const CourseInsideBlock:React.FC<TProps> = ({ title, moduleId }) => {
+  const context = useContext(Context);
 
-  const lessonsList = useRequestData([store.coursesAPI.lessons[context.courseId][moduleId]], [context.courseId, moduleId])
+  const lessonsList:TLessonList = useRequestData(
+    // @ts-ignore
+    [store.coursesAPI.lessons[context.courseId][moduleId]],
+    [context.courseId, moduleId]
+  );
 
-  let list;
+  let list:TLessonItems; 
   if (lessonsList) {
+    // @ts-ignore
     list = lessonsList.items.map((i) => (
       <ContentBoxCource
         key={i.id}
@@ -21,6 +31,7 @@ const CourseInsideBlock = ({title, moduleId}) => {
       />
     ));
   }
+  console.log(lessonsList)
   return (
     <>
       <CourceTitle2 title={title} />

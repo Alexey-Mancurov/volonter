@@ -1,13 +1,25 @@
 import paper from "../../assets/paper.svg";
 import ListContent from "../common/ListContent/ListContent";
 
-const CourceInfoContent = ({ title, description, info, linkVideo }) => {
+type TProps = {
+  title: string;
+  description: string;
+  info: Array<string>;
+  linkVideo: string;
+};
 
+const CourceInfoContent: React.FC<TProps> = ({
+  title,
+  description,
+  info,
+  linkVideo,
+}) => {
+  console.log(info);
   return (
     <div className="test__info-content">
       <div className="test__info-content-box">
         {description && <p className="test__info-briefly">{description}</p>}
-        <ListContent list={info}/>
+        <ListContent list={info} />
       </div>
       <div className="test__info-data-box">
         <p className="test__info-subtitle">Желаем интересного просмотра</p>

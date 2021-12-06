@@ -2,18 +2,32 @@ import { useContext } from "react";
 import Context from "../../context/context";
 import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
+import { TContext } from "../../types/types";
 import CoureseReviewItem from "./CoureseReviewItem";
 
 const CourseReviews = () => {
-  const context = useContext(Context);
+  const context: TContext = useContext(Context);
 
-  const reviewsList = useRequestData(
+  type TReviewsList = {
+    items: Array<{
+      date: string;
+      img: string;
+      name: string;
+      rating: string;
+      text: string;
+    }>
+    num: number;
+  };
+  const reviewsList: TReviewsList | undefined = useRequestData(
+    // @ts-ignore
     [store.coursesAPI.coursesReviews[context.courseId]],
     [context.courseId]
   );
+  console.log(reviewsList);
 
-  let list;
+  let list: Array<any>;
   if (reviewsList) {
+    // @ts-ignore
     list = reviewsList.items.map((i, index) => (
       <CoureseReviewItem
         key={index}
@@ -32,10 +46,12 @@ const CourseReviews = () => {
           <div className="cource__reviews-info-box">
             <div className="cource__reviews-info-item">
               <div className="cource__reviews-info-item">
+                {/* @ts-ignore */}
                 Всего отзывов <span>{reviewsList.items.length}</span>
               </div>
             </div>
             <div className="cource__reviews-info-item">
+                {/* @ts-ignore */}
               Записалось на курс <span>{reviewsList.num}</span>
             </div>
           </div>

@@ -9,8 +9,6 @@ const instanse = axios.create({
   },
 });
 
-// "build": "CI=false && react-scripts build",
-
 export const coursesAPI = {
   courses: () => {
     return instanse.get<CoursesType>(`courses/`).then((response) => {

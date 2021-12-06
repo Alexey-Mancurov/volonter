@@ -2,20 +2,26 @@ import { useEffect, useState } from "react";
 import editYoutubeLinkForIframe from "../../utils/editYoutubeLinkForIframe";
 import IframeYoutube from "../common/IframeYoutube";
 
-const CourseDetailPreview = (props) => {
+type TProps = {
+  linkVideo: string;
+  whatGive: Array<string>;
+  howNeed: string;
+};
+const CourseDetailPreview: React.FC<TProps> = ({
+  linkVideo,
+  whatGive,
+  howNeed,
+}) => {
+  console.log(howNeed);
   const [linkVideoForIframe, setLinkVideoForIframe] = useState();
 
   useEffect(() => {
-    props.courseDetailData &&
-      editYoutubeLinkForIframe(
-        props.courseDetailData.linkVideo,
-        setLinkVideoForIframe
-      );
-  }, [props.courseDetailData]);
+    linkVideo && editYoutubeLinkForIframe(linkVideo, setLinkVideoForIframe);
+  }, [linkVideo]);
 
   let previewList;
-  if (props.courseDetailData.whatGive) {
-    previewList = props.courseDetailData.whatGive.map((i, index) => (
+  if (whatGive) {
+    previewList = whatGive.map((i, index) => (
       <li key={index} className="course__list-item course__preview-item">
         {i}
       </li>
@@ -37,7 +43,7 @@ const CourseDetailPreview = (props) => {
           {previewList}
         </ul>
         <p className="course__title-4">Для кого подходит курс</p>
-        <p className="course__text">{props.courseDetailData.howNeed}</p>
+        <p className="course__text">{howNeed}</p>
       </div>
     </div>
   );

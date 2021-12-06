@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import Context from "../../context/context";
+import { TContext, TModulesItems } from "../../types/types";
 import CourseMaterialsBlock from "./CourseMaterialsBlock";
 
 const CourseDetailMaterials = () => {
 
-  const context = useContext(Context)
+  const context:TContext = useContext(Context)
 
-  let moduleList;
+  let moduleList:TModulesItems;
   if (context.modules) {
+    // @ts-ignore
     moduleList = context.modules.items.map((i) => (
       <CourseMaterialsBlock
         key={i.id}
