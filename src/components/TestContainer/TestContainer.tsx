@@ -8,24 +8,37 @@ import store from "../../store/store";
 
 const TestContainer = () => {
   const location = useLocation();
+  // @ts-ignore
   const idTest = location.state.idTest;
 
   const [currentAsk, setCurrentAsk] = useState(1);
 
   const [isTestEnd, setIsTestEnd] = useState(false);
 
-  const [asksList, setAskList] = useState([]);
+  type TAsksList = Array<{
+    askId: number | string;
+    answerIndex: number | null;
+  }>;
+  const [asksList, setAskList] = useState<TAsksList>([]);
 
   const [askCount, setAskCount] = useState(1);
+  type TAnswerList = Array<{
+    asksList: {
+      askId: number | string;
+      answerIndex: number | null;
+    };
 
-  const [answerData, setAnswerData] = useState([]);
+    id?: number | string;
+  }>;
+
+  const [answerData, setAnswerData] = useState<Array<TAnswerList>>([]);
 
   const prevAsk = () => {
     setCurrentAsk(currentAsk - 1);
     setAskList((prev) => prev.splice(-1, 1));
   };
 
-  const nextAsk = (id, checkedOption) => {
+  const nextAsk = (id: number | string, checkedOption: number | null): void => {
     setCurrentAsk(currentAsk + 1);
     setAskList([...asksList, { askId: id, answerIndex: checkedOption }]);
   };
@@ -33,28 +46,43 @@ const TestContainer = () => {
   useEffect(() => {
     const getAcswerData = (() => {
       if (currentAsk === askCount + 1 && currentAsk !== 1) {
+        // @ts-ignore
         setAnswerData([...answerData, { asksList: asksList }]);
+        // @ts-ignore
         setAnswerData((answerData) => [...answerData, { id: testData.id }]);
         setIsTestEnd(true);
       }
     })();
   }, [asksList]);
 
-  const [testData, setTestData] = useState([]);
+  type TTestData = {
+    askList:
+      | Array<{
+          id: number | string;
+          ask: string;
+          options: Array<string>;
+        }>
+      ;
+  };
+
+  // @ts-ignore
+  const [testData, setTestData] = useState<TTestData>([]);
 
   const [completedResponse, setCompletedResponse] = useState();
 
   useEffect(() => {
     const getTestData = (() => {
-      setTestData(store.TestsAPI.testItem[idTest])
-      setAskCount(store.TestsAPI.testItem[idTest].askList.length)
+      // @ts-ignore
+      setTestData(store.TestsAPI.testItem[idTest]);
+      // @ts-ignore
+      setAskCount(store.TestsAPI.testItem[idTest].askList.length);
     })();
   }, [idTest]);
 
   useEffect(() => {
     const sendAnswerData = (() => {
       isTestEnd &&
-        TestsAPI.testCompleted(answerData).then((completedResponse) => {
+        TestsAPI.testCompleted(answerData).then((completedResponse: any) => {
           setCompletedResponse(completedResponse);
         });
     })();
@@ -63,6 +91,7 @@ const TestContainer = () => {
   let askList;
   testData.askList
     ? (askList = testData.askList.map((i) => (
+        // @ts-ignore
         <TestAsks
           id={i.id}
           key={i.id}
@@ -82,7 +111,9 @@ const TestContainer = () => {
       {askList}
       {currentAsk > askCount && completedResponse && (
         <TestResultBtn
+          // @ts-ignore
           isLastLesson={location.state.isLastLesson}
+          // @ts-ignore
           isLastModule={location.state.isLastModule}
           completedResponse={completedResponse}
         />

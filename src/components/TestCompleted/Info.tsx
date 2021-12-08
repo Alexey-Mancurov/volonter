@@ -1,4 +1,10 @@
-const Info = ({ sertificate, successAsks, totalAsk }) => {
+type TProps = {
+  sertificate: string;
+  successAsks: number | string;
+  totalAsk: number | string;
+};
+
+const Info:React.FC<TProps> = ({ sertificate, successAsks, totalAsk }) => {
   return (
     <div className="test__completed">
       <div className="test__completed-wrapper">

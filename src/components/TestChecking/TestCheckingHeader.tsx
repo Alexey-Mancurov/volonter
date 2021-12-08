@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 
-const TestCheckingHeader = ({ successTest }) => {
+type TProps = {
+  successTest: boolean;
+};
+
+const TestCheckingHeader:React.FC<TProps> = ({ successTest }) => {
   return (
     <div className="test__container-wrapper">
       {successTest ? (

@@ -1,22 +1,11 @@
 import TestCheckingTitle from "./TestCheckingTitle";
 
-const TestCheckingAsks = ({dataList}) => {
-  let answersListChecking;
-  if (dataList) {
-    answersListChecking = dataList.map((i) => (
-      <TestCheckingdAskItem
-        num={i.id}
-        key={i.id}
-        ask={i.ask}
-        options={i.options}
-      />
-    ));
-  }
-
-  return <div>{answersListChecking}</div>;
+type TProps = {
+  options: Array<any>;
+  num: number | string;
+  ask: string;
 };
-
-const TestCheckingdAskItem = ({options, num, ask}) => {
+const TestCheckingdAskItem: React.FC<TProps> = ({ options, num, ask }) => {
   const allAnswers = options;
   const answerCorrect = allAnswers[allAnswers.length - 2];
   const answerVolont = allAnswers[allAnswers.length - 1];
@@ -36,4 +25,4 @@ const TestCheckingdAskItem = ({options, num, ask}) => {
   );
 };
 
-export default TestCheckingAsks;
+export default TestCheckingdAskItem;

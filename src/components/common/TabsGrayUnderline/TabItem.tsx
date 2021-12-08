@@ -1,9 +1,9 @@
 type PropsType = {
   index: number;
-  isIndex: boolean;
+  isIndex?: boolean;
   text: string;
   data: string;
-  currentActive: number;
+  currentActive: number |null | undefined;
   setActive: Function;
   action: Function;
 };

@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const useIsLastItem = (list, index) => {
+const useIsLastItem = (
+  list: {
+    items: Array<any>;
+  },
+  index: number
+): boolean => {
   const [isLastItem, setIsLastItem] = useState(false);
 
   useEffect(() => {

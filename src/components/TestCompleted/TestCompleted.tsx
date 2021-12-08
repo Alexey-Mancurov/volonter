@@ -3,9 +3,14 @@ import Info from "./Info";
 import Reviews from "./Reviews";
 import { useLocation } from "react-router";
 
-const TestCompleted = (props) => {
+type TProps ={
+  title:string
+}
+
+const TestCompleted:React.FC<TProps> = ({title}) => {
   const location = useLocation();
 
+  // @ts-ignore
   const completedResponse = location.state.completedResponse;
 
   return (
@@ -20,7 +25,7 @@ const TestCompleted = (props) => {
       </div>
       <div className="test__content">
         <div className="test__content-title">
-          {completedResponse.content} {props.title}
+          {completedResponse.content} {title}
         </div>
         <div className="test__container-text">
           Самое время применить полученные знания на практике

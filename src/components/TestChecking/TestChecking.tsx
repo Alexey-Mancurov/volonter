@@ -8,6 +8,7 @@ const TestChecking = () => {
   const location = useLocation();
 
   if (location.state) {
+    // @ts-ignore
     const completedResponse = location.state.completedResponse;
 
     return (

@@ -1,6 +1,11 @@
 import CheckItem from "./CheckItem";
 
-const CheckList = ({ options, getCheckedOption }) => {
+type TProps = {
+  options: Array<string>;
+  getCheckedOption: (index: number) => void;
+};
+
+const CheckList: React.FC<TProps> = ({ options, getCheckedOption }) => {
   let askList;
 
   if (options) {

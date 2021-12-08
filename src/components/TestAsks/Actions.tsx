@@ -1,8 +1,15 @@
-import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const Actions = ({
+type TProps={
+  askCount: number | string;
+  currentAsk: number | string;
+  localNextAsk:  ()=>void;
+  prevAsk: ()=>void;
+  completedResponse: any;
+}
+
+const Actions:React.FC<TProps> = ({
   completedResponse,
   currentAsk,
   prevAsk,

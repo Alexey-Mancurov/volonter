@@ -1,6 +1,11 @@
 import CourseItem from "../CourseItem/CourseItem";
 
-const List = ({ courses, favoriteToggle }) => {
+type TProps = {
+  courses: Array<any> | undefined;
+  favoriteToggle: Function;
+};
+
+const List:React.FC<TProps> = ({ courses, favoriteToggle }) => {
   let courseList;
   if (courses) {
     courseList = courses.map((i) => (

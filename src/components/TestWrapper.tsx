@@ -7,7 +7,11 @@ const TestContainer = React.lazy(() => import("./TestContainer/TestContainer"));
 const TestCompleted = React.lazy(() => import("./TestCompleted/TestCompleted"));
 const TestChecking = React.lazy(() => import("./TestChecking/TestChecking"));
 
-const TestWrapper = (props) => {
+type TProps ={
+  title: string
+}
+
+const TestWrapper:React.FC<TProps> = ({title}) => {
   return (
     <div className="test__wrapper">
       <CourseSidebar />
@@ -23,7 +27,7 @@ const TestWrapper = (props) => {
         <Route
           path={"/test-completed"}
           children={
-            <SuspensePreloader child={<TestCompleted title={props.title} />} />
+            <SuspensePreloader child={<TestCompleted title={title} />} />
           }
         />
         <Route

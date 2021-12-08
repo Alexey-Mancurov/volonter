@@ -1,4 +1,10 @@
-const TestAskTitle = ({ num, answerCorrect, answerVolont }) => {
+type TProps = {
+  num: number | string;
+  answerCorrect: number;
+  answerVolont: number;
+};
+
+const TestAskTitle:React.FC<TProps> = ({ num, answerCorrect, answerVolont }) => {
   return (
     <div className="test__ask-title-box">
       <div className="test__ask-title">Вопрос {num}</div>

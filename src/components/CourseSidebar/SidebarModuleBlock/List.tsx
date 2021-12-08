@@ -1,7 +1,17 @@
 import Title from "./Title";
 
-const List = ({lessonsList, moduleIndex}) => {
-  console.log('List')
+type TProps = {
+  lessonsList: {
+    items: Array<{
+      id: number | string;
+      title: string;
+      check: boolean;
+    }>;
+  };
+  moduleIndex: number;
+};
+const List: React.FC<TProps> = ({ lessonsList, moduleIndex }) => {
+  console.log("List");
   let lessonList;
   if (lessonsList.items) {
     lessonList = lessonsList.items.map((i, index) => (
@@ -9,7 +19,7 @@ const List = ({lessonsList, moduleIndex}) => {
         key={i.id}
         indexLesson={index}
         title={i.title}
-        check={i.check}
+        isChecked={i.check}
         indexModule={moduleIndex}
       />
     ));
@@ -18,6 +28,5 @@ const List = ({lessonsList, moduleIndex}) => {
     return <div>Подождите, идет загрузка</div>;
   }
 };
-
 
 export default List;

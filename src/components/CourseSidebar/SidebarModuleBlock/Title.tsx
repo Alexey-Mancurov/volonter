@@ -3,7 +3,13 @@ import { NavLink } from "react-router-dom";
 import check from "../../../assets/check.svg";
 import TestContext from "../../../context/testContext";
 
-const Title = ({
+type TProps = {
+  indexLesson: number
+  indexModule:number
+  title: string;
+  isChecked: boolean;
+}
+const Title:React.FC<TProps> = ({
   indexLesson,
   title,
   isChecked,
@@ -12,12 +18,12 @@ const Title = ({
 
   const testContext = useContext(TestContext)
   
-  const [lessonIndex, setLessonIndex] = useState();
+  const [lessonIndex, setLessonIndex] = useState<number|undefined>();
   useEffect(() => {
     setLessonIndex(indexLesson);
   }, [indexLesson]);
 
-  const [moduleIndex, setModuleIndex] = useState();
+  const [moduleIndex, setModuleIndex] = useState<number|undefined>();
   useEffect(() => {
     setModuleIndex(indexModule);
   }, [indexModule]);

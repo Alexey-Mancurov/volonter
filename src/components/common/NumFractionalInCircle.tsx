@@ -1,6 +1,6 @@
 type PropsType = {
-  numCurrent: string | number;
-  numAll: string | number;
+  numCurrent?: string | number;
+  numAll?: string | number;
 };
 
 const NumFractionalInCircle: React.FC<PropsType> = ({ numCurrent, numAll }) => {

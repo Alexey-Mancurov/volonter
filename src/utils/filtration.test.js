@@ -1,7 +1,5 @@
-import {
-    createMemoryHistory
-} from 'history'
+
 test('title', () => {
-    const history = createMemoryHistory()
+    const history = 1
     return
 })

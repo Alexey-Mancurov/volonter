@@ -5,8 +5,7 @@ import Context from "../../context/context";
 import DarkStar from "../common/DarkStart";
 
 const Reviews = () => {
-
-  const context = useContext(Context)
+  const context = useContext(Context);
 
   const [darkStarList, setDarkStarList] = useState([
     { rating: 1, isGold: false },
@@ -18,7 +17,7 @@ const Reviews = () => {
 
   const [starsNums, setStarsNum] = useState(0);
 
-  const getDarkStarList = (index) => {
+  const getDarkStarList = (index: number | undefined) => {
     setDarkStarList(
       darkStarList.map((i, ind) => {
         if (ind === index) {
@@ -36,6 +35,7 @@ const Reviews = () => {
   useEffect(() => {
     if (darkStarList) {
       setAllStartList(
+        // @ts-ignore
         darkStarList.map((i, index) => (
           <DarkStar
             key={index}
@@ -50,7 +50,7 @@ const Reviews = () => {
 
   const [reviewValue, setReviewValue] = useState("");
 
-  const getReviewValue = (e) => {
+  const getReviewValue = (e:any) => {
     setReviewValue(e.target.value);
   };
 
@@ -60,6 +60,7 @@ const Reviews = () => {
     coursesAPI
       .coursesReviewAdded(context.courseId, starsNums, reviewValue)
       .then((response) => {
+        // @ts-ignore
         if (response.success) {
           setReviewValue("Отзыв Принят");
           setIsTextareaDisabled(true);

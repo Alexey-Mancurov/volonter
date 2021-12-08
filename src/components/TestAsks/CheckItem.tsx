@@ -1,5 +1,10 @@
-const CheckItem = ({ index, title, action }) => {
-  
+type TProps = {
+  index: number;
+  title: string;
+  action: (index: number) => void;
+};
+
+const CheckItem:React.FC<TProps> = ({ index, title, action }) => {
   const localGetCheckedOption = () => {
     action(index);
   };

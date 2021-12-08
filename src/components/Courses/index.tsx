@@ -6,11 +6,16 @@ import Preloader from "../common/Preloader";
 import Header from "./Header";
 import List from "./List";
 
-const Courses = () => {
-  const [courses, setCourses] = useState();
 
-  const favoriteToggle = (courseId) => {
-    coursesAPI.courseFavorite(courseId).then((response) => {
+type TFFavToggle = (courseId: number) => {response:{success:boolean}} | void
+
+const Courses = () => {
+  const [courses, setCourses] = useState<object>();
+
+  const favoriteToggle:TFFavToggle = (courseId) => {
+    coursesAPI.courseFavorite(courseId)
+    .then((response) => {
+      // @ts-ignore
       if (response.success) {
         coursesAPI.courses().then((courses) => {
           setCourses(courses);
@@ -20,13 +25,14 @@ const Courses = () => {
   };
 
   useEffect(() => {
-    setCourses(store.coursesAPI.courses)
+    setCourses(store.coursesAPI.courses);
   }, []);
 
   const [filter, setFilter] = useState();
 
   useEffect(() => {
     if (courses) {
+      // @ts-ignore
       setFilter(courses.items.filter((item) => item.id));
     }
   }, [courses]);
@@ -50,10 +56,10 @@ const Courses = () => {
     advanced: "tier",
   };
 
-  const getFilter = (param) => {
+  const getFilter = (param:string) => {
+    // @ts-ignore
     filtration(courses.items, complienceFilter, param, setFilter);
   };
-
 
   if (courses) {
     return (

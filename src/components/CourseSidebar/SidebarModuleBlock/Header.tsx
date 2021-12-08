@@ -1,4 +1,9 @@
-const Header = ({title, toggleIsOpen}) => {
+type TProps = {
+  title: string;
+  toggleIsOpen: () => void;
+};
+
+const Header: React.FC<TProps> = ({ title, toggleIsOpen }) => {
   return (
     <div className="test__sidebar-block-box" onClick={toggleIsOpen}>
       <div className="test__sidebar-block-title">{title}</div>

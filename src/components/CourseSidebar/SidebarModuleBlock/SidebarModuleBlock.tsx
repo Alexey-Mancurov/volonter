@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Context from "../../../context/context";
 import useRequestData from "../../../customHooks/useRequestData";
 import store from "../../../store/store";
@@ -6,7 +6,13 @@ import Preloader from "../../common/Preloader";
 import Header from "./Header";
 import List from "./List";
 
-const SidebarModuleBlock = ({ moduleId, title, moduleIndex }) => {
+type TProps = {
+  moduleId: number | string;
+  title: string;
+  moduleIndex: number;
+};
+
+const SidebarModuleBlock:React.FC<TProps> = ({ moduleId, title, moduleIndex }) => {
   const context = useContext(Context);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +21,7 @@ const SidebarModuleBlock = ({ moduleId, title, moduleIndex }) => {
   };
 
   const lessonsList = useRequestData(
+    // @ts-ignore
     [store.coursesAPI.lessons[context.courseId][moduleId]],
     [context.courseId, moduleId]
   );
