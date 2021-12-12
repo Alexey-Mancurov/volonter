@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import actionWithDataAndScrollToTop from "../../../utils/actionWithDataAndScrollToTop/actionWithDataAndScrollToTop";
+
 
 type PropsType = {
   title: string;
@@ -21,8 +23,7 @@ const CardItem: React.FC<PropsType> = ({
       <Link
         to={"/courseDetail"}
         onClick={() => {
-          action(id);
-          window.location.reload();
+          actionWithDataAndScrollToTop(id, action)
         }}
         className="cource__swiper-btn"
       >

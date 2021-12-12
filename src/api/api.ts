@@ -15,14 +15,18 @@ export const coursesAPI = {
       return response.data;
     });
   },
-  courseFavorite: (courseId: number) => {
-    return instanse
-      .post("/courses/favorite", {
-        courseId,
-      })
-      .then((response) => {
-        return response.data;
-      });
+  // courseFavorite: (courseId: number) => {
+  //   return instanse
+  //     .post("/courses/favorite", {
+  //       courseId,
+  //     })
+  //     .then((response) => {
+  //       return response.data;
+  //     });
+  // },
+  // for work without API
+  courseFavorite: (current: boolean) => {
+    return !current
   },
 
   coursesReviews: (courseId: number) => {

@@ -14,7 +14,7 @@ const CourceInfoContent: React.FC<TProps> = ({
   info,
   linkVideo,
 }) => {
-  console.log(info);
+
   return (
     <div className="test__info-content">
       <div className="test__info-content-box">

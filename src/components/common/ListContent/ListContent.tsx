@@ -4,7 +4,6 @@ type PropsType = {
   list: Array<string>;
 };
 const ListContent: React.FC<PropsType> = ({ list }) => {
-  console.log(list);
   let items;
 
   if (list) {

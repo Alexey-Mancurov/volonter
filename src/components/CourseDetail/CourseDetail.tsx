@@ -1,14 +1,14 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState } from "react";
 import Context from "../../context/context";
 import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
 import Preloader from "../common/Preloader";
 import Tabs from "../common/Tabs/Tabs";
-import CourseDetailHeader from "../CourseDetailHeader/CourseDetailHeader";
-import CourseDetailPage from "../CourseDetailPage/CourseDetailPage";
-import CourseInside from "../CourseInside/CourseInside";
-import CourseMaterials from "../CourseMaterials/CourseMaterials";
-import CourseReviews from "../CourseReviews/CourseReviews";
+import CourseDetailHeader from "./CourseDetailHeader";
+import CourseInside from "./CourseInside/CourseInside";
+import CourseMaterials from "./CourseMaterials/CourseMaterials";
+import CourseReviews from "./CourseReviews/CourseReviews";
+import CourseDetailPage from "./CourseDetailPage";
 
 const CourseDetail = () => {
   const context = useContext(Context);
@@ -22,17 +22,12 @@ const CourseDetail = () => {
 
   const [path, setPath] = useState("/");
 
-  const getPath = useCallback((action) => {
-    setPath(action);
-  }, []);
-
   const [indexCurrentTab, setIndexCurrentTab] = useState(0);
   const courseDetailData: Array<any> | undefined = useRequestData(
     //@ts-ignore
     [store.coursesAPI.coursesDetail[context.courseId]],
     [context.courseId]
   );
-  console.log(courseDetailData);
 
   if (context.modules && courseDetailData) {
     return (
@@ -41,7 +36,7 @@ const CourseDetail = () => {
         <CourseDetailHeader time={courseDetailData.time} />
         <Tabs
           list={tabsData}
-          action={getPath}
+          action={setPath}
           setActive={setIndexCurrentTab}
           currentActive={indexCurrentTab}
         />

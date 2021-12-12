@@ -1,4 +1,5 @@
 import React from "react";
+import tabsToggle from "../../../utils/tabsToogle/tabsToogle";
 
 type PropsType = {
   index: number;
@@ -23,8 +24,7 @@ const TabItem: React.FC<PropsType> = ({
     <li className="tabs__item ">
       <div
         onClick={(e) => {
-          action(isIndex ? index : data, e);
-          setActive(index);
+          tabsToggle(action, setActive, isIndex, index, data, e)
         }}
         className={`tabs__link tabs__course-link ${
           currentActive === index && "active"

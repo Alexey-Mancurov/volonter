@@ -4,6 +4,7 @@ import "./App.css";
 import CourseTitle from "./components/common/CourseTitle";
 import Courses from "./components/Courses";
 import { useLocation } from "react-router";
+import { useRouteMatch, useHistory } from "react-router-dom";
 import Preloader from "./components/common/Preloader";
 import CourseDetail from "./components/CourseDetail/CourseDetail";
 import Context from "./context/context";
@@ -11,12 +12,14 @@ import store from "./store/store";
 import TestContext from "./context/testContext";
 import SuspensePreloader from "./components/common/SuspensePreloader";
 import useIsLastItem from "./customHooks/useIsLastItem";
-import { next, prev } from "./utils/toggleLessons";
+import { next, prev } from "./utils/toggleLessons/toggleLessons";
+import useProgressPercent from "./customHooks/useProgressPercent";
 const TestWrapper = React.lazy(() => import("./components/TestWrapper"));
 
 function App() {
   const location = useLocation();
   const pathname = location.pathname;
+ 
 
   const exactPathRoute = "/";
 
@@ -91,18 +94,12 @@ function App() {
     })();
   }, [courseId, idCurrentModule, lessonsList, currentLessonIndex]);
 
-  const [progressCoursePercent, setProgressCoursePercent] = useState(0);
-
-  useEffect(() => {
-    if (course) {
-      const getProgressCoursePercent = (() => {
-        const progressPercent = Math.round(
-          (course.course.checkAsks / course.course.totalAsks) * 100
-        );
-        setProgressCoursePercent(progressPercent);
-      })();
-    }
-  }, [course]);
+  const [progressCoursePercent, setProgressCoursePercent] = useProgressPercent(
+    course?.course.checkAsks,
+    course?.course.totalAsks,
+    "progressCoursePercent",
+    "setProgressCoursePercent"
+  );
 
   const isLastModule = useIsLastItem(modules, currentModuleIndex);
 
@@ -150,12 +147,14 @@ function App() {
     lessonMenuToggle,
     idCurrentLesson,
     idCurrentModule,
-    progressCoursePercent,
+    progressCoursePercent: progressCoursePercent,
     nextLesson,
     prevLesson,
     isLastLesson,
     isLastModule,
   };
+
+  const match = useRouteMatch("/courseDetail/:id");
 
   return (
     <Context.Provider value={contextValue}>
@@ -165,8 +164,8 @@ function App() {
           {course && pathname !== exactPathRoute ? (
             <>
               <CourseTitle title={course.course.title} />
-              {pathname === "/courseDetail" ? (
-                <Route path={"/courseDetail"} children={<CourseDetail />} />
+              {pathname === `/courseDetail/${match.params.id}` ? (
+                <Route path={"/courseDetail/:id"} children={<CourseDetail />} />
               ) : (
                 <TestContext.Provider value={testContextValue}>
                   <SuspensePreloader

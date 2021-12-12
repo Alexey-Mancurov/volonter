@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route } from "react-router";
+import Context from "../context/context";
 import SuspensePreloader from "./common/SuspensePreloader";
 import CourseSidebar from "./CourseSidebar/CourseSidebar";
 const CourseInfo = React.lazy(() => import("./CourseInfo/CourseInfo"));
@@ -12,16 +13,17 @@ type TProps ={
 }
 
 const TestWrapper:React.FC<TProps> = ({title}) => {
+  const context=useContext(Context)
   return (
     <div className="test__wrapper">
       <CourseSidebar />
       <div className="test__wrapper-body">
         <Route
-          path={"/lesson"}
+          path={`/courseDetail/${context.courseId}/lesson`}
           children={<SuspensePreloader child={<CourseInfo />} />}
         />
         <Route
-          path={"/test"}
+          path={`/courseDetail/${context.courseId}/test`}
           children={<SuspensePreloader child={<TestContainer />} />}
         />
         <Route

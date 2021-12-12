@@ -9,7 +9,7 @@ type TProps = {
   askCount: number | string;
   currentAsk: number | string;
   nextAsk:  (id:number|string, checkedOption:number|null)=>void;
-  prevAsk:  ()=>void;
+  prevAsk:  (id:number|string, checkedOption:number|null)=>void;
   options: Array<string>;
   completedResponse: any;
 };
@@ -33,6 +33,9 @@ const TestAsks = ({
   const localNextAsk = () => {
     nextAsk(id, checkedOption);
   };
+  const localPrevAsk = () => {
+    prevAsk(id, checkedOption);
+  };
 
   return (
     currentAsk === id && (
@@ -41,7 +44,7 @@ const TestAsks = ({
         <CheckList options={options} getCheckedOption={getCheckedOption} />
         <Actions
           currentAsk={currentAsk}
-          prevAsk={prevAsk}
+          localPrevAsk={localPrevAsk}
           askCount={askCount}
           localNextAsk={localNextAsk}
           completedResponse={completedResponse}

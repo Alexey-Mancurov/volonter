@@ -1,3 +1,5 @@
+
+import limitLengthTheList from "../../../utils/limitLengthTheList/limitLengthTheList";
 import CardItem from "./CardItem";
 
 type PropsType = {
@@ -28,9 +30,7 @@ const CardsWithBlueBorderLink: React.FC<PropsType> = ({
       />
     ));
   }
-  if (courseList.length > 4) {
-    courseList.length = 4;
-  }
+  limitLengthTheList(courseList, 4)
 
   return (
     <>

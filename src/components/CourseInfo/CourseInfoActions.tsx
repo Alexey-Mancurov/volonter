@@ -1,15 +1,18 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import Context from "../../context/context";
 import TestContext from "../../context/testContext";
 
 type TProps = {
   idListTests: Array<string>;
-
   isChecked: boolean;
 };
 
 const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
+  const context = useContext(Context)
   const testContext = useContext(TestContext);
+
+  
   let testList;
   if (idListTests) {
     //@ts-ignore
@@ -17,7 +20,7 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
       <NavLink
         key={index}
         to={{
-          pathname: "/test",
+          pathname: `/courseDetail/${context.courseId}/test`,
           state: {
             isLastLesson: testContext.isLastLesson,
             isLastModule: testContext.isLastModule,

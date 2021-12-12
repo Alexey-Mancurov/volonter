@@ -1,6 +1,6 @@
 type PropsType = {
   text: string;
-  addClass: string;
+  addClass?: string;
 };
 
 const RedBtn:React.FC<PropsType> = ({ text, addClass }) => {

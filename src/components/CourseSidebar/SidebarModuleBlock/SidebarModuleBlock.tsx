@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Context from "../../../context/context";
 import useRequestData from "../../../customHooks/useRequestData";
 import store from "../../../store/store";
+import actionToggle from "../../../utils/actionToggle/actionToggle";
 import Preloader from "../../common/Preloader";
 import Header from "./Header";
 import List from "./List";
@@ -17,7 +18,7 @@ const SidebarModuleBlock:React.FC<TProps> = ({ moduleId, title, moduleIndex }) =
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => {
-    setIsOpen(!isOpen);
+    actionToggle(isOpen, setIsOpen)
   };
 
   const lessonsList = useRequestData(

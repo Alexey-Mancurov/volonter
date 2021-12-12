@@ -1,6 +1,6 @@
 type PropsType = {
   link: string | undefined;
-  addedClass: string;
+  addedClass?: string;
 };
 
 const IframeYoutube: React.FC<PropsType> = ({ link, addedClass }) => {

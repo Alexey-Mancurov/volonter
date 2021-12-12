@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { coursesAPI } from "../../api/api";
-import filtration from "../../utils/filtration";
+import filtration from "../../utils/filtration/filtration";
 import store from "../../store/store";
 import Preloader from "../common/Preloader";
 import Header from "./Header";
@@ -13,15 +12,15 @@ const Courses = () => {
   const [courses, setCourses] = useState<object>();
 
   const favoriteToggle:TFFavToggle = (courseId) => {
-    coursesAPI.courseFavorite(courseId)
-    .then((response) => {
-      // @ts-ignore
-      if (response.success) {
-        coursesAPI.courses().then((courses) => {
-          setCourses(courses);
-        });
-      }
-    });
+    // coursesAPI.courseFavorite(courseId)
+    // .then((response) => {
+    //   // @ts-ignore
+    //   if (response.success) {
+    //     coursesAPI.courses().then((courses) => {
+    //       setCourses(courses);
+    //     });
+    //   }
+    // });
   };
 
   useEffect(() => {

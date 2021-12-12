@@ -50,11 +50,20 @@ const Reviews = () => {
 
   const [reviewValue, setReviewValue] = useState("");
 
-  const getReviewValue = (e:any) => {
+  const getReviewValue = (e: any) => {
     setReviewValue(e.target.value);
   };
 
   const [isTextareaDisabled, setIsTextareaDisabled] = useState(false);
+
+  const successAcceptedReview = () => {
+    const getIsTextareaDisabled = (() => {
+      setIsTextareaDisabled(true);
+    })();
+    const acceptedReview = (() => {
+      setReviewValue("Отзыв Принят");
+    })();
+  };
 
   const sendReview = () => {
     coursesAPI
@@ -62,8 +71,7 @@ const Reviews = () => {
       .then((response) => {
         // @ts-ignore
         if (response.success) {
-          setReviewValue("Отзыв Принят");
-          setIsTextareaDisabled(true);
+          successAcceptedReview();
         } else {
           console.log("Ошибка");
         }

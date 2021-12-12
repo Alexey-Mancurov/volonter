@@ -6,6 +6,30 @@ import { useLocation } from "react-router";
 import Preloader from "../common/Preloader";
 import store from "../../store/store";
 
+type TAsksList = Array<{
+  askId: number | string;
+  answerIndex: number | null;
+}>;
+
+type TAnswerList = Array<{
+  asksList: {
+    askId: number | string;
+    answerIndex: number | null;
+  };
+
+  id?: number | string;
+}>;
+
+type TTestData = {
+  askList:
+    | Array<{
+        id: number | string;
+        ask: string;
+        options: Array<string>;
+      }>
+    ;
+};
+
 const TestContainer = () => {
   const location = useLocation();
   // @ts-ignore
@@ -15,21 +39,9 @@ const TestContainer = () => {
 
   const [isTestEnd, setIsTestEnd] = useState(false);
 
-  type TAsksList = Array<{
-    askId: number | string;
-    answerIndex: number | null;
-  }>;
   const [asksList, setAskList] = useState<TAsksList>([]);
 
   const [askCount, setAskCount] = useState(1);
-  type TAnswerList = Array<{
-    asksList: {
-      askId: number | string;
-      answerIndex: number | null;
-    };
-
-    id?: number | string;
-  }>;
 
   const [answerData, setAnswerData] = useState<Array<TAnswerList>>([]);
 
@@ -54,16 +66,6 @@ const TestContainer = () => {
       }
     })();
   }, [asksList]);
-
-  type TTestData = {
-    askList:
-      | Array<{
-          id: number | string;
-          ask: string;
-          options: Array<string>;
-        }>
-      ;
-  };
 
   // @ts-ignore
   const [testData, setTestData] = useState<TTestData>([]);

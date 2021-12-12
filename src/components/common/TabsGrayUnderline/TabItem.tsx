@@ -1,3 +1,5 @@
+import tabsToggle from "../../../utils/tabsToogle/tabsToogle";
+
 type PropsType = {
   index: number;
   isIndex?: boolean;
@@ -23,8 +25,7 @@ const TabItem: React.FC<PropsType> = ({
         currentActive === index ? "course__header-favorit-active" : ""
       }`}
       onClick={(e) => {
-        action(isIndex ? index : data, e);
-        setActive(index);
+        tabsToggle(action, setActive, isIndex, index, data, e)
       }}
     >
       {text}

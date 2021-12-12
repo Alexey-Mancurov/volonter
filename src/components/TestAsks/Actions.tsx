@@ -5,14 +5,14 @@ type TProps={
   askCount: number | string;
   currentAsk: number | string;
   localNextAsk:  ()=>void;
-  prevAsk: ()=>void;
+  localPrevAsk: ()=>void;
   completedResponse: any;
 }
 
 const Actions:React.FC<TProps> = ({
   completedResponse,
   currentAsk,
-  prevAsk,
+  localPrevAsk,
   askCount,
   localNextAsk,
 }) => {
@@ -37,7 +37,7 @@ const Actions:React.FC<TProps> = ({
   return (
     <div className="test__ask-wrapper">
       {currentAsk !== 1 && (
-        <div className="test__ask-blueBorder test__ask-btn" onClick={prevAsk}>
+        <div className="test__ask-blueBorder test__ask-btn" onClick={localPrevAsk}>
           Назад
         </div>
       )}

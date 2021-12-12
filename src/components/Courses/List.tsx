@@ -1,4 +1,4 @@
-import CourseItem from "../CourseItem/CourseItem";
+import CourseItem from "./CourseItem";
 
 type TProps = {
   courses: Array<any> | undefined;

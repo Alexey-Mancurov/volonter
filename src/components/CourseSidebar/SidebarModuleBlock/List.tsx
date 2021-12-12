@@ -11,7 +11,7 @@ type TProps = {
   moduleIndex: number;
 };
 const List: React.FC<TProps> = ({ lessonsList, moduleIndex }) => {
-  console.log("List");
+
   let lessonList;
   if (lessonsList.items) {
     lessonList = lessonsList.items.map((i, index) => (
