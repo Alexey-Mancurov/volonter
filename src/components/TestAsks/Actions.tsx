@@ -6,33 +6,33 @@ type TProps={
   currentAsk: number | string;
   localNextAsk:  ()=>void;
   localPrevAsk: ()=>void;
-  completedResponse: any;
+  // completedResponse: any;
 }
 
 const Actions:React.FC<TProps> = ({
-  completedResponse,
+  // completedResponse,
   currentAsk,
   localPrevAsk,
   askCount,
   localNextAsk,
 }) => {
-  const [isFullEndTest, setIsFullEndTest] = useState(false);
+  // const [isFullEndTest, setIsFullEndTest] = useState(false);
 
-  if (isFullEndTest) {
-    return (
-      <div className="test__ask-wrapper">
-        <NavLink
-          to={{
-            pathname: "/TestChecking",
-            state: { completedResponse: completedResponse },
-          }}
-          className="test__ask-red test__ask-btn"
-        >
-          Смотреть результаты
-        </NavLink>
-      </div>
-    );
-  }
+  // if (isFullEndTest) {
+  //   return (
+  //     <div className="test__ask-wrapper">
+  //       <NavLink
+  //         to={{
+  //           pathname: "/TestChecking",
+  //           state: { completedResponse: completedResponse },
+  //         }}
+  //         className="test__ask-red test__ask-btn"
+  //       >
+  //         Смотреть результаты
+  //       </NavLink>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="test__ask-wrapper">
@@ -50,7 +50,7 @@ const Actions:React.FC<TProps> = ({
           className="test__ask-red test__ask-btn"
           onClick={() => {
             localNextAsk();
-            setIsFullEndTest(true);
+            // setIsFullEndTest(true);
           }}
         >
           Завершить Тест

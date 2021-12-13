@@ -6,7 +6,6 @@ export const next = (
   setCurrentLessonIndex,
   setCurrentModuleIndex
 ) => {
-    debugger
   if (lessonsList.items.length !== currentLessonIndex + 1) {
     setCurrentLessonIndex(currentLessonIndex + 1);
   } else {

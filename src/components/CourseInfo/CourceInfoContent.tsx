@@ -1,5 +1,5 @@
 import paper from "../../assets/paper.svg";
-import ListContent from "../common/ListContent/ListContent";
+import ListContent from "../common/ListContent";
 
 type TProps = {
   title: string;

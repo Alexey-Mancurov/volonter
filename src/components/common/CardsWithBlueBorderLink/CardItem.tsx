@@ -21,7 +21,7 @@ const CardItem: React.FC<PropsType> = ({
       <p className="course__title-4 cource__swiper-title">{title}</p>
       <p className="course__text cource__swiper-text">{description}</p>
       <Link
-        to={"/courseDetail"}
+        to={`/courseDetail/${id}`}
         onClick={() => {
           actionWithDataAndScrollToTop(id, action)
         }}

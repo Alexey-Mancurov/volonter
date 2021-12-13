@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { TestsAPI } from "../../api/api";
 import TestAsks from "../TestAsks";
 import TestResultBtn from "./TestResultBtn";
@@ -21,13 +21,11 @@ type TAnswerList = Array<{
 }>;
 
 type TTestData = {
-  askList:
-    | Array<{
-        id: number | string;
-        ask: string;
-        options: Array<string>;
-      }>
-    ;
+  askList: Array<{
+    id: number | string;
+    ask: string;
+    options: Array<string>;
+  }>;
 };
 
 const TestContainer = () => {
@@ -70,7 +68,7 @@ const TestContainer = () => {
   // @ts-ignore
   const [testData, setTestData] = useState<TTestData>([]);
 
-  const [completedResponse, setCompletedResponse] = useState();
+  const [completedResponse, setCompletedResponse] = useState<any>();
 
   useEffect(() => {
     const getTestData = (() => {
@@ -83,10 +81,10 @@ const TestContainer = () => {
 
   useEffect(() => {
     const sendAnswerData = (() => {
-      isTestEnd &&
-        TestsAPI.testCompleted(answerData).then((completedResponse: any) => {
-          setCompletedResponse(completedResponse);
-        });
+      isTestEnd && setCompletedResponse(store.fakeCompleted);
+      // TestsAPI.testCompleted(answerData).then((completedResponse: any) => {
+      //   setCompletedResponse(completedResponse);
+      // });
     })();
   }, [isTestEnd]);
 

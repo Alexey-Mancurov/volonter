@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Tabs from "../common/Tabs/Tabs";
-import TabsGrayUnderline from "../common/TabsGrayUnderline/TabsGrayUnderline";
+import Tabs from "../common/Tabs";
+import TabsGrayUnderline from "../common/TabsGrayUnderline";
 
 type TProps = {
   filterStatic: Array<any>;

@@ -19,6 +19,7 @@ const TestWrapper = React.lazy(() => import("./components/TestWrapper"));
 function App() {
   const location = useLocation();
   const pathname = location.pathname;
+  const match = useRouteMatch("/courseDetail/:id");
  
 
   const exactPathRoute = "/";
@@ -153,8 +154,6 @@ function App() {
     isLastLesson,
     isLastModule,
   };
-
-  const match = useRouteMatch("/courseDetail/:id");
 
   return (
     <Context.Provider value={contextValue}>

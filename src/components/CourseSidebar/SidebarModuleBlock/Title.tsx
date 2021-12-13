@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import check from "../../../assets/check.svg";
+import Context from "../../../context/context";
 import TestContext from "../../../context/testContext";
 
 type TProps = {
@@ -15,6 +16,7 @@ const Title:React.FC<TProps> = ({
   isChecked,
   indexModule,
 }) => {
+  const context = useContext(Context)
 
   const testContext = useContext(TestContext)
   
@@ -32,7 +34,7 @@ const Title:React.FC<TProps> = ({
     <div className="test__sidebar-block-item">
       <NavLink
         to={{
-          pathname: `/lesson`,
+          pathname: `/courseDetail/${context.courseId}/lesson`,
           state: {
             lessonIndex: lessonIndex,
             moduleIndex: moduleIndex,

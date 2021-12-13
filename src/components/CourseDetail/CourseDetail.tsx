@@ -3,7 +3,7 @@ import Context from "../../context/context";
 import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
 import Preloader from "../common/Preloader";
-import Tabs from "../common/Tabs/Tabs";
+import Tabs from "../common/Tabs";
 import CourseDetailHeader from "./CourseDetailHeader";
 import CourseInside from "./CourseInside/CourseInside";
 import CourseMaterials from "./CourseMaterials/CourseMaterials";

@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
+import actionToggle from "../../utils/actionToggle/actionToggle";
 import FavoriteToggle from "../common/FavoriteToggle";
 
 type TProps = {
@@ -8,21 +9,22 @@ type TProps = {
   tier: any;
   title: string;
   description: string;
-  isFavorite: boolean;
-  favoriteToggle: any;
   author: { img: string; name: string };
 };
 
-const CourseItem:React.FC<TProps> = ({
+const CourseItem: React.FC<TProps> = ({
   id,
   tier,
   title,
   description,
-  isFavorite,
-  favoriteToggle,
   author,
 }) => {
   const context = useContext(Context);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const getIsFavorite = () => {
+    actionToggle(isFavorite, setIsFavorite);
+  };
 
   return (
     <div className="courses__list-item">
@@ -38,7 +40,7 @@ const CourseItem:React.FC<TProps> = ({
         <FavoriteToggle
           isFavorite={isFavorite}
           id={id}
-          action={favoriteToggle}
+          action={getIsFavorite}
         />
       </div>
       <p className="courses__item-text">{description}</p>
@@ -67,9 +69,4 @@ const CourseItem:React.FC<TProps> = ({
   );
 };
 
-export default React.memo(CourseItem, (prev, next) => {
-  if (prev.isFavorite !== next.isFavorite) {
-    return false;
-  }
-  return true;
-});
+export default CourseItem

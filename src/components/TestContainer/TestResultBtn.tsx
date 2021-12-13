@@ -3,11 +3,16 @@ import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import store from "../../store/store";
 
-
 type TProps = {
-  isLastLesson:boolean, isLastModule:boolean, completedResponse:any
-}
-const TestResultBtn:React.FC<TProps> = ({ isLastLesson, isLastModule, completedResponse }) => {
+  isLastLesson: boolean;
+  isLastModule: boolean;
+  completedResponse: any;
+};
+const TestResultBtn: React.FC<TProps> = ({
+  isLastLesson,
+  isLastModule,
+  completedResponse,
+}) => {
   const context = useContext(Context);
 
   const moduleList = useMemo(() => context.modules, [context.modules]);
@@ -17,7 +22,7 @@ const TestResultBtn:React.FC<TProps> = ({ isLastLesson, isLastModule, completedR
   useEffect(() => {
     const getIsAllLessonsChecked = (() => {
       if (moduleList) {
-        moduleList.items.map((i:any) =>
+        moduleList.items.map((i: any) =>
           setIsAllLessonsChecked(
             // @ts-ignore
             store.coursesAPI.lessons[context.courseId][i.id]
@@ -30,9 +35,9 @@ const TestResultBtn:React.FC<TProps> = ({ isLastLesson, isLastModule, completedR
   const [lastStep, setLastStep] = useState<string | undefined>();
   useEffect(() => {
     isLastLesson && isLastModule && isAllLessonsChecked
-      ? setLastStep("/test-completed")
-      : setLastStep("/test-checking");
-  }, [isLastLesson, isLastModule, isAllLessonsChecked]);
+      ? setLastStep(`/courseDetail/${context.courseId}/test-completed`)
+      : setLastStep(`/courseDetail/${context.courseId}/test-checking`);
+  }, [isLastLesson, isLastModule, isAllLessonsChecked, context.courseId]);
 
   return (
     <NavLink

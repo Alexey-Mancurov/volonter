@@ -2,10 +2,9 @@ import CourseItem from "./CourseItem";
 
 type TProps = {
   courses: Array<any> | undefined;
-  favoriteToggle: Function;
 };
 
-const List:React.FC<TProps> = ({ courses, favoriteToggle }) => {
+const List:React.FC<TProps> = ({ courses }) => {
   let courseList;
   if (courses) {
     courseList = courses.map((i) => (
@@ -15,9 +14,7 @@ const List:React.FC<TProps> = ({ courses, favoriteToggle }) => {
         title={i.title}
         description={i.description}
         tier={i.tier}
-        isFavorite={i.isFavorite}
         author={i.author}
-        favoriteToggle={favoriteToggle}
       />
     ));
     if (courses.length === 0) {

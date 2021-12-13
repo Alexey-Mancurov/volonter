@@ -8,8 +8,8 @@ type TProps = {
   ask: string;
   askCount: number | string;
   currentAsk: number | string;
-  nextAsk:  (id:number|string, checkedOption:number|null)=>void;
-  prevAsk:  (id:number|string, checkedOption:number|null)=>void;
+  nextAsk: (id: number | string, checkedOption: number | null) => void;
+  prevAsk: (id: number | string, checkedOption: number | null) => void;
   options: Array<string>;
   completedResponse: any;
 };
@@ -22,8 +22,8 @@ const TestAsks = ({
   nextAsk,
   prevAsk,
   options,
-  completedResponse
-}:TProps) => {
+  completedResponse,
+}: TProps) => {
   const [checkedOption, setCheckedOption] = useState<number | null>(null);
 
   const getCheckedOption = (checkedOption: number) => {
@@ -38,19 +38,21 @@ const TestAsks = ({
   };
 
   return (
-    currentAsk === id && (
-      <div>
-        <Header ask={ask} currentAsk={currentAsk} askCount={askCount} />
-        <CheckList options={options} getCheckedOption={getCheckedOption} />
-        <Actions
-          currentAsk={currentAsk}
-          localPrevAsk={localPrevAsk}
-          askCount={askCount}
-          localNextAsk={localNextAsk}
-          completedResponse={completedResponse}
-        />
-      </div>
-    )
+    <>
+      {currentAsk === id && (
+        <>
+          <Header ask={ask} currentAsk={currentAsk} askCount={askCount} />
+          <CheckList options={options} getCheckedOption={getCheckedOption} />
+          <Actions
+            currentAsk={currentAsk}
+            localPrevAsk={localPrevAsk}
+            askCount={askCount}
+            localNextAsk={localNextAsk}
+            // completedResponse={completedResponse}
+          />
+        </>
+      )}
+    </>
   );
 };
 

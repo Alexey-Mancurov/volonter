@@ -6,10 +6,10 @@ const renderingStartsRating = (rating:number) => {
   const darkList = [];
 
   for (let i = 0; i < rating; i++) {
-    goldList.push(<GoldStar />);
+    goldList.push(<GoldStar key={Math.random()}/>);
   }
   for (let i = 0; i < 5 - rating; i++) {
-    darkList.push(<DarkStar />);
+    darkList.push(<DarkStar key={Math.random()}/>);
   }
 
   const combineStars = [...goldList, ...darkList]

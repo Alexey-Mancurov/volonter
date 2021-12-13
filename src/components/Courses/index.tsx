@@ -5,13 +5,14 @@ import Preloader from "../common/Preloader";
 import Header from "./Header";
 import List from "./List";
 
-
-type TFFavToggle = (courseId: number) => {response:{success:boolean}} | void
+type TFFavToggle = (
+  courseId: number
+) => { response: { success: boolean } } | void;
 
 const Courses = () => {
   const [courses, setCourses] = useState<object>();
 
-  const favoriteToggle:TFFavToggle = (courseId) => {
+  const favoriteToggle: TFFavToggle = (courseId) => {
     // coursesAPI.courseFavorite(courseId)
     // .then((response) => {
     //   // @ts-ignore
@@ -55,7 +56,7 @@ const Courses = () => {
     advanced: "tier",
   };
 
-  const getFilter = (param:string) => {
+  const getFilter = (param: string) => {
     // @ts-ignore
     filtration(courses.items, complienceFilter, param, setFilter);
   };
@@ -71,7 +72,7 @@ const Courses = () => {
           getFilter={getFilter}
         />
 
-        <List courses={filter} favoriteToggle={favoriteToggle} />
+        <List courses={filter} />
       </>
     );
   } else {

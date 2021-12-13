@@ -8,12 +8,13 @@ const TestContainer = React.lazy(() => import("./TestContainer/TestContainer"));
 const TestCompleted = React.lazy(() => import("./TestCompleted/TestCompleted"));
 const TestChecking = React.lazy(() => import("./TestChecking/TestChecking"));
 
-type TProps ={
-  title: string
-}
+type TProps = {
+  title: string;
+};
 
-const TestWrapper:React.FC<TProps> = ({title}) => {
-  const context=useContext(Context)
+const TestWrapper: React.FC<TProps> = ({ title }) => {
+  const context = useContext(Context);
+
   return (
     <div className="test__wrapper">
       <CourseSidebar />
@@ -27,13 +28,13 @@ const TestWrapper:React.FC<TProps> = ({title}) => {
           children={<SuspensePreloader child={<TestContainer />} />}
         />
         <Route
-          path={"/test-completed"}
+          path={`/courseDetail/${context.courseId}/test-completed`}
           children={
             <SuspensePreloader child={<TestCompleted title={title} />} />
           }
         />
         <Route
-          path={"/test-checking"}
+          path={`/courseDetail/${context.courseId}/test-checking`}
           children={<SuspensePreloader child={<TestChecking />} />}
         />
       </div>
