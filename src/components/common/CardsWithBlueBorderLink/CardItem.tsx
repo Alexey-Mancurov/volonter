@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import actionWithDataAndScrollToTop from "../../../utils/actionWithDataAndScrollToTop/actionWithDataAndScrollToTop";
+import s from './index.module.css'
+
 
 
 type PropsType = {
@@ -17,15 +19,15 @@ const CardItem: React.FC<PropsType> = ({
   text,
 }) => {
   return (
-    <div className="swiper-slide cource__swiper-slide">
-      <p className="course__title-4 cource__swiper-title">{title}</p>
-      <p className="course__text cource__swiper-text">{description}</p>
+    <div className={s.item}>
+      <p className={`course__title-4 ${s.title}`}>{title}</p>
+      <p className={`course__text ${s.text}`}>{description}</p>
       <Link
         to={`/courseDetail/${id}`}
         onClick={() => {
           actionWithDataAndScrollToTop(id, action)
         }}
-        className="cource__swiper-btn"
+        className={s.btn}
       >
         {text}
       </Link>

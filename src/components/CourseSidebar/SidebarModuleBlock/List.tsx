@@ -1,4 +1,5 @@
 import Title from "./Title";
+import s from "./index.module.css";
 
 type TProps = {
   lessonsList: {
@@ -23,7 +24,7 @@ const List: React.FC<TProps> = ({ lessonsList, moduleIndex }) => {
         indexModule={moduleIndex}
       />
     ));
-    return <div className="test__sidebar-block-inner">{lessonList}</div>;
+    return <div className={s.inner}>{lessonList}</div>;
   } else {
     return <div>Подождите, идет загрузка</div>;
   }

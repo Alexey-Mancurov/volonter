@@ -1,4 +1,5 @@
 import CourseItem from "./CourseItem";
+import s from "./index.module.css";
 
 type TProps = {
   courses: Array<any> | undefined;
@@ -19,8 +20,8 @@ const List:React.FC<TProps> = ({ courses }) => {
     ));
     if (courses.length === 0) {
       return (
-        <div className="your__courses">
-          <p className="your__courses-text">
+        <div className={s.info}>
+          <p className={s.infoText}>
             Курсы с заданными параметрами не найдены
           </p>
         </div>
@@ -28,7 +29,7 @@ const List:React.FC<TProps> = ({ courses }) => {
     }
   }
 
-  return <div className="courses__list">{courseList}</div>;
+  return <div className={s.list}>{courseList}</div>;
 };
 
 export default List;

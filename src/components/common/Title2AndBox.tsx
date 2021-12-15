@@ -1,5 +1,5 @@
-import ContentBoxCource from "./ContentBoxCource";
-import CourceTitle2 from "./CourceTitle2";
+import ContentBoxCource from "./ContentBoxCource/ContentBoxCource";
+import CourceTitle2 from "./CourceTitle2/CourceTitle2";
 
 type PropsType = {
   title: string;

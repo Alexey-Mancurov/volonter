@@ -1,7 +1,7 @@
-import GoldStar from "../../common/GoldStart";
-import DarkStar from "../../common/DarkStart";
-import ContentBoxCource from "../../common/ContentBoxCource";
+import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import renderingStartsRating from "../../../utils/renderingStartsRating/renderingStartsRating";
+import s from "./index.module.css";
+
 
 type TProps = {
   name: string;
@@ -23,19 +23,19 @@ const CoureseReviewItem: React.FC<TProps> = ({
 
   return (
     <ContentBoxCource
-      addedClass={"cource__reviews-item"}
+      addedClass={s.item}
       child={
         <>
-          <div className="cource__reviews-box">
+          <div className={s.box}>
             <img src={img} alt="" />
-            <div className="cource__reviews-rating">
+            <div className={s.rating}>
               {starsList}
             </div>
           </div>
-          <div className="cource__reviews-content">
-            <div className="cource__reviews-name">{name}</div>
-            <div className="cource__reviews-date">{date}</div>
-            <p className="cource__reviews-text">{text}</p>
+          <div className={s.content}>
+            <div className={s.name}>{name}</div>
+            <div className={s.date}>{date}</div>
+            <p className={s.text}>{text}</p>
           </div>
         </>
       }

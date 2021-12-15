@@ -2,20 +2,21 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import TestContext from "../../context/testContext";
-import BorderBlueBtn from "../common/BorderBlueBtn";
-import RedBtn from "../common/RedBtn";
+import BorderBlueBtn from "../common/BorderBlueBtn/BorderBlueBtn";
+import RedBtn from "../common/RedBtn/RedBtn";
+import s from './index.module.css'
 
 const TestCheckingBtns = () => {
   const context = useContext(Context)
   const testContext = useContext(TestContext)
 
   return (
-    <div className="test__ask-wrapper">
-      <NavLink to={`/courseDetail/${context.courseId}/lesson`} className={"test__ask-btn"}>
-        <BorderBlueBtn addClass={"test__ask-btn"} text={"Пройти ещё раз"} />
+    <div className={s.wrapper}>
+      <NavLink to={`/courseDetail/${context.courseId}/lesson`} className={s.btn}>
+        <BorderBlueBtn addClass={s.addClass} text={"Пройти ещё раз"} />
       </NavLink>
-      <NavLink to={`/courseDetail/${context.courseId}/lesson`} className={"test__ask-btn"} onClick={testContext.nextLesson}>
-        <RedBtn addClass={"test__ask-btn"} text={"Следующий урок"} />
+      <NavLink to={`/courseDetail/${context.courseId}/lesson`} className={s.btn} onClick={testContext.nextLesson}>
+        <RedBtn addClass={s.askBtn} text={"Следующий урок"} />
       </NavLink>
     </div>
   );

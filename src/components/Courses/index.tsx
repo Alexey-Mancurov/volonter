@@ -5,6 +5,7 @@ import Preloader from "../common/Preloader";
 import Header from "./Header";
 import List from "./List";
 
+
 type TFFavToggle = (
   courseId: number
 ) => { response: { success: boolean } } | void;

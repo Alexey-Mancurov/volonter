@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
+import s from './index.module.css'
+
 
 type TProps = {
   successTest: boolean;
@@ -9,13 +11,13 @@ type TProps = {
 const TestCheckingHeader:React.FC<TProps> = ({ successTest }) => {
   const context = useContext(Context)
   return (
-    <div className="test__container-wrapper">
+    <div className={s.containerWrapper}>
       {successTest ? (
-        <div className="test__container-title">Тест успешно выполнен</div>
+        <div className={s.title}>Тест успешно выполнен</div>
       ) : (
-        <div className="test__container-title">Тест не выполнен</div>
+        <div className={s.title}>Тест не выполнен</div>
       )}
-      <NavLink to={`/courseDetail/${context.courseId}/lesson`} className="test__container-backBtn">
+      <NavLink to={`/courseDetail/${context.courseId}/lesson`} className={s.backBtn}>
         Назад к уроку
       </NavLink>
     </div>

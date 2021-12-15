@@ -3,7 +3,7 @@ import Context from "../../../context/context";
 import useRequestData from "../../../customHooks/useRequestData";
 import store from "../../../store/store";
 import { TLessonItems, TLessonList } from "../../../types/types";
-import CourceTitle2 from "../../common/CourceTitle2";
+import CourceTitle2 from "../../common/CourceTitle2/CourceTitle2";
 import CourseMaterialsItem from "./CourseMaterialsItem";
 
 type TProps = {

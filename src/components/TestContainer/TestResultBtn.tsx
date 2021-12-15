@@ -2,6 +2,7 @@ import { useState, useContext, useEffect, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import store from "../../store/store";
+import s from "./index.module.css";
 
 type TProps = {
   isLastLesson: boolean;
@@ -45,7 +46,7 @@ const TestResultBtn: React.FC<TProps> = ({
         pathname: lastStep,
         state: { completedResponse: completedResponse },
       }}
-      className="test__ask-red test__ask-btn"
+      className={s.btn}
     >
       Смотреть результаты
     </NavLink>

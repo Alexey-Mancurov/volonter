@@ -1,0 +1,36 @@
+.favorit {
+    font-size: 22px;
+    line-height: 118.18182%;
+    text-align: center;
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+    color: #bdbdbd;
+    margin-top: 15px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    cursor: pointer
+}
+
+.favorit:hover {
+    color: #0491fb;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.favorit+.favorit {
+    margin-left: 20px;
+}
+
+@media (max-width:1366px) {
+    .favorit{
+        font-size: 18px;
+    }
+}
+
+@media (max-width:768px) {
+    .favorit{
+        font-size: 14px;
+    }
+}

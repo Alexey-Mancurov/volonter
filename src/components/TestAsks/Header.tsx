@@ -1,3 +1,5 @@
+import s from "./index.module.css";
+
 type TProps = {
   ask: string;
   currentAsk: number | string;
@@ -6,9 +8,9 @@ type TProps = {
 
 const Header:React.FC<TProps> = ({ ask, currentAsk, askCount }) => {
   return (
-    <div className="test__container-wrapper self-start">
-      <div className="test__content-title">{ask}</div>
-      <div className="test__completed-result">
+    <div className={s.wrapper}>
+      <div className={s.title}>{ask}</div>
+      <div className={s.result}>
         {currentAsk}/{askCount}
       </div>
     </div>

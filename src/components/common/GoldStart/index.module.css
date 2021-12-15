@@ -1,0 +1,12 @@
+.star {
+    width: 36px;
+    height: 36px
+}
+
+.star.gold path {
+    fill: #f5ee33
+}
+
+.star+.star {
+    margin-left: 8px
+}

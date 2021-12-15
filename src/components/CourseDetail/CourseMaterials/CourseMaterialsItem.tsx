@@ -1,5 +1,7 @@
-import ContentBoxCource from "../../common/ContentBoxCource";
+import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import CourseMaterialsLink from "./CourseMaterialsLink";
+import s from "./index.module.css";
+
 
 type TProps = {
   title: string;
@@ -15,15 +17,15 @@ const CourseMaterialsItem: React.FC<TProps> = ({ title, materials }) => {
   }
 
   const materialsBox = materials && (
-    <div className="course__inside-inner">{materialsList}</div>
+    <div className={s.inner}>{materialsList}</div>
   );
 
   return (
     <ContentBoxCource
-      addedClass={"course__inside-box"}
+      addedClass={s.box}
       child={
         <>
-          <div className="course__inside-box-title">{title}</div>
+          <div className={s.boxTitle}>{title}</div>
           {materialsBox}
         </>
       }

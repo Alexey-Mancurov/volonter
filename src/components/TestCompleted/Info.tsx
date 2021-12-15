@@ -1,3 +1,6 @@
+import s from './index.module.css'
+
+
 type TProps = {
   sertificate: string;
   successAsks: number | string;
@@ -6,24 +9,24 @@ type TProps = {
 
 const Info:React.FC<TProps> = ({ sertificate, successAsks, totalAsk }) => {
   return (
-    <div className="test__completed">
-      <div className="test__completed-wrapper">
-        <div className="test__completed-title">Тест завершен</div>
-        <div className="test__completed-result">
+    <div className={s.completed}>
+      <div className={s.completedWrapper}>
+        <div className={s.completedTitle}>Тест завершен</div>
+        <div className={s.result}>
           {successAsks}/{totalAsk}
         </div>
       </div>
-      <div className="test__completed-text">
+      <div className={s.completedText}>
         Ваш результат:{" "}
         <span>
           {successAsks} балла из {totalAsk}
         </span>
       </div>
-      <div className="test__completed-endActions">
-        <div className="test__ask-red test__endActions-btn">Готово</div>
+      <div className={s.endActions}>
+        <div className={s.redBtn}>Готово</div>
         <a
           href={sertificate}
-          className="test__ask-blue  test__endActions-btn"
+          className={s.blueBtn}
           download
         >
           Скачать сертификат

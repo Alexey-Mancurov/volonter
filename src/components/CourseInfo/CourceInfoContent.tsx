@@ -1,5 +1,6 @@
 import paper from "../../assets/paper.svg";
 import ListContent from "../common/ListContent";
+import s from "./index.module.css";
 
 type TProps = {
   title: string;
@@ -16,22 +17,22 @@ const CourceInfoContent: React.FC<TProps> = ({
 }) => {
 
   return (
-    <div className="test__info-content">
-      <div className="test__info-content-box">
-        {description && <p className="test__info-briefly">{description}</p>}
+    <div className={s.content}>
+      <div className={s.contentBox}>
+        {description && <p className={s.briefly}>{description}</p>}
         <ListContent list={info} />
       </div>
-      <div className="test__info-data-box">
-        <p className="test__info-subtitle">Желаем интересного просмотра</p>
-        <div className="test__info-data">
-          <div className="test__data-box">
-            <img className="test__data-img" src={paper} alt=""></img>
+      <div className={s.dataBox}>
+        <p className={s.subtitle}>Желаем интересного просмотра</p>
+        <div className={s.data}>
+          <div className={s.box}>
+            <img className={s.img} src={paper} alt=""></img>
           </div>
-          <div className="test__data-container">
-            <div className="test__data-text">{title}</div>
+          <div className={s.dataContainer}>
+            <div className={s.dataText}>{title}</div>
             <a
               href={linkVideo}
-              className="test__data-link"
+              className={s.dataLink}
               target="_blank"
               rel="noreferrer"
             >

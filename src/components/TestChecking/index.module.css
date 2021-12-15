@@ -1,0 +1,206 @@
+.addClass {
+    max-width: 215px;
+    width: 100%;
+    min-height: 50px
+}
+
+.askBtn {
+    max-width: 215px;
+    width: 100%;
+    min-height: 50px
+}
+
+.container {
+    background-color: #fff;
+    -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, .15);
+    border-radius: 15px;
+    width: 100%;
+    height: auto;
+    padding: 35px 45px
+}
+
+.containerWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.text {
+    font-size: 22px;
+    line-height: 118.18182%;
+    margin-top: 19px
+}
+
+.text span {
+    color: #4d9ef8;
+    font-weight: 700
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 40px
+}
+
+.btn {
+    max-width: 215px;
+    width: 100%;
+    min-height: 50px
+}
+
+.title {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 120%
+}
+
+.backBtn {
+    font-size: 22px;
+    line-height: 118.18182%;
+    text-align: right;
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+    color: #5c5c5c
+}
+
+@media (max-width:1366px) {
+    .addClass {
+        font-size: 13px !important;
+        max-width: 155px !important;
+        min-height: 40px !important
+    }
+
+    .askBtn {
+        font-size: 13px !important;
+        min-height: 40px !important;
+    }
+
+    .container {
+        -webkit-box-shadow: 0 4px 25px rgba(0, 0, 0, .15);
+        box-shadow: 0 4px 25px rgba(0, 0, 0, .15);
+        border-radius: 10px;
+        padding: 28px 35px
+    }
+
+    .text {
+        font-size: 16px;
+        margin-top: 16px
+    }
+
+    .wrapper {
+        margin-top: 29px
+    }
+
+    
+    .btn {
+        font-size: 13px;
+        max-width: 155px;
+        min-height: 40px
+    }
+
+    .title {
+        font-size: 22px
+    }
+
+    .backBtn {
+        font-size: 16px
+    }
+}
+
+@media (max-width:1024px) {
+    .addClass {
+        font-size: 11px;
+        max-width: 126px;
+        min-height: 35px
+    }
+
+    .container {
+        -webkit-box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+        padding: 22px 28px
+    }
+
+    .title {
+        font-size: 18px
+    }
+
+    .backBtn {
+        font-size: 13px
+    }
+
+    .text {
+        font-size: 13px;
+        margin-top: 13px
+    }
+
+    .wrapper {
+        margin-top: 23px
+    }
+
+    .btn {
+        font-size: 11px;
+        max-width: 126px;
+        min-height: 35px
+    }
+}
+
+@media (max-width:768px) {
+
+    .container {
+        -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+        padding: 20px
+    }
+
+    .wrapper {
+        margin-top: 16px
+    }
+}
+
+@media (max-width:500px) {
+
+    .addClass+.addClass {
+        margin-top: 12px
+    }
+
+    .addClass {
+        max-width: 80% !important;
+    }
+
+
+    .askBtn {
+        max-width: 80% !important;
+    }
+
+    .container {
+        padding: 18px 12px
+    }
+
+    .title {
+        font-size: 16px
+    }
+
+    .wrapper {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .btn+.btn {
+        margin-top: 12px
+    }
+
+    .btn {
+        max-width: 80%
+    }
+
+}

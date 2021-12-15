@@ -1,10 +1,12 @@
 import useRequestData from "../../customHooks/useRequestData";
 import store from "../../store/store";
-import CourseDetailExperts from "./CourseDetailExperts/CourseDetailExperts";
+import CourseDetailExperts from "./CourseDetailExperts";
 import CourseDetailContent from "../common/Title2AndBox";
 import CourseDetailMore from "./CourseDetailMore";
 import CourseDetailPreview from "./CourseDetailPreview";
-import Title2AndList from "../common/Title2AndList";
+import Title2AndList from "../common/Title2AndList/Title2AndList";
+import s from "./index.module.css";
+
 
 type TProps = {
   courseDetailData: {
@@ -52,7 +54,7 @@ const CourseDetailPage: React.FC<TProps> = ({ courseDetailData }) => {
         howNeed={howNeed}
       />
 
-      <section className="cource__info">
+      <section className={s.info}>
         <h2 className="title">Информация</h2>
         {list}
 

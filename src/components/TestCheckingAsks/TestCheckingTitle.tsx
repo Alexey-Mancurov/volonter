@@ -1,3 +1,6 @@
+import s from './index.module.css'
+
+
 type TProps = {
   num: number | string;
   answerCorrect: number;
@@ -6,14 +9,14 @@ type TProps = {
 
 const TestAskTitle:React.FC<TProps> = ({ num, answerCorrect, answerVolont }) => {
   return (
-    <div className="test__ask-title-box">
-      <div className="test__ask-title">Вопрос {num}</div>
+    <div className={s.titleBox}>
+      <div className={s.title}>Вопрос {num}</div>
       {answerCorrect === answerVolont ? (
-        <div className="test__ask-notif test__ask-notif-blue">
+        <div className={`${s.notif} ${s.notifBlue}`}>
           Правильный ответ
         </div>
       ) : (
-        <div className="test__ask-notif test__ask-notif-red">
+        <div className={`${s.notif} ${s.notifRed}`}>
           Неправильный ответ
         </div>
       )}

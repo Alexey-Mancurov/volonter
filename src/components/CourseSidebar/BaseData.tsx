@@ -1,5 +1,6 @@
-import NumFractionalInCircle from "../common/NumFractionalInCircle";
-import NumInCircle from "../common/NumInCircle";
+import NumFractionalInCircle from "../common/NumFractionalInCircle/NumFractionalInCircle";
+import NumInCircle from "../common/NumInCircle/NumInCircle";
+import s from "./index.module.css";
 
 type TProps = {
   num?: number;
@@ -17,13 +18,13 @@ const BaseData: React.FC<TProps> = ({
   isFractional,
 }) => {
   return (
-    <div className="test__sidebar-box">
+    <div className={s.box}>
       {isFractional ? (
         <NumFractionalInCircle numCurrent={numCurrent} numAll={numAll} />
       ) : (
         <NumInCircle num={num} />
       )}
-      <div className="test__sidebar-title">{title}</div>
+      <div className={s.title}>{title}</div>
     </div>
   );
 };

@@ -1,0 +1,239 @@
+.block {
+    margin-top: 32px
+}
+
+.inner {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.blockOpen .inner {
+    margin-top: 23px;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.box {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.box img,
+.box svg {
+    width: 25px;
+    height: 23px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.box img path,
+.box svg path {
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.blockOpen .box img,
+.blockOpen .box svg {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.blockOpen .box img path,
+.blockOpen .box svg path {
+    fill: #eb3624;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120.83333%
+}
+
+.item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer
+}
+
+.item+.item {
+    margin-top: 19px
+}
+
+.text {
+    font-size: 23px;
+    line-height: 117.3913%;
+    color: #5c5c5c
+}
+
+.test__sidebar-block-check {
+    width: 28px;
+    height: 28px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 28px;
+    flex: 0 0 28px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 2px solid #4d9ef8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.check img,
+.check svg {
+    width: 16px;
+    height: 12px;
+    opacity: 0;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.completed {
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.completed img,
+.completed svg {
+    opacity: 1
+}
+
+@media (max-width:1366px) {
+    .block {
+        margin-top: 22px
+    }
+
+    .blockOpen .inner {
+        margin-top: 16px
+    }
+
+    .box img,
+    .box svg {
+        width: 19px;
+        height: 17px
+    }
+
+    .title {
+        font-size: 18px
+    }
+
+    .item+.item {
+        margin-top: 13px
+    }
+    
+    .text {
+        font-size: 16px
+    }
+
+    .check img,
+    .check svg {
+        width: 12px;
+        height: 8px
+    }
+
+    .check {
+        width: 21px;
+        height: 21px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 21px;
+        flex: 0 0 21px;
+        margin-left: 8px
+    }
+}
+
+@media (max-width:1024px) {
+    .block {
+        margin-top: 17px
+    }
+
+    .blockOpen .inner {
+        margin-top: 13px
+    }
+    
+    .box img,
+    .box svg {
+        width: 15px;
+        height: 14px
+    }
+
+    .title {
+        font-size: 14px
+    }
+
+    .item+.item {
+        margin-top: 11px
+    }
+
+    .text {
+        font-size: 13px
+    }
+
+    .check img,
+    .check svg {
+        width: 9px;
+        height: 7px
+    }
+
+    .check {
+        width: 17px;
+        height: 17px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 17px;
+        flex: 0 0 17px;
+        margin-left: 5px
+    }
+
+}
+
+@media (max-width:500px) {
+    .block {
+        margin-top: 15px
+    }
+
+    .item+.item {
+        margin-top: 14px
+    }
+}

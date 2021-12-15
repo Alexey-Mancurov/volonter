@@ -4,7 +4,8 @@ import icon1 from "../../assets/icon1.svg";
 import icon2 from "../../assets/icon2.svg";
 import Context from "../../context/context";
 import actionToggle from "../../utils/actionToggle/actionToggle";
-import LinkGrayUnderline from "../common/LinkGrayUnderline";
+import LinkGrayUnderline from "../common/LinkGrayUnderline/LinkGrayUnderline";
+import s from "./index.module.css";
 
 type PropsType = {
   time: string;
@@ -31,25 +32,28 @@ const CourseDetailHeader = ({ time }: PropsType) => {
   }, [context.course.course.totalLessons]);
 
   return (
-    <div className="course__header">
-      <div className="course__header-block">
-        <div className="course__header-circle">
+    <div className={s.header}>
+      <div className={s.block}>
+        <div className={s.circle}>
           <img src={icon1} alt="" />
         </div>
-        <p className="course__header-title">
+        <p className={s.title}>
           Модулей: {modulesLength}, Уроков: {lessonsLength}
         </p>
       </div>
-      <div className="course__header-block">
-        <div className="course__header-circle">
+      <div className={s.block}>
+        <div className={s.circle}>
           <img src={icon2} alt="" />
         </div>
-        <p className="course__header-title">
+        <p className={s.title}>
           Прохождение <br /> {time}
         </p>
       </div>
-      <div className="course__header-btn-box">
-        <NavLink to={`/courseDetail/${context.courseId}/lesson`} className="course__header-btn">
+      <div className={s.btnBox}>
+        <NavLink
+          to={`/courseDetail/${context.courseId}/lesson`}
+          className={s.btn}
+        >
           Пройти курс
         </NavLink>
         <LinkGrayUnderline

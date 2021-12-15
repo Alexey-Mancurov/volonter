@@ -1,0 +1,32 @@
+.title {
+    font-weight: 600;
+    font-size: 41px;
+    line-height: 121%;
+    margin-top: 70px;
+    color: #5c5c5c
+}
+
+
+@media (max-width:1366px) {
+    .title {
+        font-size: 35px;
+    }
+}
+
+@media (max-width:1024px) {
+    .title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width:768px) {
+    .title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width:500px) {
+    .title {
+        font-size: 21px;
+    }
+}

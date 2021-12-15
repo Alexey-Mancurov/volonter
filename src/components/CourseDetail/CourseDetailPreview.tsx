@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import editYoutubeLinkForIframe from "../../utils/editYoutubeLinkForIframe/editYoutubeLinkForIframe";
-import IframeYoutube from "../common/IframeYoutube";
-
+import IframeYoutube from "../common/IframeYoutube/IframeYoutube";
+import s from "./index.module.css";
 
 type TProps = {
   linkVideo: string;
@@ -13,7 +13,6 @@ const CourseDetailPreview: React.FC<TProps> = ({
   whatGive,
   howNeed,
 }) => {
-
   const [linkVideoForIframe, setLinkVideoForIframe] = useState();
 
   useEffect(() => {
@@ -23,26 +22,21 @@ const CourseDetailPreview: React.FC<TProps> = ({
   let previewList;
   if (whatGive) {
     previewList = whatGive.map((i, index) => (
-      <li key={index} className="course__list-item course__preview-item">
+      <li key={index} className={s.item}>
         {i}
       </li>
     ));
   }
 
   return (
-    <div className="course__preview">
-      <IframeYoutube
-        link={linkVideoForIframe}
-        addedClass={"course__preview-video"}
-      />
-      <div className="course__preview-content">
-        <p className="course__title-4 course__preview-title">
+    <div className={s.preview}>
+      <IframeYoutube link={linkVideoForIframe} addedClass={s.videoIframe} />
+      <div className={s.previewContent}>
+        <p className={`course__title-4 ${s.previewTitle}`}>
           Что вы получите, пройдя курс
         </p>
-        <p className="course__text">Благодаря этому курсу, вы:</p>
-        <ul className="cource__content-list course__preview-list">
-          {previewList}
-        </ul>
+        <p className={"course__text"}>Благодаря этому курсу, вы:</p>
+        <ul className={s.list}>{previewList}</ul>
         <p className="course__title-4">Для кого подходит курс</p>
         <p className="course__text">{howNeed}</p>
       </div>

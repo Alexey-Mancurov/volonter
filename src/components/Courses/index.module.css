@@ -1,0 +1,373 @@
+.info {
+    margin-top: 120px
+}
+
+.infoText {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 127.58621%;
+    color: #5c5c5c
+}
+
+.wrapperHeader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 40px
+}
+
+.list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.item {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 49%;
+    flex: 0 1 49%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 5px 35px rgba(0, 0, 0, .15);
+    box-shadow: 0 5px 35px rgba(0, 0, 0, .15);
+    border-radius: 20px;
+    padding: 35px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 50px
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.container {
+    font-weight: 600;
+    width: 80%;
+    padding-right: 15px
+}
+
+.level {
+    font-size: 20px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #0491fb
+}
+
+
+.title {
+    font-size: 25px;
+    line-height: 124%;
+    color: #5c5c5c;
+    margin-top: 10px;
+    display: block
+}
+
+.text {
+    font-size: 17px;
+    line-height: 123.52941%;
+    letter-spacing: .01em;
+    color: #000;
+    margin-top: 15px;
+    padding-right: 30px
+}
+
+.footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    margin-top: 19px
+}
+
+.footerInner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 70%;
+    padding-right: 15px
+}
+
+.footerBox {
+    margin-left: 12px
+}
+
+.img {
+    width: 47px;
+    height: 47px;
+    border-radius: 50%
+}
+
+.img+.img {
+    margin-left: 6px
+}
+
+.name {
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 121.05263%;
+    color: #5c5c5c
+}
+
+.status {
+    font-size: 12px;
+    line-height: 116.66667%;
+    letter-spacing: .01em;
+    color: #585858;
+    margin-top: 5px
+}
+
+.btn{
+    padding: 5px;
+    font-size: 18px;
+    line-height: 122.22222%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 302px;
+    cursor: pointer;
+    user-select: none;
+    max-width: 205px;
+    width: 100%;
+    min-height: 43px;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 123.52941%;
+    color: #fff;
+    background-color:#0491fb;
+}
+
+
+@media (max-width:1366px) {
+    .wrapperHeader {
+        margin-top: 35px
+    }
+
+    .item {
+        -webkit-box-shadow: 0 5px 25px rgba(0, 0, 0, .15);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, .15);
+        border-radius: 15px;
+        padding: 27px;
+        margin-top: 35px
+    }
+
+    .level {
+        font-size: 14px
+    }
+
+    .title {
+        font-size: 18px;
+        margin-top: 8px
+    }
+
+    .text {
+        font-size: 12px;
+        margin-top: 10px
+    }
+
+    .footer {
+        margin-top: 15px
+    }
+
+    .footerBox {
+        margin-left: 9px
+    }
+
+    .img+.img {
+        margin-left: 5px
+    }
+
+    .img {
+        width: 34px;
+        height: 34px
+    }
+
+    .name {
+        font-size: 13px
+    }
+
+    .status {
+        font-size: 8px
+    }
+
+    .btn {
+        max-width: 149px;
+        min-height: 31px;
+        font-size: 12px
+    }
+
+}
+
+@media (max-width:1024px) {
+
+    .item {
+        -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, .15);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .15);
+        border-radius: 10px;
+        padding: 22px;
+        margin-top: 30px
+    }
+
+    .level {
+        font-size: 12px
+    }
+
+    .title {
+        font-size: 15px;
+        margin-top: 6px
+    }
+
+    .text {
+        font-size: 10px;
+        margin-top: 9px
+    }
+
+    .footer {
+        margin-top: 11px
+    }
+
+    .img {
+        width: 28px;
+        height: 28px
+    }
+
+    .name {
+        font-size: 11px
+    }
+
+    .status {
+        font-size: 7px
+    }
+
+    .btn {
+        max-width: 122px;
+        min-height: 25px;
+        font-size: 10px
+    }
+}
+
+@media (max-width:768px) {
+    .wrapperHeader {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .item {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+        padding: 17px;
+        margin-top: 22px
+    }
+
+    .container {
+        padding-right: 10px
+    }
+
+    .level {
+        font-size: 9px
+    }
+
+    .title {
+        font-size: 11px;
+        margin-top: 4px
+    }
+
+    .text {
+        font-size: 7px;
+        margin-right: 6px
+    }
+
+    .footer {
+        margin-top: 8px
+    }
+
+    .footerInner {
+        padding-right: 10px
+    }
+
+    .footerBox {
+        margin-left: 5px
+    }
+
+    .img {
+        width: 21px;
+        height: 21px
+    }
+
+    .img+.img {
+        margin-left: 3px
+    }
+
+    .name {
+        font-size: 8px
+    }
+
+    .status {
+        font-size: 5px;
+        margin-top: 3px
+    }
+
+    .btn {
+        max-width: 91px;
+        min-height: 19px;
+        font-size: 7px
+    }
+
+}
+
+@media (max-width:500px) {
+    .footer {
+        margin-top: 15px
+    }
+
+    .list {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+}

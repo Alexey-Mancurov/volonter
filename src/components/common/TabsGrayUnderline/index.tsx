@@ -1,4 +1,6 @@
 import TabItem from "./TabItem";
+import s from './index.module.css'
+
 
 type PropsType = {
   list: Array<
@@ -36,6 +38,6 @@ const TabsGrayUnderline: React.FC<PropsType> = ({
     ));
   }
 
-  return <ul className="cource__level">{tabsList}</ul>;
+  return <ul className={s.list}>{tabsList}</ul>;
 };
 export default TabsGrayUnderline;

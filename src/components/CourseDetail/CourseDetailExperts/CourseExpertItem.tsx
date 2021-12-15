@@ -1,3 +1,5 @@
+import s from './index.module.css'
+
 type PropsType = {
   img: string;
   name: string;
@@ -6,10 +8,10 @@ type PropsType = {
 
 const CourseExpertItem = ({ img, name, description }: PropsType) => {
   return (
-    <div className="cource__expert-item">
-      <img className="cource__expert-img" src={img} alt="" />
-      <p className="cource__expert-name">{name}</p>
-      <p className="cource__expert-text">{description}</p>
+    <div className={s.item}>
+      <img className={s.img} src={img} alt="" />
+      <p className={s.name}>{name}</p>
+      <p className={s.text}>{description}</p>
     </div>
   );
 };

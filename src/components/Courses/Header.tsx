@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Tabs from "../common/Tabs";
+import s from "./index.module.css";
 import TabsGrayUnderline from "../common/TabsGrayUnderline";
 
 type TProps = {
@@ -23,7 +24,7 @@ const Header: React.FC<TProps> = ({ filterStatic, filterLevel, getFilter }) => {
   };
 
   return (
-    <div className="cource__tab-wrapper">
+    <div className={s.wrapperHeader}>
       <Tabs
         list={filterStatic}
         action={actionFilter}

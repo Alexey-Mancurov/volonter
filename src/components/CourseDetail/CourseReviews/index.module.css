@@ -1,0 +1,90 @@
+.container {
+    margin-top: 100px;
+    margin-bottom: 60px
+}
+
+.info {
+    margin-top: 65px
+}
+
+.infoBox{
+    margin-top: 20px;
+}
+
+.infoItem{
+    margin-top: 10px;
+}
+
+.your{
+    margin-top: 120px
+}
+
+.yourText {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 127.58621%;
+    color: #5c5c5c
+}
+
+.item {
+    padding: 55px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.rating {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 26px
+}
+
+.content {
+    margin-left: 70px
+}
+
+.name {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 122.5%;
+    letter-spacing: .01em;
+    color: #5c5c5c
+}
+
+.date {
+    font-size: 23px;
+    line-height: 117.3913%;
+    letter-spacing: .01em;
+    margin-top: 15px
+}
+
+.text {
+    font-size: 26px;
+    line-height: 119.23077%;
+    letter-spacing: .01em;
+    margin-top: 26px
+}

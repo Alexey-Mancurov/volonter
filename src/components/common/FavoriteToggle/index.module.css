@@ -1,0 +1,92 @@
+.favorit {
+    width: 65px;
+    height: 65px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 65px;
+    flex: 0 0 65px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    border: 2px solid #0491fb;
+    -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s
+}
+
+.favorit.favoritActive {
+    background-color: #0491fb
+}
+
+.favorit img,
+.favorit svg {
+    width: 21px;
+    height: 30px;
+    transition: all .3
+}
+
+.favoritActive path,
+.favoritActive svg {
+    fill: #fff
+}
+
+@media (max-width:1366px) {
+
+    .favorit img,
+    .favorit svg {
+        width: 15px;
+        height: 22px
+    }
+
+    .favorit {
+        width: 47px;
+        height: 47px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 47px;
+        flex: 0 0 47px;
+        border: 1.5px solid #0491fb
+    }
+}
+
+@media (max-width:1024px) {
+
+    .favorit img,
+    .favorit svg {
+        width: 12px;
+        height: 18px
+    }
+
+    .favorit {
+        width: 39px;
+        height: 39px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 39px;
+        flex: 0 0 39px;
+        border: 1px solid #0491fb
+    }
+}
+
+@media (max-width:768px) {
+
+    .favorit img,
+    .favorit svg {
+        width: 9px;
+        height: 13px
+    }
+
+    .favorit {
+        width: 29px;
+        height: 29px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 29px;
+        flex: 0 0 29px
+    }
+}

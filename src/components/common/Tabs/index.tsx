@@ -1,5 +1,6 @@
 import React from "react";
 import TabItem from "./TabItem";
+import s from './index.module.css'
 
 type PropsType = {
   list: Array<{ text: string; path: string }>;
@@ -32,7 +33,7 @@ const Tabs: React.FC<PropsType> = ({
     ));
   }
 
-  return <ul className="tabs tabs__course">{tabsList}</ul>;
+  return <ul className={s.list}>{tabsList}</ul>;
 };
 
 export default Tabs;

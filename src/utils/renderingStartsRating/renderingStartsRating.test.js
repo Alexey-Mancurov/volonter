@@ -1,5 +1,5 @@
-import DarkStar from "../../components/common/DarkStart"
-import GoldStar from "../../components/common/GoldStart"
+import DarkStar from "../../components/common/DarkStart/DarkStart"
+import GoldStar from "../../components/common/GoldStart/GoldStart"
 import renderingStartsRating from "./renderingStartsRating"
 
 test('function correct renders if rating less than 5',()=>{

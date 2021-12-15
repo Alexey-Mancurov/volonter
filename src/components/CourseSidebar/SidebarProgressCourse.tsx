@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import TestContext from "../../context/testContext";
 import Preloader from "../common/Preloader";
+import s from "./index.module.css";
 
 const ProgressCourse = () => {
   const testContext = useContext(TestContext);
@@ -12,14 +13,14 @@ const ProgressCourse = () => {
     };
 
     return (
-      <div className="test__sidebar-box">
-        <div className="test__sidebar-wrapper test__sidebar-progressWrapper">
-          <div className="test__sidebar-subtitle">Прогресс по курсу</div>
-          <div className="test__sidebar-percent">{progressCourse}%</div>
-        </div>
-        <div className="test__sidebar-progress">
+      <div className={s.box}>
+        
+          <div className={s.subtitle}>Прогресс по курсу</div>
+          <div className={s.percent}>{progressCourse}%</div>
+        
+        <div className={s.progress}>
           <div
-            className="test__sidebar-progress-activeLine"
+            className={s.activeLine}
             style={widthActiveLine}
           ></div>
         </div>

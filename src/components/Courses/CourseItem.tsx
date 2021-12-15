@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import actionToggle from "../../utils/actionToggle/actionToggle";
-import FavoriteToggle from "../common/FavoriteToggle";
+import FavoriteToggle from "../common/FavoriteToggle/FavoriteToggle";
+import s from "./index.module.css";
+
 
 type TProps = {
   id: number | string;
@@ -27,15 +29,15 @@ const CourseItem: React.FC<TProps> = ({
   };
 
   return (
-    <div className="courses__list-item">
-      <div className="courses__item-wrapper">
-        <div className="courses__item-container">
+    <div className={s.item}>
+      <div className={s.wrapper}>
+        <div className={s.container}>
           {tier ? (
-            <p className="courses__item-level">Продвинутый</p>
+            <p className={s.level}>Продвинутый</p>
           ) : (
-            <p className="courses__item-level">Базовый</p>
+            <p className={s.level}>Базовый</p>
           )}
-          <div className="courses__item-title">{title}</div>
+          <div className={s.title}>{title}</div>
         </div>
         <FavoriteToggle
           isFavorite={isFavorite}
@@ -43,13 +45,13 @@ const CourseItem: React.FC<TProps> = ({
           action={getIsFavorite}
         />
       </div>
-      <p className="courses__item-text">{description}</p>
-      <div className="courses__item-footer">
-        <div className="courses__item-footer-inner">
-          <img src={author.img} alt="" className="courses__item-img" />
-          <div className="courses__item-footer-box">
-            <p className="courses__item-name">{author.name}</p>
-            <p className="courses__item-status">Автор курса</p>
+      <p className={s.text}>{description}</p>
+      <div className={s.footer}>
+        <div className={s.footerInner}>
+          <img src={author.img} alt="" className={s.img} />
+          <div className={s.footerBox}>
+            <p className={s.name}>{author.name}</p>
+            <p className={s.status}>Автор курса</p>
           </div>
         </div>
         <NavLink
@@ -59,7 +61,7 @@ const CourseItem: React.FC<TProps> = ({
               courseId: id,
             },
           }}
-          className="test__ask-blue courses__item-btn"
+          className={s.btn}
           onClick={() => context.getCourseId(id)}
         >
           Пройти курс

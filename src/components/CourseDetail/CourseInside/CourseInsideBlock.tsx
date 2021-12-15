@@ -3,8 +3,9 @@ import Context from "../../../context/context";
 import useRequestData from "../../../customHooks/useRequestData";
 import store from "../../../store/store";
 import { TLessonItems, TLessonList } from "../../../types/types";
-import ContentBoxCource from "../../common/ContentBoxCource";
-import CourceTitle2 from "../../common/CourceTitle2";
+import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
+import CourceTitle2 from "../../common/CourceTitle2/CourceTitle2";
+import s from './index.module.css'
 
 type TProps = {
   title: string;
@@ -26,8 +27,8 @@ const CourseInsideBlock:React.FC<TProps> = ({ title, moduleId }) => {
     list = lessonsList.items.map((i) => (
       <ContentBoxCource
         key={i.id}
-        addedClass={"course__inside-box"}
-        child={<div className="course__inside-box-title">{i.title}</div>}
+        addedClass={s.addClassBox}
+        child={<div className={s.boxTitle}>{i.title}</div>}
       />
     ));
   }

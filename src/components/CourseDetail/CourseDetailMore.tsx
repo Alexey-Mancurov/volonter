@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Context from "../../context/context";
 import CardsWithBlueBorderLink from "../common/CardsWithBlueBorderLink";
-import CourceTitle2 from "../common/CourceTitle2";
+import CourceTitle2 from "../common/CourceTitle2/CourceTitle2";
 
 type PropsType = {
   courses: {

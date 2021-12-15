@@ -1,5 +1,5 @@
-import DarkStar from "../../components/common/DarkStart";
-import GoldStar from "../../components/common/GoldStart";
+import DarkStar from "../../components/common/DarkStart/DarkStart";
+import GoldStar from "../../components/common/GoldStart/GoldStart";
 
 const renderingStartsRating = (rating:number) => {
   const goldList = [];

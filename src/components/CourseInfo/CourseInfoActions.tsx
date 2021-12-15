@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import TestContext from "../../context/testContext";
+import s from "./index.module.css";
 
 type TProps = {
   idListTests: Array<string>;
@@ -9,10 +10,9 @@ type TProps = {
 };
 
 const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
-  const context = useContext(Context)
+  const context = useContext(Context);
   const testContext = useContext(TestContext);
 
-  
   let testList;
   if (idListTests) {
     //@ts-ignore
@@ -27,7 +27,7 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
             idTest: i,
           },
         }}
-        className="test__ask-blueBorder test__info-completed-btn"
+        className={s.testBtn}
       >
         Пройти тест
       </NavLink>
@@ -35,29 +35,27 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
   }
 
   return (
-    <div className="test__info-wrapper">
-      <div className="test__completed test__completed-info">
+    <div className={s.wrapper}>
+      <div className={s.testCompleted}>
         {!isChecked && (
-          <div className="test__info-completed-title">
-            Проверка полученных знаний
-          </div>
+          <div className={s.completedTitle}>Проверка полученных знаний</div>
         )}
 
-        <div className="test__info-completed-wrapper">
+        <div className={s.completedWrapper}>
           {!isChecked ? (
             <>
-              <p className="test__info-completed-text">
+              <p className={s.completedText}>
                 Пройдите тест, чтобы закрепить полученные знания
               </p>
               <div>{testList}</div>
             </>
           ) : (
             <>
-              <p className="test__info-completed-text">
+              <p className={s.completedText}>
                 Вы уже выполнили этот тест успешно. Можете пройти следующий урок
               </p>
               <div
-                className="test__ask-blueBorder test__info-completed-btn"
+                className={s.btn}
                 onClick={testContext.nextLesson}
               >
                 Далее
@@ -66,15 +64,15 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
           )}
         </div>
       </div>
-      <div className="test__info-btnBox">
+      <div className={s.btnBox}>
         <div
-          className="test__ask-blueBorder test__info-btn"
+          className={s.btnInfo}
           onClick={testContext.prevLesson}
         >
           Предыдущий урок
         </div>
         <div
-          className="test__ask-red test__info-btn"
+          className={s.btnInfo}
           onClick={testContext.nextLesson}
         >
           Следующий урок

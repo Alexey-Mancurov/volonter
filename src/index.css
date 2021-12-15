@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +11,466 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%
+}
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit
+}
+
+:active,
+:focus {
+  outline: 0
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary,
+time {
+  display: block
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  outline: 0;
+  border: none
+}
+
+input::-ms-clear {
+  display: none
+}
+
+button {
+  cursor: pointer
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}
+
+a,
+a:hover,
+a:visited {
+  text-decoration: none
+}
+
+ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0
+}
+
+img {
+  vertical-align: top
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: inherit;
+  font-weight: 400
+}
+
+p {
+  margin: 0
+}
+
+html {
+  -webkit-text-size-adjust: 100%
+}
+
+body {
+  margin: 0
+}
+
+main {
+  display: block
+}
+
+a {
+  background-color: transparent
+}
+
+img {
+  border-style: none
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 0;
+  border: none
+}
+
+button,
+input {
+  overflow: visible
+}
+
+button,
+select {
+  text-transform: none
+}
+
+[type=button],
+[type=reset],
+[type=submit],
+button {
+  -webkit-appearance: button
+}
+
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0
+}
+
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
+  outline: 1px dotted ButtonText
+}
+
+legend {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal
+}
+
+progress {
+  vertical-align: baseline
+}
+
+textarea {
+  overflow: auto
+}
+
+[type=checkbox],
+[type=radio] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px
+}
+
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit
+}
+
+details {
+  display: block
+}
+
+summary {
+  display: list-item
+}
+
+template {
+  display: none
+}
+
+[hidden] {
+  display: none
+}
+
+.content {
+  max-width: 1660px;
+  padding: 0 35px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto
+}
+
+.main_inner {
+  max-width: 1715px;
+  padding: 0 35px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 30px auto 100px
+}
+
+.self-start {
+  -ms-flex-item-align: start;
+  align-self: flex-start
+}
+
+.cource__title-2 {
+  font-weight: 600;
+  font-size: 41px;
+  line-height: 121.95122%;
+  margin-top: 70px;
+  color: #5c5c5c
+}
+
+.course__title-4 {
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 120%;
+  color: #5c5c5c;
+  margin-top: 20px
+}
+
+.course__text {
+  font-size: 19px;
+  line-height: 120%;
+  letter-spacing: .01em;
+  color: #5c5c5c;
+  margin-top: 20px
+}
+
+@media screen and (max-width:1366px) {
+  .content,
+  .main_inner {
+      max-width: 1200px;
+      padding: 0 15px
+  }
+
+  .course__title-4 {
+    font-size: 25px;
+    margin-top: 18px
+  }
+  
+  .course__text {
+    font-size: 17px;
+    margin-top: 18px
+  }
+}
+
+@media screen and (max-width:1024px) {
+
+  .content,
+  .main_inner {
+      padding: 0 24px
+  }
+
+  .course__title-4 {
+    font-size: 22px;
+    margin-top: 15px
+  }
+  
+  .course__text {
+    font-size: 15px;
+    margin-top: 15px
+  }
+}
+
+@media screen and (max-width:850px) {
+  .content {
+      padding: 0 13px
+  }
+
+  .main_inner {
+      padding: 0 13px;
+      margin: 30px auto 70px
+  }
+}
+
+.title {
+  font-family: gilroy-bold, sans-serif;
+  font-size: 61px;
+  line-height: 74px;
+  color: #5c5c5c;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 0 56px;
+  max-width: 1590px;
+  margin: 0 auto
+}
+
+.title:after,
+.title:before {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #d9d9d9;
+  border-radius: 13.5824px
+}
+
+.desc {
+  text-align: center;
+  color: #424242;
+  font-size: 28px;
+  line-height: 33px;
+  margin: 20px auto 0
+}
+
+.desc_partners {
+  max-width: 814px
+}
+
+@media screen and (max-width:1366px) {
+  .title {
+      font-size: 45px;
+      line-height: 54px;
+      grid-gap: 0 41px
+  }
+
+  .desc {
+      font-size: 21px;
+      line-height: 25px
+  }
+
+  .desc_partners {
+      max-width: 599px
+  }
+}
+
+@media screen and (max-width:1024px) {
+  .title {
+      font-size: 40px;
+      line-height: 48px;
+      grid-gap: 0 22px
+  }
+
+  .desc {
+      font-size: 20px;
+      line-height: 24px
+  }
+}
+
+@media (max-width:768px) {
+  .title {
+      font-size: 35px;
+      line-height: 42px;
+      grid-gap: 0 29px
+  }
+
+  .desc {
+      font-size: 19px;
+      line-height: 22px;
+      margin: 22px auto 0
+  }
+
+  .course__title-4 {
+    font-size: 20px;
+    margin-top: 15px
+  }
+  
+  .course__text {
+    font-size: 14px;
+    margin-top: 15px
+  }
+}
+
+@media screen and (max-width:500px) {
+  .title {
+      font-size: 30px;
+      line-height: 36px;
+      grid-gap: 0;
+      grid-template-columns: 1fr
+  }
+
+  .title:after,
+  .title:before {
+      display: none
+  }
+
+  .desc {
+      font-size: 16px;
+      line-height: 19px;
+      margin: 18px auto 0
+  }
+
+  .desc_partners {
+      max-width: 257px
+  }
+
+  .course__title-4 {
+    font-size: 18px;
+    margin-top: 12px
+  }
+  
+  .course__text {
+    font-size: 12px;
+    margin-top: 12px
+  }
+}
+
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #000;
+  border-color: #000 transparent #000 transparent;
+  animation: lds-dual-ring 1.2s linear infinite
+}
+
+@keyframes lds-dual-ring {
+  0% {
+      transform: rotate(0)
+  }
+
+  100% {
+      transform: rotate(360deg)
+  }
 }

@@ -1,3 +1,5 @@
+import s from "./index.module.css";
+
 type TProps = {
   index: number;
   title: string;
@@ -10,15 +12,15 @@ const CheckItem:React.FC<TProps> = ({ index, title, action }) => {
   };
 
   return (
-    <label className="test__ask-labelRadio">
+    <label className={s.labelRadio}>
       <input
         name="ask-1"
         type="radio"
-        className="test__ask-inputRadio"
+        className={s.inputRadio}
         onChange={localGetCheckedOption}
       ></input>
-      <span className="test__ask-checkboxRadio"></span>
-      <span className="test__ask-textRadio">{title}</span>
+      <span className={s.checkboxRadio}></span>
+      <span className={s.textRadio}>{title}</span>
     </label>
   );
 };

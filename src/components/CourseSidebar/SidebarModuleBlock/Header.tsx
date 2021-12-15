@@ -1,3 +1,5 @@
+import s from "./index.module.css";
+
 type TProps = {
   title: string;
   toggleIsOpen: () => void;
@@ -5,8 +7,8 @@ type TProps = {
 
 const Header: React.FC<TProps> = ({ title, toggleIsOpen }) => {
   return (
-    <div className="test__sidebar-block-box" onClick={toggleIsOpen}>
-      <div className="test__sidebar-block-title">{title}</div>
+    <div className={s.box} onClick={toggleIsOpen}>
+      <div className={s.title}>{title}</div>
       <svg
         width="24"
         height="19"

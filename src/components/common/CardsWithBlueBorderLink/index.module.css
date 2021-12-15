@@ -1,0 +1,84 @@
+.inner {
+    overflow: hidden;
+    margin-top: 63px;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 30px
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.item {
+    border: 2px solid #dadada;
+    border-radius: 13px;
+    padding: 36px;
+    max-width: 374px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.title {
+    max-width: 244px;
+    width: 100%;
+    margin-top: 0
+}
+
+.text {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+.btn {
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 121.73913%;
+    display: block;
+    max-width: 266px;
+    width: 100%;
+    min-height: 56px;
+    margin-left: auto;
+    margin-right: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    color: #0491fb;
+    border: 2.5px solid #0491fb;
+    border-radius: 63px;
+    margin-top: 48px;
+    justify-self: flex-end;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #0491fb;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}

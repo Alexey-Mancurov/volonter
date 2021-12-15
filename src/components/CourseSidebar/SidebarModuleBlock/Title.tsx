@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import check from "../../../assets/check.svg";
 import Context from "../../../context/context";
 import TestContext from "../../../context/testContext";
+import s from "./index.module.css";
 
 type TProps = {
   indexLesson: number
@@ -31,7 +32,7 @@ const Title:React.FC<TProps> = ({
   }, [indexModule]);
 
   return (
-    <div className="test__sidebar-block-item">
+    <div className={s.item}>
       <NavLink
         to={{
           pathname: `/courseDetail/${context.courseId}/lesson`,
@@ -40,7 +41,7 @@ const Title:React.FC<TProps> = ({
             moduleIndex: moduleIndex,
           },
         }}
-        className="test__sidebar-text"
+        className={s.text}
         onClick={() => {
           testContext.moduleMenuToggle(moduleIndex);
           testContext.lessonMenuToggle(lessonIndex);
@@ -49,8 +50,8 @@ const Title:React.FC<TProps> = ({
         {title}
       </NavLink>
       <div
-        className={`test__sidebar-block-check ${
-          isChecked ? "test__sidebar-block-check-completed" : ""
+        className={`${s.check} ${
+          isChecked ? s.completed : ""
         }`}
       >
         <img src={check} alt="" />

@@ -1,0 +1,56 @@
+.container {
+    margin-top: 100px;
+    margin-bottom: 50px
+}
+
+.inner {
+    margin-top: 18px
+}
+
+.item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 24px;
+    line-height: 116.66667%;
+    font-weight: 400;
+    letter-spacing: .01em
+}
+
+.item+.item {
+    margin-top: 24px
+}
+
+.itemTitle {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 80%;
+    flex: 0 1 80%
+}
+
+.download {
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+    color: #4d9ef8
+}
+
+.box {
+    padding-right: 130px
+}
+
+.box+.box {
+    margin-top: 30px
+}
+
+.boxTitle {
+    font-size: 31px;
+    line-height: 125.80645%;
+    letter-spacing: .01em;
+    font-weight: 700;
+    color: #5c5c5c
+}

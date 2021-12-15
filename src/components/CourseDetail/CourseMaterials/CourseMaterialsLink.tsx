@@ -1,3 +1,5 @@
+import s from "./index.module.css";
+
 type TProps = {
   text: string;
   link: string;
@@ -6,9 +8,9 @@ type TProps = {
 const CourseMaterialsLink:React.FC<TProps> = ({ text, link }) => {
   return (
     <>
-      <div className="course__inside-item">
-        <p className="course__inside-item-title">{text}</p>
-        <a className="course__inside-item-download" href={link} download>
+      <div className={s.item}>
+        <p className={s.itemTitle}>{text}</p>
+        <a className={s.download} href={link} download>
           Скачать
         </a>
       </div>

@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import s from "./index.module.css";
+
 
 type TProps={
   askCount: number | string;
   currentAsk: number | string;
   localNextAsk:  ()=>void;
   localPrevAsk: ()=>void;
-  // completedResponse: any;
 }
 
 const Actions:React.FC<TProps> = ({
@@ -16,41 +15,23 @@ const Actions:React.FC<TProps> = ({
   askCount,
   localNextAsk,
 }) => {
-  // const [isFullEndTest, setIsFullEndTest] = useState(false);
-
-  // if (isFullEndTest) {
-  //   return (
-  //     <div className="test__ask-wrapper">
-  //       <NavLink
-  //         to={{
-  //           pathname: "/TestChecking",
-  //           state: { completedResponse: completedResponse },
-  //         }}
-  //         className="test__ask-red test__ask-btn"
-  //       >
-  //         Смотреть результаты
-  //       </NavLink>
-  //     </div>
-  //   );
-  // }
 
   return (
-    <div className="test__ask-wrapper">
+    <div className={s.askWrapper}>
       {currentAsk !== 1 && (
-        <div className="test__ask-blueBorder test__ask-btn" onClick={localPrevAsk}>
+        <div className={s.btn} onClick={localPrevAsk}>
           Назад
         </div>
       )}
       {currentAsk !== askCount && currentAsk < askCount ? (
-        <div className="test__ask-red test__ask-btn" onClick={localNextAsk}>
+        <div className={s.btnRed} onClick={localNextAsk}>
           Следующий вопрос
         </div>
       ) : (
         <div
-          className="test__ask-red test__ask-btn"
+          className={s.btnRed}
           onClick={() => {
             localNextAsk();
-            // setIsFullEndTest(true);
           }}
         >
           Завершить Тест

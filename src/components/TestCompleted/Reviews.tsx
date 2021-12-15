@@ -2,7 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import { coursesAPI } from "../../api/api";
 import check from "../../assets/check.svg";
 import Context from "../../context/context";
-import DarkStar from "../common/DarkStart";
+import DarkStar from "../common/DarkStart/DarkStart";
+import s from './index.module.css'
+
 
 const Reviews = () => {
   const context = useContext(Context);
@@ -79,13 +81,13 @@ const Reviews = () => {
   };
 
   return (
-    <div className="test__completed">
-      <div className="test__completed-wrapper test__wrapper-review">
-        <div className="test__completed-title">Оставить отзыв</div>
-        <div className="test__completed-review">
-          <div className="test__completed-rating">{allStarsList}</div>
+    <div className={s.completed}>
+      <div className={s.wrapperReview}>
+        <div className={s.title}>Оставить отзыв</div>
+        <div className={s.review}>
+          <div className={s.rating}>{allStarsList}</div>
           <button
-            className="test__sidebar-block-check test__sidebar-block-check-completed"
+            className={s.check}
             onClick={sendReview}
             disabled={isTextareaDisabled}
           >
@@ -94,7 +96,7 @@ const Reviews = () => {
         </div>
       </div>
       <textarea
-        className="test__completed-textarea"
+        className={s.textarea}
         placeholder="Текст"
         value={reviewValue}
         onChange={getReviewValue}

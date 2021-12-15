@@ -1,4 +1,5 @@
 import TestCheckingTitle from "./TestCheckingTitle";
+import s from './index.module.css'
 
 type TProps = {
   options: Array<any>;
@@ -11,14 +12,14 @@ const TestCheckingdAskItem: React.FC<TProps> = ({ options, num, ask }) => {
   const answerVolont = allAnswers[allAnswers.length - 1];
 
   return (
-    <div className="test__ask">
+    <div className={s.ask}>
       <TestCheckingTitle
         num={num}
         answerCorrect={answerCorrect}
         answerVolont={answerVolont}
       />
-      <p className="test__container-text test__ask-question">{ask}</p>
-      <div className="test__container-text test__ask-text">
+      <p className={s.text}>{ask}</p>
+      <div className={s.text}>
         {allAnswers[answerCorrect]}
       </div>
     </div>

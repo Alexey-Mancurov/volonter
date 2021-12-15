@@ -1,4 +1,5 @@
 import CheckItem from "./CheckItem";
+import s from "./index.module.css";
 
 type TProps = {
   options: Array<string>;
@@ -19,7 +20,7 @@ const CheckList: React.FC<TProps> = ({ options, getCheckedOption }) => {
     ));
   }
 
-  return <div className="test__ask">{askList}</div>;
+  return <div className={s.ask}>{askList}</div>;
 };
 
 export default CheckList;
