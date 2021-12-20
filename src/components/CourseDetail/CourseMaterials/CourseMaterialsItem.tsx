@@ -2,22 +2,19 @@ import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import CourseMaterialsLink from "./CourseMaterialsLink";
 import s from "./index.module.css";
 
-
 type TProps = {
   title: string;
   materials: Array<{ text: string; link: string }>;
 };
 
 const CourseMaterialsItem: React.FC<TProps> = ({ title, materials }) => {
-  let materialsList;
-  if (materials) {
-    materialsList = materials.map((i, index) => (
+  const materialsList = () =>
+    materials?.map((i, index) => (
       <CourseMaterialsLink key={index} text={i.text} link={i.link} />
     ));
-  }
 
   const materialsBox = materials && (
-    <div className={s.inner}>{materialsList}</div>
+    <div className={s.inner}>{materialsList()}</div>
   );
 
   return (

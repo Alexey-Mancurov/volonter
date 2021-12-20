@@ -1,5 +1,13 @@
 import axios from "axios";
-import { CourseItemType, CoursesDetailType, CoursesReviewsType, CoursesType, LessonItemType, LessonsType, ModulesType } from "./TypesAPI";
+import {
+  CourseItemType,
+  CoursesDetailType,
+  CoursesReviewsType,
+  CoursesType,
+  LessonItemType,
+  LessonsType,
+  ModulesType,
+} from "./TypesAPI";
 
 const instanse = axios.create({
   withCredentials: false,
@@ -10,85 +18,148 @@ const instanse = axios.create({
 });
 
 export const coursesAPI = {
-  courses: () => {
-    return instanse.get<CoursesType>(`courses/`).then((response) => {
-      return response.data;
-    });
+  courses: async () => {
+    try {
+      const res = await instanse.get<CoursesType>(`courses/`);
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  // courseFavorite: (courseId: number) => {
-  //   return instanse
-  //     .post("/courses/favorite", {
+  // courseFavorite: async (courseId: number) => {
+  //   try {
+  //     const res = await instanse.post("/courses/favorite", {
   //       courseId,
-  //     })
-  //     .then((response) => {
-  //       return response.data;
   //     });
+  //     const data = res.data;
+  //     return data;
+  //   } catch (err) {
+  //     alert(err);
+  //   }
   // },
   // for work without API
   courseFavorite: (current: boolean) => {
-    return !current
+    return !current;
   },
 
-  coursesReviews: (courseId: number) => {
-    return instanse
-      .get<CoursesReviewsType>(`/courses/detail/${courseId}/reviews`)
-      .then((response) => {
-        return response.data;
+  coursesReviews: async (courseId: number) => {
+    try {
+      const res = await instanse.get<CoursesReviewsType>(
+        `/courses/detail/${courseId}/reviews`
+      );
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
+  },
+  coursesReviewAdded: async (
+    courseId: number,
+    rating: number,
+    text: string
+  ) => {
+    try {
+      const res = await instanse.post(`/courses/detail/${courseId}/reviews`, {
+        rating,
+        text,
       });
+      // @ts-ignore
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  coursesReviewAdded: (courseId: number, rating: number, text: string) => {
-    return instanse
-      .post(`/courses/detail/${courseId}/reviews`, { rating, text })
-      .then((response) => {
-        return response.data;
-      });
+  coursesDetail: async (courseId: number) => {
+    try {
+      const res = await instanse.get<CoursesDetailType>(
+        `/courses/detail/${courseId}`
+      );
+      // @ts-ignore
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  coursesDetail: (courseId: number) => {
-    return instanse.get<CoursesDetailType>(`/courses/detail/${courseId}`).then((response) => {
-      return response.data;
-    });
+  courseItem: async (courseId: number) => {
+    try {
+      const res = await instanse.get<CourseItemType>(`courses/${courseId}`);
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  courseItem: (courseId: number) => {
-    return instanse.get<CourseItemType>(`courses/${courseId}`).then((response) => {
-      return response.data;
-    });
+  modules: async (courseId: number) => {
+    try {
+      const res = await instanse.get<ModulesType>(
+        `courses/${courseId}/modules`
+      );
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  modules: (courseId: number) => {
-    return instanse.get<ModulesType>(`courses/${courseId}/modules`).then((response) => {
-      return response.data;
-    });
+  lessons: async (courseId: number, moduleId: number) => {
+    try {
+      const res = await instanse.get<LessonsType>(
+        `courses/${courseId}/modules/${moduleId}/lessons`
+      );
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  lessons: (courseId: number, moduleId: number) => {
-    return instanse
-      .get<LessonsType>(`courses/${courseId}/modules/${moduleId}/lessons`)
-      .then((response) => {
-        return response.data;
-      });
-  },
-  lessonItem: (courseId: number, moduleId: number, lessonId: number) => {
-    return instanse
-      .get<LessonItemType>(`courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`)
-      .then((response) => {
-        return response.data;
-      });
+  lessonItem: async (courseId: number, moduleId: number, lessonId: number) => {
+    try {
+      const res = await instanse.get<LessonItemType>(
+        `courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`
+      );
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
 };
 
 export const TestsAPI = {
-  tests: () => {
-    return instanse.get(`tests`);
+  tests: async () => {
+    try {
+      const data = await instanse.get(`tests`);
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  testItem: (testId: number) => {
-    return instanse.get(`tests/${testId}`).then((response) => {
-      return response.data;
-    });
+  testItem: async (testId: number) => {
+    try {
+      const res = await instanse.get(`tests/${testId}`);
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
-  testCompleted: (data: object | Array<any>) => {
-    return instanse.post(`tests/completed`, data).then((response) => {
-      return response.data;
-    });
+  testCompleted: async (data: object | Array<any>) => {
+    try {
+      const res = await instanse.post(`tests/completed`, data);
+      const dataRes = await res.data;
+      return dataRes;
+    } catch (err) {
+      alert(err);
+    }
   },
-  testCompletedItem: (testId: number) => {
-    return instanse.get(`tests/completed/${testId}`);
+  testCompletedItem: async (testId: number) => {
+    try {
+      const data = await instanse.get(`tests/completed/${testId}`);
+      return data;
+    } catch (err) {
+      alert(err);
+    }
   },
 };

@@ -19,14 +19,13 @@ const CourseDetailPreview: React.FC<TProps> = ({
     linkVideo && editYoutubeLinkForIframe(linkVideo, setLinkVideoForIframe);
   }, [linkVideo]);
 
-  let previewList;
-  if (whatGive) {
-    previewList = whatGive.map((i, index) => (
+  const previewList = () => {
+    return whatGive?.map((i, index) => (
       <li key={index} className={s.item}>
         {i}
       </li>
     ));
-  }
+  };
 
   return (
     <div className={s.preview}>
@@ -36,7 +35,7 @@ const CourseDetailPreview: React.FC<TProps> = ({
           Что вы получите, пройдя курс
         </p>
         <p className={"course__text"}>Благодаря этому курсу, вы:</p>
-        <ul className={s.list}>{previewList}</ul>
+        <ul className={s.list}>{previewList()}</ul>
         <p className="course__title-4">Для кого подходит курс</p>
         <p className="course__text">{howNeed}</p>
       </div>

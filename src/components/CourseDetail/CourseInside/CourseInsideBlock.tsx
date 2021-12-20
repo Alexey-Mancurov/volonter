@@ -5,38 +5,37 @@ import store from "../../../store/store";
 import { TLessonItems, TLessonList } from "../../../types/types";
 import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import CourceTitle2 from "../../common/CourceTitle2/CourceTitle2";
-import s from './index.module.css'
+import s from "./index.module.css";
 
 type TProps = {
   title: string;
   moduleId: string | number;
 };
 
-const CourseInsideBlock:React.FC<TProps> = ({ title, moduleId }) => {
+const CourseInsideBlock: React.FC<TProps> = ({ title, moduleId }) => {
   const context = useContext(Context);
 
-  const lessonsList:TLessonList = useRequestData(
+  const lessonsList: TLessonList = useRequestData(
     // @ts-ignore
     [store.coursesAPI.lessons[context.courseId][moduleId]],
     [context.courseId, moduleId]
   );
 
-  let list:TLessonItems; 
-  if (lessonsList) {
+  const list = () => {
     // @ts-ignore
-    list = lessonsList.items.map((i) => (
+    return lessonsList?.items.map((i) => (
       <ContentBoxCource
         key={i.id}
         addedClass={s.addClassBox}
         child={<div className={s.boxTitle}>{i.title}</div>}
       />
     ));
-  }
+  };
 
   return (
     <>
       <CourceTitle2 title={title} />
-      {list}
+      {list()}
     </>
   );
 };

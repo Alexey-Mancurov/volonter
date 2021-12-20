@@ -25,23 +25,23 @@ const CourseReviews = () => {
     [context.courseId]
   );
 
-  let list: Array<any>;
   if (reviewsList) {
-    // @ts-ignore
-    list = reviewsList.items.map((i, index) => (
-      <CoureseReviewItem
-        key={index}
-        img={i.img}
-        rating={i.rating}
-        name={i.name}
-        date={i.date}
-        text={i.text}
-      />
-    ));
+    const list = () =>
+      // @ts-ignore
+      reviewsList.items.map((i, index) => (
+        <CoureseReviewItem
+          key={index}
+          img={i.img}
+          rating={i.rating}
+          name={i.name}
+          date={i.date}
+          text={i.text}
+        />
+      ));
 
     return (
       <div className={s.container}>
-        {list}
+        {list()}
         <div className={s.info}>
           <div className={s.infoBox}>
             <div className={s.infoItem}>

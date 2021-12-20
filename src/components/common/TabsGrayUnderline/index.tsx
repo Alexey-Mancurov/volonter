@@ -1,18 +1,15 @@
 import TabItem from "./TabItem";
-import s from './index.module.css'
-
+import s from "./index.module.css";
 
 type PropsType = {
-  list: Array<
-    {
-      text: string;
-      path: string;
-    }
-  >;
+  list: Array<{
+    text: string;
+    path: string;
+  }>;
   isIndex?: boolean;
   action: Function;
   setActive: Function;
-  currentActive: number |null | undefined;
+  currentActive: number | null | undefined;
 };
 const TabsGrayUnderline: React.FC<PropsType> = ({
   list,
@@ -21,10 +18,8 @@ const TabsGrayUnderline: React.FC<PropsType> = ({
   setActive,
   currentActive,
 }) => {
-  let tabsList:Array<object>=[];
-
-  if (list) {
-    tabsList = list.map((i, index) => (
+  const tabsList = () => {
+    return list?.map((i, index) => (
       <TabItem
         key={index}
         index={index}
@@ -36,8 +31,9 @@ const TabsGrayUnderline: React.FC<PropsType> = ({
         setActive={setActive}
       />
     ));
-  }
+  };
 
-  return <ul className={s.list}>{tabsList}</ul>;
+  return <ul className={s.list}>{tabsList()}</ul>;
 };
+
 export default TabsGrayUnderline;

@@ -7,10 +7,8 @@ type TProps = {
 };
 
 const CheckList: React.FC<TProps> = ({ options, getCheckedOption }) => {
-  let askList;
-
-  if (options) {
-    askList = options.map((i, index) => (
+  const askList = () => {
+    return options?.map((i, index) => (
       <CheckItem
         title={i}
         key={index}
@@ -18,9 +16,9 @@ const CheckList: React.FC<TProps> = ({ options, getCheckedOption }) => {
         action={getCheckedOption}
       />
     ));
-  }
+  };
 
-  return <div className={s.ask}>{askList}</div>;
+  return <div className={s.ask}>{askList()}</div>;
 };
 
 export default CheckList;

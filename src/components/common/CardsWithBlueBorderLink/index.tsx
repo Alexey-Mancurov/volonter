@@ -1,7 +1,6 @@
-
 import limitLengthTheList from "../../../utils/limitLengthTheList/limitLengthTheList";
 import CardItem from "./CardItem";
-import s from './index.module.css'
+import s from "./index.module.css";
 
 type PropsType = {
   list: Array<{
@@ -17,10 +16,9 @@ const CardsWithBlueBorderLink: React.FC<PropsType> = ({
   addedClass,
   action,
 }) => {
-  let courseList: Array<object> = [];
 
-  if (list) {
-    courseList = list.map((i) => (
+  const courseList = () => {
+    return list?.map((i) => (
       <CardItem
         key={i.id}
         title={i.title}
@@ -30,13 +28,13 @@ const CardsWithBlueBorderLink: React.FC<PropsType> = ({
         action={action}
       />
     ));
-  }
-  limitLengthTheList(courseList, 4)
-console.log(s)
+  };
+  // @ts-ignore
+  limitLengthTheList(courseList, 4);
   return (
     <>
       <div className={`${s.inner} ${addedClass ? addedClass : ""}`}>
-        <div className={s.wrapper}>{courseList}</div>
+        <div className={s.wrapper}>{courseList()}</div>
       </div>
     </>
   );

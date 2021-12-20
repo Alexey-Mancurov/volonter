@@ -13,10 +13,9 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
   const context = useContext(Context);
   const testContext = useContext(TestContext);
 
-  let testList;
-  if (idListTests) {
-    //@ts-ignore
-    testList = idListTests.map((i, index) => (
+  //@ts-ignore
+  const testList = () =>
+    idListTests?.map((i, index) => (
       <NavLink
         key={index}
         to={{
@@ -32,7 +31,6 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
         Пройти тест
       </NavLink>
     ));
-  }
 
   return (
     <div className={s.wrapper}>
@@ -47,17 +45,14 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
               <p className={s.completedText}>
                 Пройдите тест, чтобы закрепить полученные знания
               </p>
-              <div>{testList}</div>
+              <div>{testList()}</div>
             </>
           ) : (
             <>
               <p className={s.completedText}>
                 Вы уже выполнили этот тест успешно. Можете пройти следующий урок
               </p>
-              <div
-                className={s.btn}
-                onClick={testContext.nextLesson}
-              >
+              <div className={s.btn} onClick={testContext.nextLesson}>
                 Далее
               </div>
             </>
@@ -65,16 +60,10 @@ const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
         </div>
       </div>
       <div className={s.btnBox}>
-        <div
-          className={s.btnInfo}
-          onClick={testContext.prevLesson}
-        >
+        <div className={s.btnInfo} onClick={testContext.prevLesson}>
           Предыдущий урок
         </div>
-        <div
-          className={s.btnInfo}
-          onClick={testContext.nextLesson}
-        >
+        <div className={s.btnInfo} onClick={testContext.nextLesson}>
           Следующий урок
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
-// import "./App.css";
 import CourseTitle from "./components/common/CourseTitle/CourseTitle";
 import Courses from "./components/Courses";
 import { useLocation } from "react-router";
@@ -16,7 +15,9 @@ import { next, prev } from "./utils/toggleLessons/toggleLessons";
 import useProgressPercent from "./customHooks/useProgressPercent";
 const TestWrapper = React.lazy(() => import("./components/TestWrapper/TestWrapper"));
 
+
 function App() {
+  
   const location = useLocation();
   const pathname = location.pathname;
   const match = useRouteMatch("/courseDetail/:id");

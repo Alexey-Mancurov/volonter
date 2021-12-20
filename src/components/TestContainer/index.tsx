@@ -4,8 +4,7 @@ import TestResultBtn from "./TestResultBtn";
 import { useLocation } from "react-router";
 import Preloader from "../common/Preloader";
 import store from "../../store/store";
-import s from './index.module.css'
-
+import s from "./index.module.css";
 
 type TAsksList = Array<{
   askId: number | string;
@@ -89,9 +88,9 @@ const TestContainer = () => {
     })();
   }, [isTestEnd]);
 
-  let askList;
-  testData.askList
-    ? (askList = testData.askList.map((i) => (
+  const askList = () => {
+    if (testData.askList) {
+      return testData.askList.map((i) => (
         // @ts-ignore
         <TestAsks
           id={i.id}
@@ -104,12 +103,15 @@ const TestContainer = () => {
           prevAsk={prevAsk}
           completedResponse={completedResponse}
         />
-      )))
-    : (askList = <Preloader />);
+      ));
+    } else {
+      return <Preloader />;
+    }
+  };
 
   return (
     <div className={s.container}>
-      {askList}
+      {askList()}
       {currentAsk > askCount && completedResponse && (
         <TestResultBtn
           // @ts-ignore

@@ -7,7 +7,6 @@ import CourseDetailPreview from "./CourseDetailPreview";
 import Title2AndList from "../common/Title2AndList/Title2AndList";
 import s from "./index.module.css";
 
-
 type TProps = {
   courseDetailData: {
     id: string | number;
@@ -38,13 +37,11 @@ const CourseDetailPage: React.FC<TProps> = ({ courseDetailData }) => {
   } = courseDetailData;
   const courses = useRequestData([store.coursesAPI.courses], []);
 
-  let list;
-
-  if (contentList) {
-    list = contentList.map((i, index) => (
+  const list = () => {
+    return contentList?.map((i, index) => (
       <CourseDetailContent key={index} title={i.title} text={i.text} />
     ));
-  }
+  };
 
   return (
     <>
@@ -56,7 +53,7 @@ const CourseDetailPage: React.FC<TProps> = ({ courseDetailData }) => {
 
       <section className={s.info}>
         <h2 className="title">Информация</h2>
-        {list}
+        {list()}
 
         <Title2AndList title={title} list={willLearnList.items} />
 
