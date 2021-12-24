@@ -1,20 +1,21 @@
 import React, { useContext, useState } from "react";
 import Context from "../../../context/context";
-import useRequestData from "../../../customHooks/useRequestData";
+import useRequestData from "../../../hooks/useRequestData";
 import store from "../../../store/store";
 import actionToggle from "../../../utils/actionToggle/actionToggle";
 import Preloader from "../../common/Preloader";
 import Header from "./Header";
 import List from "./List";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   moduleId: number | string;
   title: string;
   moduleIndex: number;
 };
 
-const SidebarModuleBlock:React.FC<TProps> = ({ moduleId, title, moduleIndex }) => {
+const SidebarModuleBlock:FC<TProps> = ({ moduleId, title, moduleIndex }) => {
   const context = useContext(Context);
 
   const [isOpen, setIsOpen] = useState(false);

@@ -1,12 +1,13 @@
 
 import s from './index.module.css'
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   numCurrent?: string | number;
   numAll?: string | number;
 };
 
-const NumFractionalInCircle: React.FC<PropsType> = ({ numCurrent, numAll }) => {
+const NumFractionalInCircle: FC<PropsType> = ({ numCurrent, numAll }) => {
   return (
     <div className={s.num}>
       <p>

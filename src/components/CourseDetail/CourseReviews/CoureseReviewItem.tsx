@@ -1,9 +1,11 @@
 import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import renderingStartsRating from "../../../utils/renderingStartsRating/renderingStartsRating";
 import s from "./index.module.css";
+import { FC } from "react";
 
 
-type TProps = {
+
+interface TProps {
   name: string;
   date: string;
   text: string;
@@ -11,7 +13,7 @@ type TProps = {
   img: string;
 };
 
-const CoureseReviewItem: React.FC<TProps> = ({
+const CoureseReviewItem: FC<TProps> = ({
   name,
   date,
   text,

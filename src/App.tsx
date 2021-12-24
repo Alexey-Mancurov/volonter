@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import CourseTitle from "./components/common/CourseTitle/CourseTitle";
-import Courses from "./components/Courses";
 import { useLocation } from "react-router";
 import { useRouteMatch } from "react-router-dom";
 import Preloader from "./components/common/Preloader";
-import CourseDetail from "./components/CourseDetail";
 import Context from "./context/context";
 import store from "./store/store";
 import TestContext from "./context/testContext";
 import SuspensePreloader from "./components/common/SuspensePreloader";
-import useIsLastItem from "./customHooks/useIsLastItem";
+import useIsLastItem from "./hooks/useIsLastItem";
 import { next, prev } from "./utils/toggleLessons/toggleLessons";
-import useProgressPercent from "./customHooks/useProgressPercent";
+import useProgressPercent from "./hooks/useProgressPercent";
+import { CoursesPage } from "./pages/courses-page";
+import { CourseItemPage } from "./pages/course-item-page";
+
 const TestWrapper = React.lazy(() => import("./components/TestWrapper/TestWrapper"));
 
 
@@ -175,7 +176,7 @@ function App() {
                 {pathname === `/courseDetail/${match?.params.id}` ? (
                   <Route
                     path={"/courseDetail/:id"}
-                    children={<CourseDetail />}
+                    children={<CourseItemPage />}
                   />
                 ) : (
                   <TestContext.Provider value={testContextValue}>
@@ -186,7 +187,7 @@ function App() {
                 )}
               </>
             ) : (
-              <Route exact path={exactPathRoute} children={<Courses />} />
+              <Route exact path={exactPathRoute} children={<CoursesPage />} />
             )}
           </main>
         </div>

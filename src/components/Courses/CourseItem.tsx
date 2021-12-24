@@ -4,9 +4,10 @@ import Context from "../../context/context";
 import actionToggle from "../../utils/actionToggle/actionToggle";
 import FavoriteToggle from "../common/FavoriteToggle/FavoriteToggle";
 import s from "./index.module.css";
+import { FC } from "react";
 
 
-type TProps = {
+interface TProps {
   id: number | string;
   tier: any;
   title: string;
@@ -14,7 +15,7 @@ type TProps = {
   author: { img: string; name: string };
 };
 
-const CourseItem: React.FC<TProps> = ({
+const CourseItem: FC<TProps> = ({
   id,
   tier,
   title,

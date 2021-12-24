@@ -1,11 +1,12 @@
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   title: string;
   toggleIsOpen: () => void;
 };
 
-const Header: React.FC<TProps> = ({ title, toggleIsOpen }) => {
+const Header: FC<TProps> = ({ title, toggleIsOpen }) => {
   return (
     <div className={s.box} onClick={toggleIsOpen}>
       <div className={s.title}>{title}</div>

@@ -1,13 +1,15 @@
 import star_dark from "../../../assets/star-dark.svg";
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type PropsType = {
+
+interface PropsType  {
   index?: number;
   isGold?: boolean;
   action?: (index: number|undefined) => void;
 };
-const DarkStar: React.FC<PropsType> = ({ index, isGold, action }) => {
+const DarkStar: FC<PropsType> = ({ index, isGold, action }) => {
   if (action) {
     return (
       <svg

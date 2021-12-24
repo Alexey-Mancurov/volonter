@@ -3,13 +3,14 @@ import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import TestContext from "../../context/testContext";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   idListTests: Array<string>;
   isChecked: boolean;
 };
 
-const CourseInfoActions: React.FC<TProps> = ({ idListTests, isChecked }) => {
+const CourseInfoActions: FC<TProps> = ({ idListTests, isChecked }) => {
   const context = useContext(Context);
   const testContext = useContext(TestContext);
 

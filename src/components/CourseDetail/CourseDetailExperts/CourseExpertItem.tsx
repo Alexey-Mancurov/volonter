@@ -1,12 +1,13 @@
 import s from './index.module.css'
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   img: string;
   name: string;
   description: string;
 };
 
-const CourseExpertItem = ({ img, name, description }: PropsType) => {
+const CourseExpertItem:FC<PropsType> = ({ img, name, description }) => {
   return (
     <div className={s.item}>
       <img className={s.img} src={img} alt="" />

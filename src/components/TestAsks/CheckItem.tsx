@@ -1,12 +1,13 @@
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   index: number;
   title: string;
   action: (index: number) => void;
 };
 
-const CheckItem:React.FC<TProps> = ({ index, title, action }) => {
+const CheckItem:FC<TProps> = ({ index, title, action }) => {
   const localGetCheckedOption = () => {
     action(index);
   };

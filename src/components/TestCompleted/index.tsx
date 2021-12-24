@@ -3,16 +3,17 @@ import Info from "./Info";
 import Reviews from "./Reviews";
 import { useLocation } from "react-router";
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type TProps ={
+interface TProps{
   title:string
 }
 
-const TestCompleted:React.FC<TProps> = ({title}) => {
+const TestCompleted:FC<TProps> = ({title}) => {
   const location = useLocation();
 
-  // @ts-ignore
+// @ts-ignore
   const completedResponse = location.state.completedResponse;
 
   return (

@@ -6,12 +6,13 @@ import Context from "../../context/context";
 import actionToggle from "../../utils/actionToggle/actionToggle";
 import LinkGrayUnderline from "../common/LinkGrayUnderline/LinkGrayUnderline";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   time: string;
 };
 
-const CourseDetailHeader = ({ time }: PropsType) => {
+const CourseDetailHeader:FC<PropsType> = ({ time }) => {
   const context = useContext(Context);
 
   const [isFavorite, setIsFavorite] = useState(false);

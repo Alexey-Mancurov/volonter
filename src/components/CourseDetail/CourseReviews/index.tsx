@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Context from "../../../context/context";
-import useRequestData from "../../../customHooks/useRequestData";
+import useRequestData from "../../../hooks/useRequestData";
 import store from "../../../store/store";
 import { TContext } from "../../../types/types";
 import CoureseReviewItem from "./CoureseReviewItem";

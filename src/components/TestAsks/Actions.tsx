@@ -1,4 +1,5 @@
 import s from "./index.module.css";
+import { FC } from "react";
 
 
 type TProps={
@@ -8,7 +9,7 @@ type TProps={
   localPrevAsk: ()=>void;
 }
 
-const Actions:React.FC<TProps> = ({
+const Actions:FC<TProps> = ({
   // completedResponse,
   currentAsk,
   localPrevAsk,

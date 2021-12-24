@@ -1,13 +1,14 @@
 import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import CourseMaterialsLink from "./CourseMaterialsLink";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   title: string;
   materials: Array<{ text: string; link: string }>;
 };
 
-const CourseMaterialsItem: React.FC<TProps> = ({ title, materials }) => {
+const CourseMaterialsItem: FC<TProps> = ({ title, materials }) => {
   const materialsList = () =>
     materials?.map((i, index) => (
       <CourseMaterialsLink key={index} text={i.text} link={i.link} />

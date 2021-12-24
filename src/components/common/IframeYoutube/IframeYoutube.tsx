@@ -1,9 +1,11 @@
-type PropsType = {
+import { FC } from "react";
+
+interface PropsType  {
   link: string | undefined;
   addedClass?: string;
 };
 
-const IframeYoutube: React.FC<PropsType> = ({ link, addedClass }) => {
+const IframeYoutube: FC<PropsType> = ({ link, addedClass }) => {
   return (
     <div className={`${addedClass ? addedClass : ""}`}>
       <iframe

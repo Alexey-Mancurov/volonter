@@ -2,14 +2,15 @@ import { useContext } from "react";
 import Context from "../../context/context";
 import CardsWithBlueBorderLink from "../common/CardsWithBlueBorderLink";
 import CourceTitle2 from "../common/CourceTitle2/CourceTitle2";
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   courses: {
     items: Array<any>;
     success: boolean;
   };
 };
-const CourseDetailMore = ({ courses }: PropsType) => {
+const CourseDetailMore:FC<PropsType> = ({ courses }) => {
   const context = useContext(Context);
 
   return (

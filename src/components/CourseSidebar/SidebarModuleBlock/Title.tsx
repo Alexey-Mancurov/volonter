@@ -4,14 +4,15 @@ import check from "../../../assets/check.svg";
 import Context from "../../../context/context";
 import TestContext from "../../../context/testContext";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   indexLesson: number
   indexModule:number
   title: string;
   isChecked: boolean;
 }
-const Title:React.FC<TProps> = ({
+const Title:FC<TProps> = ({
   indexLesson,
   title,
   isChecked,

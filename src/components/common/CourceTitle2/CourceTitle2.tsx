@@ -1,9 +1,11 @@
 import s from './index.module.css'
+import { FC } from "react";
 
-type PropsType = {
+
+interface PropsType  {
   title: string;
 };
-const CourceTitle2:React.FC<PropsType> = ({ title }) => {
+const CourceTitle2:FC<PropsType> = ({ title }) => {
   return <p className={s.title}>{title}</p>;
 };
 

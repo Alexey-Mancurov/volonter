@@ -1,11 +1,12 @@
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   text: string;
   link: string;
 };
 
-const CourseMaterialsLink:React.FC<TProps> = ({ text, link }) => {
+const CourseMaterialsLink:FC<TProps> = ({ text, link }) => {
   return (
     <>
       <div className={s.item}>

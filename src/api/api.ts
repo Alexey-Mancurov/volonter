@@ -20,8 +20,7 @@ const instanse = axios.create({
 export const coursesAPI = {
   courses: async () => {
     try {
-      const res = await instanse.get<CoursesType>(`courses/`);
-      const data = await res.data;
+      const { data } = await instanse.get<CoursesType>(`courses/`);
       return data;
     } catch (err) {
       alert(err);
@@ -45,10 +44,9 @@ export const coursesAPI = {
 
   coursesReviews: async (courseId: number) => {
     try {
-      const res = await instanse.get<CoursesReviewsType>(
+      const { data } = await instanse.get<CoursesReviewsType>(
         `/courses/detail/${courseId}/reviews`
       );
-      const data = await res.data;
       return data;
     } catch (err) {
       alert(err);
@@ -60,12 +58,13 @@ export const coursesAPI = {
     text: string
   ) => {
     try {
-      const res = await instanse.post(`/courses/detail/${courseId}/reviews`, {
-        rating,
-        text,
-      });
-      // @ts-ignore
-      const data = await res.data;
+      const { data } = await instanse.post(
+        `/courses/detail/${courseId}/reviews`,
+        {
+          rating,
+          text,
+        }
+      );
       return data;
     } catch (err) {
       alert(err);
@@ -73,11 +72,9 @@ export const coursesAPI = {
   },
   coursesDetail: async (courseId: number) => {
     try {
-      const res = await instanse.get<CoursesDetailType>(
+      const { data } = await instanse.get<CoursesDetailType>(
         `/courses/detail/${courseId}`
       );
-      // @ts-ignore
-      const data = await res.data;
       return data;
     } catch (err) {
       alert(err);
@@ -85,8 +82,9 @@ export const coursesAPI = {
   },
   courseItem: async (courseId: number) => {
     try {
-      const res = await instanse.get<CourseItemType>(`courses/${courseId}`);
-      const data = await res.data;
+      const { data } = await instanse.get<CourseItemType>(
+        `courses/${courseId}`
+      );
       return data;
     } catch (err) {
       alert(err);
@@ -94,10 +92,9 @@ export const coursesAPI = {
   },
   modules: async (courseId: number) => {
     try {
-      const res = await instanse.get<ModulesType>(
+      const { data } = await instanse.get<ModulesType>(
         `courses/${courseId}/modules`
       );
-      const data = await res.data;
       return data;
     } catch (err) {
       alert(err);
@@ -105,10 +102,9 @@ export const coursesAPI = {
   },
   lessons: async (courseId: number, moduleId: number) => {
     try {
-      const res = await instanse.get<LessonsType>(
+      const { data } = await instanse.get<LessonsType>(
         `courses/${courseId}/modules/${moduleId}/lessons`
       );
-      const data = await res.data;
       return data;
     } catch (err) {
       alert(err);
@@ -116,10 +112,9 @@ export const coursesAPI = {
   },
   lessonItem: async (courseId: number, moduleId: number, lessonId: number) => {
     try {
-      const res = await instanse.get<LessonItemType>(
+      const { data } = await instanse.get<LessonItemType>(
         `courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`
       );
-      const data = await res.data;
       return data;
     } catch (err) {
       alert(err);
@@ -130,7 +125,7 @@ export const coursesAPI = {
 export const TestsAPI = {
   tests: async () => {
     try {
-      const data = await instanse.get(`tests`);
+      const { data } = await instanse.get(`tests`);
       return data;
     } catch (err) {
       alert(err);
@@ -138,8 +133,7 @@ export const TestsAPI = {
   },
   testItem: async (testId: number) => {
     try {
-      const res = await instanse.get(`tests/${testId}`);
-      const data = await res.data;
+      const { data } = await instanse.get(`tests/${testId}`);
       return data;
     } catch (err) {
       alert(err);
@@ -156,7 +150,7 @@ export const TestsAPI = {
   },
   testCompletedItem: async (testId: number) => {
     try {
-      const data = await instanse.get(`tests/completed/${testId}`);
+      const { data } = await instanse.get(`tests/completed/${testId}`);
       return data;
     } catch (err) {
       alert(err);

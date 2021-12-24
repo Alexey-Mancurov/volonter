@@ -1,6 +1,7 @@
 import TestCheckingdAskItem from "./TestCheckingdAskItem";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   dataList: Array<{
     id: number | string;
     ask: string;
@@ -8,7 +9,7 @@ type TProps = {
   }>;
 };
 
-const TestCheckingAsks: React.FC<TProps> = ({ dataList }) => {
+const TestCheckingAsks: FC<TProps> = ({ dataList }) => {
   const answersListChecking = () => {
     return dataList?.map((i) => (
       <TestCheckingdAskItem

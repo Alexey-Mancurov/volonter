@@ -2,8 +2,9 @@ import { useState } from "react";
 import Tabs from "../common/Tabs";
 import s from "./index.module.css";
 import TabsGrayUnderline from "../common/TabsGrayUnderline";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   filterStatic: Array<any>;
   filterLevel: Array<{
     text: string;
@@ -11,7 +12,7 @@ type TProps = {
   }>;
   getFilter: (param: string) => void;
 };
-const Header: React.FC<TProps> = ({ filterStatic, filterLevel, getFilter }) => {
+const Header: FC<TProps> = ({ filterStatic, filterLevel, getFilter }) => {
   const [currentIndexActiveLvl, setCurrentIndexActiveLvl] = useState<
     number | null |undefined
   >();

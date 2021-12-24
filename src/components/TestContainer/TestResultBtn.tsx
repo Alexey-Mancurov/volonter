@@ -3,13 +3,14 @@ import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import store from "../../store/store";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   isLastLesson: boolean;
   isLastModule: boolean;
   completedResponse: any;
 };
-const TestResultBtn: React.FC<TProps> = ({
+const TestResultBtn: FC<TProps> = ({
   isLastLesson,
   isLastModule,
   completedResponse,

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Context from "../../context/context";
-import useRequestData from "../../customHooks/useRequestData";
+import useRequestData from "../../hooks/useRequestData";
 import store from "../../store/store";
 import Preloader from "../common/Preloader";
 import Tabs from "../common/Tabs";

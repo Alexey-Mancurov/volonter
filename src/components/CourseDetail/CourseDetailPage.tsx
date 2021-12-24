@@ -1,4 +1,4 @@
-import useRequestData from "../../customHooks/useRequestData";
+import useRequestData from "../../hooks/useRequestData";
 import store from "../../store/store";
 import CourseDetailExperts from "./CourseDetailExperts";
 import CourseDetailContent from "../common/Title2AndBox";
@@ -6,8 +6,9 @@ import CourseDetailMore from "./CourseDetailMore";
 import CourseDetailPreview from "./CourseDetailPreview";
 import Title2AndList from "../common/Title2AndList/Title2AndList";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   courseDetailData: {
     id: string | number;
     time: string;
@@ -25,7 +26,7 @@ type TProps = {
   };
 };
 
-const CourseDetailPage: React.FC<TProps> = ({ courseDetailData }) => {
+const CourseDetailPage: FC<TProps> = ({ courseDetailData }) => {
   const {
     title,
     contentList,

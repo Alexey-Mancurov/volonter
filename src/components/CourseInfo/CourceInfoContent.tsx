@@ -1,15 +1,16 @@
 import paper from "../../assets/paper.svg";
 import ListContent from "../common/ListContent";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   title: string;
   description: string;
   info: Array<string>;
   linkVideo: string;
 };
 
-const CourceInfoContent: React.FC<TProps> = ({
+const CourceInfoContent: FC<TProps> = ({
   title,
   description,
   info,

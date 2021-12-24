@@ -3,7 +3,7 @@ import CheckList from "./CheckList";
 import Actions from "./Actions";
 import Header from "./Header";
 
-type TProps = {
+interface TProps {
   id: number | string;
   ask: string;
   askCount: number | string;

@@ -1,12 +1,13 @@
 import CourceTitle2 from "../../common/CourceTitle2/CourceTitle2";
 import CourseExpertItem from "./CourseExpertItem";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   experts: Array<{ description: string; img: string; name: string }>;
 };
 
-const CourseDetailExperts = ({ experts }: PropsType) => {
+const CourseDetailExperts:FC<PropsType> = ({ experts }) => {
   const expertsList = () => {
     return experts?.map((i, index) => (
       <CourseExpertItem

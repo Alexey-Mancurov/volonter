@@ -1,7 +1,8 @@
 import Title from "./Title";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   lessonsList: {
     items: Array<{
       id: number | string;
@@ -11,7 +12,7 @@ type TProps = {
   };
   moduleIndex: number;
 };
-const List: React.FC<TProps> = ({ lessonsList, moduleIndex }) => {
+const List: FC<TProps> = ({ lessonsList, moduleIndex }) => {
   if (lessonsList.items) {
     const lessonList = () => {
       return lessonsList.items?.map((i, index) => (

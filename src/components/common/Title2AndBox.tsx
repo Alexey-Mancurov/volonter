@@ -1,11 +1,12 @@
+import { FC } from "react";
 import ContentBoxCource from "./ContentBoxCource/ContentBoxCource";
 import CourceTitle2 from "./CourceTitle2/CourceTitle2";
 
-type PropsType = {
+interface PropsType {
   title: string;
   text: string;
 };
-const Title2AndBox = ({ title, text }: PropsType) => {
+const Title2AndBox:FC<PropsType> = ({ title, text }) => {
   return (
     <>
       <CourceTitle2 title={title} />

@@ -1,8 +1,9 @@
 import NumFractionalInCircle from "../common/NumFractionalInCircle/NumFractionalInCircle";
 import NumInCircle from "../common/NumInCircle/NumInCircle";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   num?: number;
   title?: string;
   numCurrent?: number;
@@ -10,7 +11,7 @@ type TProps = {
   isFractional?: boolean;
 };
 
-const BaseData: React.FC<TProps> = ({
+const BaseData: FC<TProps> = ({
   num,
   title,
   numCurrent,

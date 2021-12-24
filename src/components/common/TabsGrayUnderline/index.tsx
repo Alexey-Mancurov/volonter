@@ -1,7 +1,8 @@
 import TabItem from "./TabItem";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   list: Array<{
     text: string;
     path: string;
@@ -11,7 +12,7 @@ type PropsType = {
   setActive: Function;
   currentActive: number | null | undefined;
 };
-const TabsGrayUnderline: React.FC<PropsType> = ({
+const TabsGrayUnderline: FC<PropsType> = ({
   list,
   isIndex,
   action,

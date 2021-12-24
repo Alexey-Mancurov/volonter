@@ -1,11 +1,12 @@
 import CourseItem from "./CourseItem";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   courses: Array<any> | undefined;
 };
 
-const List: React.FC<TProps> = ({ courses }) => {
+const List: FC<TProps> = ({ courses }) => {
   const courseList = () => {
     if (courses && courses.length > 0) {
       return courses.map((i) => (

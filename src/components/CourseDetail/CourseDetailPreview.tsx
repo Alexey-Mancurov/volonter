@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import editYoutubeLinkForIframe from "../../utils/editYoutubeLinkForIframe/editYoutubeLinkForIframe";
 import IframeYoutube from "../common/IframeYoutube/IframeYoutube";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+
+interface TProps {
   linkVideo: string;
   whatGive: Array<string>;
   howNeed: string;
 };
-const CourseDetailPreview: React.FC<TProps> = ({
+const CourseDetailPreview: FC<TProps> = ({
   linkVideo,
   whatGive,
   howNeed,

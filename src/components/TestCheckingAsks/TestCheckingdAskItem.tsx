@@ -1,12 +1,13 @@
 import TestCheckingTitle from "./TestCheckingTitle";
 import s from './index.module.css'
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   options: Array<any>;
   num: number | string;
   ask: string;
 };
-const TestCheckingdAskItem: React.FC<TProps> = ({ options, num, ask }) => {
+const TestCheckingdAskItem: FC<TProps> = ({ options, num, ask }) => {
   const allAnswers = options;
   const answerCorrect = allAnswers[allAnswers.length - 2];
   const answerVolont = allAnswers[allAnswers.length - 1];

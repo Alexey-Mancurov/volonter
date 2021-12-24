@@ -1,13 +1,14 @@
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type TProps = {
+interface TProps {
   num: number | string;
   answerCorrect: number;
   answerVolont: number;
 };
 
-const TestAskTitle:React.FC<TProps> = ({ num, answerCorrect, answerVolont }) => {
+const TestAskTitle:FC<TProps> = ({ num, answerCorrect, answerVolont }) => {
   return (
     <div className={s.titleBox}>
       <div className={s.title}>Вопрос {num}</div>

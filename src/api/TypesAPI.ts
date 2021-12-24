@@ -1,7 +1,7 @@
-export type GenericBlockType<A> = {
+export interface GenericBlockType<A> {
   success: boolean;
   items: Array<A>;
-};
+}
 
 export type CoursesType = GenericBlockType<{
   id: number | string;
@@ -31,7 +31,7 @@ export type LessonsType = GenericBlockType<{
   }>;
 }>;
 
-export type CoursesReviewsType = {
+export interface CoursesReviewsType {
   num: number;
   items: Array<{
     img?: string;
@@ -40,9 +40,9 @@ export type CoursesReviewsType = {
     text: string;
     rating: string;
   }>;
-};
+}
 
-export type CoursesDetailType = {
+export interface CoursesDetailType {
   id: string | number;
   title: string;
   description: string;
@@ -63,9 +63,9 @@ export type CoursesDetailType = {
     name: string;
     description: string;
   };
-};
+}
 
-export type CourseItemType = {
+export interface CourseItemType {
   success: boolean;
   course: {
     id: number | string;
@@ -77,9 +77,9 @@ export type CourseItemType = {
     totalLessons: number;
     checkLessons: number;
   };
-};
+}
 
-export type LessonItemType = {
+export interface LessonItemType {
   success: boolean;
   item: {
     id: string | number;
@@ -90,4 +90,4 @@ export type LessonItemType = {
     info: Array<string>;
     idListTests: Array<string>;
   };
-};
+}

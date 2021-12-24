@@ -1,17 +1,18 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import actionWithDataAndScrollToTop from "../../../utils/actionWithDataAndScrollToTop/actionWithDataAndScrollToTop";
 import s from './index.module.css'
 
 
 
-type PropsType = {
+interface PropsType {
   title: string;
   description?: string;
   id?: number;
   action: Function;
   text: string;
 };
-const CardItem: React.FC<PropsType> = ({
+const CardItem: FC<PropsType> = ({
   title,
   description,
   id,

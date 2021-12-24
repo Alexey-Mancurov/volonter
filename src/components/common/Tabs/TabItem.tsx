@@ -1,9 +1,10 @@
 import React from "react";
 import tabsToggle from "../../../utils/tabsToogle/tabsToogle";
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type PropsType = {
+interface PropsType  {
   index: number;
   isIndex?: boolean;
   text: string;
@@ -12,7 +13,7 @@ type PropsType = {
   setActive: Function;
   action: Function;
 };
-const TabItem: React.FC<PropsType> = ({
+const TabItem: FC<PropsType> = ({
   index,
   isIndex,
   text,

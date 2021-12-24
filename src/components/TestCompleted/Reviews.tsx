@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { coursesAPI } from "../../api/api";
 import check from "../../assets/check.svg";
 import Context from "../../context/context";
@@ -52,7 +52,7 @@ const Reviews = () => {
 
   const [reviewValue, setReviewValue] = useState("");
 
-  const getReviewValue = (e: any) => {
+  const getReviewValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReviewValue(e.target.value);
   };
 

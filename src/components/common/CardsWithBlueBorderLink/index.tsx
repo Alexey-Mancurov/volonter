@@ -1,8 +1,9 @@
 import limitLengthTheList from "../../../utils/limitLengthTheList/limitLengthTheList";
 import CardItem from "./CardItem";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   list: Array<{
     id: number;
     title: string;
@@ -11,7 +12,7 @@ type PropsType = {
   addedClass?: string;
   action: Function;
 };
-const CardsWithBlueBorderLink: React.FC<PropsType> = ({
+const CardsWithBlueBorderLink: FC<PropsType> = ({
   list,
   addedClass,
   action,

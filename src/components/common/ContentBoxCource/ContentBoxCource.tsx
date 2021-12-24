@@ -1,10 +1,12 @@
 import s from './index.module.css'
+import { FC } from "react";
 
-type PropsType = {
+
+interface PropsType  {
   child: object ;
   addedClass?: string;
 };
-const ContentBoxCource: React.FC<PropsType> = ({ child, addedClass }) => {
+const ContentBoxCource: FC<PropsType> = ({ child, addedClass }) => {
   return (
     <div className={`${s.box} ${addedClass ? addedClass : ""}`}>
       {child}

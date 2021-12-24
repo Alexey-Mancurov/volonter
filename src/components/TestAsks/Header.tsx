@@ -1,12 +1,13 @@
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   ask: string;
   currentAsk: number | string;
   askCount: number | string;
 };
 
-const Header:React.FC<TProps> = ({ ask, currentAsk, askCount }) => {
+const Header:FC<TProps> = ({ ask, currentAsk, askCount }) => {
   return (
     <div className={s.wrapper}>
       <div className={s.title}>{ask}</div>

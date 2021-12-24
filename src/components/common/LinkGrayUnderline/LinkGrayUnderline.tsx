@@ -1,13 +1,14 @@
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type PropsType = {
+interface PropsType  {
   action: (data: any) => void;
   data: string | number;
   child: object | string;
   baseValue?: string | number;
 };
-const LinkGrayUnderline: React.FC<PropsType> = ({
+const LinkGrayUnderline: FC<PropsType> = ({
   action,
   data,
   child,

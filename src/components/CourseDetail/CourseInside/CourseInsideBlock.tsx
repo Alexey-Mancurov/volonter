@@ -1,18 +1,19 @@
 import { useContext } from "react";
 import Context from "../../../context/context";
-import useRequestData from "../../../customHooks/useRequestData";
+import useRequestData from "../../../hooks/useRequestData";
 import store from "../../../store/store";
 import { TLessonItems, TLessonList } from "../../../types/types";
 import ContentBoxCource from "../../common/ContentBoxCource/ContentBoxCource";
 import CourceTitle2 from "../../common/CourceTitle2/CourceTitle2";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   title: string;
   moduleId: string | number;
 };
 
-const CourseInsideBlock: React.FC<TProps> = ({ title, moduleId }) => {
+const CourseInsideBlock: FC<TProps> = ({ title, moduleId }) => {
   const context = useContext(Context);
 
   const lessonsList: TLessonList = useRequestData(

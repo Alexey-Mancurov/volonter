@@ -1,9 +1,10 @@
 import s from './index.module.css'
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   num?: string | number;
 };
-const NumInCircle:React.FC<PropsType> = ({ num }) => {
+const NumInCircle:FC<PropsType> = ({ num }) => {
   return <div className={s.num}>{num}</div>;
 };
 

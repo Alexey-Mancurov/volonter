@@ -1,9 +1,10 @@
 import s from './index.module.css'
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   text: string
 }
-const ItemContent:React.FC<PropsType> = ({ text }) => {
+const ItemContent:FC<PropsType> = ({ text }) => {
   return <li className={s.item}>{text}</li>;
 };
 export default ItemContent;

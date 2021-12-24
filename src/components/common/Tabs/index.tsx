@@ -1,15 +1,16 @@
 import React from "react";
 import TabItem from "./TabItem";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type PropsType = {
+interface PropsType  {
   list: Array<{ text: string; path: string }>;
   isIndex?: boolean;
   action: Function;
   setActive: Function;
   currentActive: number;
 };
-const Tabs: React.FC<PropsType> = ({
+const Tabs: FC<PropsType> = ({
   list,
   isIndex,
   action,

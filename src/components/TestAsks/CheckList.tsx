@@ -1,12 +1,13 @@
 import CheckItem from "./CheckItem";
 import s from "./index.module.css";
+import { FC } from "react";
 
-type TProps = {
+interface TProps {
   options: Array<string>;
   getCheckedOption: (index: number) => void;
 };
 
-const CheckList: React.FC<TProps> = ({ options, getCheckedOption }) => {
+const CheckList: FC<TProps> = ({ options, getCheckedOption }) => {
   const askList = () => {
     return options?.map((i, index) => (
       <CheckItem

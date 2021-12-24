@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type TProps = {
+interface TProps {
   successTest: boolean;
 };
 
-const TestCheckingHeader:React.FC<TProps> = ({ successTest }) => {
+const TestCheckingHeader:FC<TProps> = ({ successTest }) => {
   const context = useContext(Context)
   return (
     <div className={s.containerWrapper}>

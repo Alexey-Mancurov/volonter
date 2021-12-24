@@ -1,13 +1,14 @@
 import s from './index.module.css'
+import { FC } from "react";
 
 
-type TProps = {
+interface TProps {
   sertificate: string;
   successAsks: number | string;
   totalAsk: number | string;
 };
 
-const Info:React.FC<TProps> = ({ sertificate, successAsks, totalAsk }) => {
+const Info:FC<TProps> = ({ sertificate, successAsks, totalAsk }) => {
   return (
     <div className={s.completed}>
       <div className={s.completedWrapper}>

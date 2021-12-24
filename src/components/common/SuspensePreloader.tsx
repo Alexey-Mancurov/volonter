@@ -1,10 +1,10 @@
-import { Suspense } from "react";
+import { FC, Suspense } from "react";
 import Preloader from "./Preloader";
 
-type PropsType = {
+interface PropsType {
   child: object;
 };
-const SuspensePreloader: React.FC<PropsType> = ({ child }) => {
+const SuspensePreloader: FC<PropsType> = ({ child }) => {
   return <Suspense fallback={<Preloader />}>{child}</Suspense>;
 };
 

@@ -1,13 +1,13 @@
 import React from "react";
 import s from './index.module.css'
+import { FC } from "react";
 
-
-type PropsType = {
+interface PropsType  {
   isFavorite: boolean;
   id: number | string;
   action: Function;
 };
-const FavoriteToggle: React.FC<PropsType> = ({ isFavorite, id, action }) => {
+const FavoriteToggle: FC<PropsType> = ({ isFavorite, id, action }) => {
   return (
     <div
       className={`${s.favorit} ${
