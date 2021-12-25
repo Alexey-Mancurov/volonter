@@ -1,5 +1,5 @@
 import useRequestData from "../../hooks/useRequestData";
-import store from "../../store/store";
+import store from "../../mock/mock";
 import CourseDetailExperts from "./CourseDetailExperts";
 import CourseDetailContent from "../common/Title2AndBox";
 import CourseDetailMore from "./CourseDetailMore";

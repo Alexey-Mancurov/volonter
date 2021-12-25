@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import filtration from "../../utils/filtration/filtration";
-import store from "../../store/store";
+import store from "../../mock/mock";
 import Preloader from "../common/Preloader";
 import Header from "./Header";
 import List from "./List";

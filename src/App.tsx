@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import { useRouteMatch } from "react-router-dom";
 import Preloader from "./components/common/Preloader";
 import Context from "./context/context";
-import store from "./store/store";
+import store from "./mock/mock";
 import TestContext from "./context/testContext";
 import SuspensePreloader from "./components/common/SuspensePreloader";
 import useIsLastItem from "./hooks/useIsLastItem";

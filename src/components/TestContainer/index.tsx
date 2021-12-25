@@ -3,7 +3,7 @@ import TestAsks from "../TestAsks";
 import TestResultBtn from "./TestResultBtn";
 import { useLocation } from "react-router";
 import Preloader from "../common/Preloader";
-import store from "../../store/store";
+import store from "../../mock/mock";
 import s from "./index.module.css";
 
 type TAsksList = Array<{

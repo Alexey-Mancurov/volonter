@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Context from "../../../context/context";
 import useRequestData from "../../../hooks/useRequestData";
-import store from "../../../store/store";
+import store from "../../../mock/mock";
 import { TLessonItems, TLessonList } from "../../../types/types";
 import CourceTitle2 from "../../common/CourceTitle2/CourceTitle2";
 import CourseMaterialsItem from "./CourseMaterialsItem";

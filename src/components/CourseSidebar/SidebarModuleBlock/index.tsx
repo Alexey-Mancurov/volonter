@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Context from "../../../context/context";
 import useRequestData from "../../../hooks/useRequestData";
-import store from "../../../store/store";
+import store from "../../../mock/mock";
 import actionToggle from "../../../utils/actionToggle/actionToggle";
 import Preloader from "../../common/Preloader";
 import Header from "./Header";

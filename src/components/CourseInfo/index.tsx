@@ -4,7 +4,7 @@ import CourseInfoActions from "./CourseInfoActions";
 import Preloader from "../common/Preloader";
 import Context from "../../context/context";
 import IframeYoutube from "../common/IframeYoutube/IframeYoutube";
-import store from "../../store/store";
+import store from "../../mock/mock";
 import TestContext from "../../context/testContext";
 import editYoutubeLinkForIframe from "../../utils/editYoutubeLinkForIframe/editYoutubeLinkForIframe";
 import s from "./index.module.css";

@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import Context from "../../context/context";
-import store from "../../store/store";
+import store from "../../mock/mock";
 import s from "./index.module.css";
 import { FC } from "react";
 

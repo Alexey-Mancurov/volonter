@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Context from "../../../context/context";
 import useRequestData from "../../../hooks/useRequestData";
-import store from "../../../store/store";
+import store from "../../../mock/mock";
 import { TContext } from "../../../types/types";
 import CoureseReviewItem from "./CoureseReviewItem";
 import s from "./index.module.css";
