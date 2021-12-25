@@ -42,7 +42,8 @@
     -webkit-filter: drop-shadow(0 0 35px rgba(0, 0, 0, .2));
     filter: drop-shadow(0 0 35px rgba(0, 0, 0, .2));
     width: 200px;
-    height: 200px
+    height: 200px;
+    object-fit: cover;
 }
 
 .name {

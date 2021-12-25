@@ -14,11 +14,11 @@ import useProgressPercent from "./hooks/useProgressPercent";
 import { CoursesPage } from "./pages/courses-page";
 import { CourseItemPage } from "./pages/course-item-page";
 
-const TestWrapper = React.lazy(() => import("./components/TestWrapper/TestWrapper"));
-
+const TestWrapper = React.lazy(
+  () => import("./components/TestWrapper/TestWrapper")
+);
 
 function App() {
-  
   const location = useLocation();
   const pathname = location.pathname;
   const match = useRouteMatch("/courseDetail/:id");
@@ -33,8 +33,7 @@ function App() {
 
   const getCourseId = (id: number) => {
     setCourseId(id);
-    // @ts-ignore
-    window.localStorage.setItem("courseId", id);
+    window.localStorage.setItem("courseId", String(id));
   };
 
   useEffect(() => {

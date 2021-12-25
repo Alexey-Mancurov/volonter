@@ -10,6 +10,10 @@
     color: #5c5c5c
 }
 
+p+p{
+    margin-top: 15px;
+}
+
 @media (max-width:1366px) {
     .box {
         -webkit-box-shadow: 0 4px 25px rgba(0, 0, 0, .15);

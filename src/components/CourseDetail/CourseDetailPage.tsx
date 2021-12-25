@@ -15,7 +15,7 @@ interface TProps {
     title: string;
     contentList: Array<{
       title: string;
-      text: string;
+      text: string | string[];
     }>;
     description: string;
     willLearnList: { items: Array<string>; title: string };
@@ -39,8 +39,8 @@ const CourseDetailPage: FC<TProps> = ({ courseDetailData }) => {
   const courses = useRequestData([store.coursesAPI.courses], []);
 
   const list = () => {
-    return contentList?.map((i, index) => (
-      <CourseDetailContent key={index} title={i.title} text={i.text} />
+    return contentList?.map((i, index) => (<>
+      <CourseDetailContent key={index} title={i.title} text={i.text} /><br/></>
     ));
   };
 
